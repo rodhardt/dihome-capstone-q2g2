@@ -19,6 +19,8 @@ interface AuthProviderData {
   signIn: (UserSignInData: UserSignInData) => void;
   registerUser: (userData: UserData) => void;
   logout: () => void;
+  registerPreviousPage: () => void;
+  returnPreviousPage: () => void;
 }
 
 const AuthContext = createContext<AuthProviderData>({} as AuthProviderData);
@@ -35,6 +37,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   );
 
   const [userInfo, setUserInfo] = useState<UserData>({} as UserData);
+
+  const [previousPage, setPreviousPage] = useState<string>("/");
 
   const authenticate = () => {
     if (authToken !== "") {
@@ -78,6 +82,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     history.push("/");
   };
 
+  const registerPreviousPage = () => {
+    setPreviousPage(`${history.location.pathname}`);
+  };
+
+  const returnPreviousPage = () => {
+    history.push(previousPage);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -87,6 +99,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         signIn,
         registerUser,
         logout,
+        registerPreviousPage,
+        returnPreviousPage,
       }}
     >
       {children}
