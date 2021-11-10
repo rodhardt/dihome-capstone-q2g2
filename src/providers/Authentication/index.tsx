@@ -30,12 +30,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     () => localStorage.getItem("@dihome:token") || ""
   );
 
+  const [userId, setUserId] = useState<string>(
+    () => localStorage.getItem("@dihome:id") || ""
+  );
+
   const [userInfo, setUserInfo] = useState<UserData>({} as UserData);
 
   const authenticate = () => {
     if (authToken !== "") {
       api
-        .get("/users", {
+        .get(`/users/${userId}`, {
           headers: { Authorization: `Bearer ${authToken}` },
         })
         .then((response) => setUserInfo(response.data))
@@ -45,9 +49,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signIn = (UserSignInData: UserSignInData) => {
     api
-      .post("/signin", UserSignInData)
+      .post("/login", UserSignInData)
       .then((response) => {
         localStorage.setItem("@dihome:token", response.data.accessToken);
+        localStorage.setItem("@dihome:id", response.data.user.id);
         setAuthToken(response.data.accessToken);
         setUserInfo(response.data);
       })
@@ -56,9 +61,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const registerUser = (userData: UserData) => {
     api
-      .post("/users", userData)
+      .post("/register", userData)
       .then((response) => {
         localStorage.setItem("@dihome:token", response.data.accessToken);
+        localStorage.setItem("@dihome:id", response.data.user.id);
         setAuthToken(response.data.accessToken);
         setUserInfo(response.data);
       })
