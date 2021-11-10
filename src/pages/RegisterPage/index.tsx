@@ -1,12 +1,22 @@
-import { RegisterPageStyled } from "./styles";
+import {
+  BackPage,
+  BoxForm,
+  FormRegister,
+  RegisterPageStyled,
+  Title,
+} from "./styles";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { TextField } from "@material-ui/core";
 import { useAuth } from "../../providers/Authentication";
 import { UserData } from "../../assets/Types/user";
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
+import { BsArrowLeftCircle } from "react-icons/bs";
 
 const RegisterPage = () => {
+  const history = useHistory();
   const formSchema = yup.object().shape({
     name: yup.string().required("Informe seu e-mail.").email("E-mail inválido"),
     email: yup
@@ -46,62 +56,29 @@ const RegisterPage = () => {
   return (
     <>
       <RegisterPageStyled>
-        <div>
-          <form className="form_register" onSubmit={handleSubmit(handleForm)}>
-            <div>
-              <TextField
-                label="Nome"
-                margin="normal"
-                variant="outlined"
-                size="small"
-                color="primary"
-                {...register("name")}
-                error={!!errors.name}
-                helperText={errors.name?.message}
-              />
-            </div>
-            <div>
-              <TextField
-                label="E-mail"
-                margin="normal"
-                variant="outlined"
-                size="small"
-                color="primary"
-                {...register("email")}
-                error={!!errors.email}
-                helperText={errors.email?.message}
-              />
-            </div>
-            <div>
-              <TextField
-                label="Senha"
-                margin="normal"
-                variant="outlined"
-                size="small"
-                color="primary"
-                {...register("password")}
-                error={!!errors.password}
-                helperText={errors.password?.message}
-              />
-            </div>
-            <div>
-              <TextField
-                label="Telefone"
-                margin="normal"
-                variant="outlined"
-                size="small"
-                color="primary"
-                {...register("phone")}
-                error={!!errors.phone}
-                helperText={errors.phone?.message}
-              />
-            </div>
+        <BackPage>
+          <BsArrowLeftCircle />
 
-            <div>
-              <button type="submit">Submit</button>
-            </div>
-          </form>
-        </div>
+          <Link to="/login">voltar para login</Link>
+        </BackPage>
+        <BoxForm>
+          <FormRegister
+            className="form_register"
+            onSubmit={handleSubmit(handleForm)}
+          >
+            <Title>
+              <h2>Cadastro</h2>
+            </Title>
+            <input placeholder="Nome" {...register("name")} />
+            <input placeholder="E-mail" {...register("email")} />
+            <input placeholder="Senha" {...register("password")} />
+            <input placeholder="Telefone" {...register("phone")} />
+
+            <button className="registerButton" type="submit">
+              cadastrar
+            </button>
+          </FormRegister>
+        </BoxForm>
       </RegisterPageStyled>
     </>
   );
