@@ -1,30 +1,59 @@
 import { ConfirmedModalStyled } from "./styles";
 import { ModalData } from "../../assets/Types/modal";
 
+import { useState } from "react";
+
 interface ModalProps {
   modalContent: ModalData;
 }
 
-function ConfirmedModal() {
+function ConfirmedModal({ modalContent }: ModalProps) {
+  const [inputValue, setInputValue] = useState("");
+
+  const { closeFunction } = modalContent;
+
   return (
     <ConfirmedModalStyled>
       <div className="modal-card">
         <header>
-          <h4>Título</h4>
-          <button className="close-button">X</button>
+          <h4>{modalContent.title}Título</h4>
+          <button className="close-button" onClick={() => closeFunction()}>
+            X
+          </button>
         </header>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
-          commodi harum quia ducimus nisi consectetur similique, et suscipit, ea
-          aliquid iusto omnis expedita! Dolores repellendus, dolorem iure
-          consequuntur veniam aperiam.
-        </p>
-        <div className="input-container">
-          <textarea placeholder="Digite aqui" />
-        </div>
+        <p>{modalContent.message}</p>
+        {!!modalContent.textareaPlaceholder ? (
+          <div className="input-container">
+            <textarea
+              value={inputValue}
+              placeholder="Digite aqui"
+              onChange={(evt) => setInputValue(evt.target.value)}
+            />
+          </div>
+        ) : null}
         <div className="buttons-container">
-          <button className="confirm-button">Confirmar</button>
-          <button className="cancel-button">Cancelar</button>
+          {!!modalContent.confirmButton ? (
+            <button
+              className="confirm-button"
+              onClick={() => {
+                modalContent.confirmButton?.confirmFunction();
+                closeFunction();
+              }}
+            >
+              {modalContent.confirmButton.confirmText}
+            </button>
+          ) : null}
+          {!!modalContent.cancelButton ? (
+            <button
+              className="cancel-button"
+              onClick={() => {
+                modalContent.cancelButton?.cancelFunction();
+                closeFunction();
+              }}
+            >
+              {modalContent.cancelButton.cancelText}
+            </button>
+          ) : null}
         </div>
       </div>
     </ConfirmedModalStyled>

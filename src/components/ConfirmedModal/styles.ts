@@ -72,9 +72,6 @@ export const ConfirmedModalStyled = styled.div`
     height: 100%;
   }
 
-  .modal-card input::placeholder {
-  }
-
   .buttons-container {
     display: flex;
     flex-direction: row;
