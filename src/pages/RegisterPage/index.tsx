@@ -1,5 +1,6 @@
 import {
   BackPage,
+  BlackFilter,
   BoxForm,
   FormRegister,
   RegisterPageStyled,
@@ -56,29 +57,31 @@ const RegisterPage = () => {
   return (
     <>
       <RegisterPageStyled>
-        <BackPage>
-          <BsArrowLeftCircle />
+        <BlackFilter>
+          <BackPage>
+            <BsArrowLeftCircle />
 
-          <Link to="/login">voltar para login</Link>
-        </BackPage>
-        <BoxForm>
-          <FormRegister
-            className="form_register"
-            onSubmit={handleSubmit(handleForm)}
-          >
-            <Title>
-              <h2>Cadastro</h2>
-            </Title>
-            <input placeholder="Nome" {...register("name")} />
-            <input placeholder="E-mail" {...register("email")} />
-            <input placeholder="Senha" {...register("password")} />
-            <input placeholder="Telefone" {...register("phone")} />
+            <Link to="/login">voltar para login</Link>
+          </BackPage>
+          <BoxForm>
+            <FormRegister
+              className="form_register"
+              onSubmit={handleSubmit(handleForm)}
+            >
+              <Title>
+                <h2>Cadastro</h2>
+              </Title>
+              <input placeholder="Nome" {...register("name")} />
+              <input placeholder="E-mail" {...register("email")} />
+              <input placeholder="Senha" {...register("password")} />
+              <input placeholder="Telefone" {...register("phone")} />
 
-            <button className="registerButton" type="submit">
-              cadastrar
-            </button>
-          </FormRegister>
-        </BoxForm>
+              <button className="registerButton" type="submit">
+                cadastrar
+              </button>
+            </FormRegister>
+          </BoxForm>
+        </BlackFilter>
       </RegisterPageStyled>
     </>
   );

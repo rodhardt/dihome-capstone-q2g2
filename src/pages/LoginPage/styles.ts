@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import nightCity from "../../assets/Images/nightCity.jpg";
 
+export const BlackFilter = styled.div`
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #45454550;
+`;
+
 export const LoginPageStyled = styled.main`
   width: 100vw;
   height: 100vh;

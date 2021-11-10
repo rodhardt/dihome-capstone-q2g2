@@ -1,5 +1,6 @@
 import {
   BackPage,
+  BlackFilter,
   BoxForm,
   FormLogin,
   Linha,
@@ -52,33 +53,35 @@ const LoginPage = () => {
   return (
     <>
       <LoginPageStyled>
-        <BackPage>
-          <BsArrowLeftCircle />
+        <BlackFilter>
+          <BackPage>
+            <BsArrowLeftCircle />
 
-          <Link to="/">voltar para início</Link>
-        </BackPage>
-        <BoxForm>
-          <FormLogin
-            className="form_register"
-            onSubmit={handleSubmit(handleForm)}
-          >
-            <Title>
-              <h2>Login</h2>
-            </Title>
-            <input placeholder="E-mail" {...register("email")} />
-            <input placeholder="Senha" {...register("password")} />
-            <button className="loginButton" type="submit">
-              entrar
-            </button>
-            <Linha></Linha>
-            <button
-              className="registerButton"
-              onClick={() => history.push("/registrar")}
+            <Link to="/">voltar para início</Link>
+          </BackPage>
+          <BoxForm>
+            <FormLogin
+              className="form_register"
+              onSubmit={handleSubmit(handleForm)}
             >
-              criar nova conta
-            </button>
-          </FormLogin>
-        </BoxForm>
+              <Title>
+                <h2>Login</h2>
+              </Title>
+              <input placeholder="E-mail" {...register("email")} />
+              <input placeholder="Senha" {...register("password")} />
+              <button className="loginButton" type="submit">
+                entrar
+              </button>
+              <Linha></Linha>
+              <button
+                className="registerButton"
+                onClick={() => history.push("/registrar")}
+              >
+                criar nova conta
+              </button>
+            </FormLogin>
+          </BoxForm>
+        </BlackFilter>
       </LoginPageStyled>
     </>
   );
