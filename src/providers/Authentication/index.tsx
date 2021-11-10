@@ -43,9 +43,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
-  const signIn = (UserSignInData: UserSignInData) => {
+  const signIn = (userSignInData: UserSignInData) => {
     api
-      .post("/signin", UserSignInData)
+      .post("/signin", userSignInData)
       .then((response) => {
         localStorage.setItem("@dihome:token", response.data.accessToken);
         setAuthToken(response.data.accessToken);
