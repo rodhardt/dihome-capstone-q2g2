@@ -5,7 +5,7 @@ interface PayCardProps {
   planName: string;
   anouncesQuantity: string;
   price: number;
-  callback?: (param?: any) => void;
+  handlePlan: (planName: string) => void;
 }
 
 export const PayCard = ({
@@ -13,7 +13,7 @@ export const PayCard = ({
   planName,
   anouncesQuantity,
   price,
-  callback,
+  handlePlan,
 }: PayCardProps) => {
   return (
     <PayCardStyled>
@@ -25,7 +25,7 @@ export const PayCard = ({
           <li>R$ {price} / mês</li>
         </ul>
       </RowBox>
-      <button>assinar</button>
+      <button onClick={() => handlePlan(planName)}>assinar</button>
     </PayCardStyled>
   );
 };
