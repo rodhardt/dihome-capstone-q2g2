@@ -23,7 +23,19 @@ export const PayCard = ({
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenSecondModal, setIsOpenSecondModal] = useState(false);
 
-  const { registerPreviousPage } = useAuth();
+  const { updateUser, userInfo } = useAuth();
+
+  const newUserInfo = {
+    id: userInfo.id,
+    password: userInfo.password,
+    name: userInfo.name,
+    email: userInfo.email,
+    telephone: userInfo.telephone,
+    consultant: userInfo.consultant,
+    announcedProperties: userInfo.announcedProperties,
+    bookmarkedProperties: userInfo.bookmarkedProperties,
+    subscriptionType: planName,
+  };
 
   const modalInformation = {
     title: "Assinar plano",
@@ -32,6 +44,7 @@ export const PayCard = ({
     confirmButton: {
       confirmText: "confirmar",
       confirmFunction: () => {
+        updateUser(newUserInfo);
         setIsOpenSecondModal(true);
       },
     },

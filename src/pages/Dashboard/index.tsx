@@ -5,9 +5,10 @@ function Dashboard() {
   const { properties } = useProperties();
   return (
     <DashboardStyled>
-      {properties.map((item) => (
-        <PropertyCard properties={item} type="DashBoard" />
-      ))}
+      {properties &&
+        properties.map((item) => (
+          <PropertyCard properties={item} type="DashBoard" />
+        ))}
     </DashboardStyled>
   );
 }

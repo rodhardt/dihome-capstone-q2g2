@@ -87,7 +87,6 @@ const RegisterPage = () => {
                 <button
                   onClick={() => history.push("/login")}
                   className="backToLogin"
-                  type="submit"
                 >
                   Login
                 </button>
