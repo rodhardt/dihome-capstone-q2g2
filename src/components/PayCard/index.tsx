@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { useHistory } from "react-router";
+import { useAuth } from "../../providers/Authentication";
+import ConfirmedModal from "../ConfirmedModal";
 import { RowBox, PayCardStyled } from "./styles";
 
 interface PayCardProps {
@@ -15,8 +19,47 @@ export const PayCard = ({
   price,
   handlePlan,
 }: PayCardProps) => {
+  const history = useHistory();
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenSecondModal, setIsOpenSecondModal] = useState(false);
+
+  const { registerPreviousPage } = useAuth();
+
+  const modalInformation = {
+    title: "Assinar plano",
+    closeFunction: () => setIsOpenModal(false),
+    message: `Você deseja assinar esse plano por R$ ${price}0?`,
+    confirmButton: {
+      confirmText: "confirmar",
+      confirmFunction: () => {
+        setIsOpenSecondModal(true);
+      },
+    },
+    cancelButton: {
+      cancelText: "cancelar",
+      cancelFunction: () => {},
+    },
+  };
+
+  const secondModalInformation = {
+    title: "Parabéns",
+    closeFunction: () => setIsOpenModal(false),
+    message: `O plano ${planName} foi assinado com sucesso!`,
+    confirmButton: {
+      confirmText: "voltar",
+      confirmFunction: () => {
+        history.push("/perfil");
+        setIsOpenSecondModal(false);
+      },
+    },
+  };
+
   return (
     <PayCardStyled>
+      {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
+      {isOpenSecondModal && (
+        <ConfirmedModal modalContent={secondModalInformation} />
+      )}
       <RowBox>
         <img src={img} alt="" />
         <ul>
@@ -25,7 +68,14 @@ export const PayCard = ({
           <li>R$ {price} / mês</li>
         </ul>
       </RowBox>
-      <button onClick={() => handlePlan(planName)}>assinar</button>
+      <button
+        onClick={() => {
+          handlePlan(planName);
+          setIsOpenModal(true);
+        }}
+      >
+        assinar
+      </button>
     </PayCardStyled>
   );
 };
