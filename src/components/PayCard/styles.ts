@@ -44,3 +44,10 @@ export const RowBox = styled.div`
     }
   }
 `;
+
+export const FlexCenter = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;

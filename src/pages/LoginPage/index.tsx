@@ -6,6 +6,7 @@ import {
   Linha,
   LoginPageStyled,
   Title,
+  FlexCenter,
 } from "./styles";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -15,6 +16,7 @@ import { useAuth } from "../../providers/Authentication";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { BsArrowLeftCircle } from "react-icons/bs";
+import logoName from "../../assets/Images/logoWithName.png";
 
 interface UserSignInData {
   email: string;
@@ -59,28 +61,31 @@ const LoginPage = () => {
 
             <Link to="/">voltar para início</Link>
           </BackPage>
-          <BoxForm>
-            <FormLogin
-              className="form_register"
-              onSubmit={handleSubmit(handleForm)}
-            >
-              <Title>
-                <h2>Login</h2>
-              </Title>
-              <input placeholder="E-mail" {...register("email")} />
-              <input placeholder="Senha" {...register("password")} />
-              <button className="loginButton" type="submit">
-                entrar
-              </button>
-              <Linha></Linha>
-              <button
-                className="registerButton"
-                onClick={() => history.push("/registrar")}
+          <FlexCenter>
+            <img className="logo" src={logoName} alt="" />
+            <BoxForm>
+              <FormLogin
+                className="form_register"
+                onSubmit={handleSubmit(handleForm)}
               >
-                criar nova conta
-              </button>
-            </FormLogin>
-          </BoxForm>
+                <Title>
+                  <h2>Login</h2>
+                </Title>
+                <input placeholder="E-mail" {...register("email")} />
+                <input placeholder="Senha" {...register("password")} />
+                <button className="loginButton" type="submit">
+                  entrar
+                </button>
+                <Linha></Linha>
+                <button
+                  className="registerButton"
+                  onClick={() => history.push("/registrar")}
+                >
+                  criar nova conta
+                </button>
+              </FormLogin>
+            </BoxForm>
+          </FlexCenter>
         </BlackFilter>
       </LoginPageStyled>
     </>
