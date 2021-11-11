@@ -1,7 +1,29 @@
-import { PayCardStyled } from "./styles";
+import { RowBox, PayCardStyled } from "./styles";
 
-function PayCard() {
-  return <PayCardStyled></PayCardStyled>;
+interface PayCardProps {
+  img: string;
+  planName: string;
+  anouncesQuantity: string;
+  price: number;
 }
 
-export default PayCard;
+export const PayCard = ({
+  img,
+  planName,
+  anouncesQuantity,
+  price,
+}: PayCardProps) => {
+  return (
+    <PayCardStyled>
+      <RowBox>
+        <div>{img}</div>
+        <ul>
+          <li>{planName}</li>
+          <li>{anouncesQuantity}</li>
+          <li>R$ {price} / mês</li>
+        </ul>
+      </RowBox>
+      <button>assinar</button>
+    </PayCardStyled>
+  );
+};
