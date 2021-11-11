@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     authenticate();
     getProperties();
-  });
+  }, []);
 
   return (
     <div className="App">
