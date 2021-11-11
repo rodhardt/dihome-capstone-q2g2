@@ -16,6 +16,11 @@ export const LoginPageStyled = styled.main`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  .logo {
+    width: 20%;
+    margin: 25px 0px 25px 0px;
+  }
 `;
 
 export const FormLogin = styled.form`
@@ -53,7 +58,7 @@ export const FormLogin = styled.form`
 
   > .loginButton {
     width: 80%;
-    height: 12%;
+    height: 35px;
 
     margin-top: 20px;
 
@@ -67,7 +72,7 @@ export const FormLogin = styled.form`
 
   > .registerButton {
     width: 70%;
-    height: 11%;
+    height: 30px;
 
     border: none;
     border-radius: 5px;
@@ -76,6 +81,8 @@ export const FormLogin = styled.form`
     color: #707070;
     background-color: var(--mainGray);
   }
+
+  padding-bottom: 20px;
 `;
 
 export const Linha = styled.div`
@@ -132,4 +139,11 @@ export const BackPage = styled.div`
     font-size: 15px;
     margin-left: 10px;
   }
+`;
+
+export const FlexCenter = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;

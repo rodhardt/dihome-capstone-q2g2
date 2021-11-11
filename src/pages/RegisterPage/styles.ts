@@ -16,11 +16,16 @@ export const RegisterPageStyled = styled.main`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  .logo {
+    width: 18%;
+    margin: 10px 0px 10px 0px;
+  }
 `;
 
 export const FormRegister = styled.form`
   width: 70%;
-  height: 70%;
+  height: 75%;
 
   max-width: 450px;
   max-height: 400px;
@@ -28,7 +33,7 @@ export const FormRegister = styled.form`
   min-width: 200px;
   min-height: 300px;
 
-  padding: 15px 0px 0px 0px;
+  padding: 15px 0px 15px 0px;
 
   display: flex;
   flex-direction: column;
@@ -135,4 +140,11 @@ export const BackPage = styled.div`
     font-size: 15px;
     margin-left: 10px;
   }
+`;
+
+export const FlexCenter = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
