@@ -6,9 +6,9 @@ function Homepage() {
   const { properties } = useProperties();
   return (
     <HomepageStyled>
-      {properties.map((item) => (
-        <PropertyCard properties={item} />
-      ))}
+      {properties.map((item, index) =>
+        index > 2 ? <PropertyCard properties={item} type="HomePage" /> : null
+      )}
     </HomepageStyled>
   );
 }

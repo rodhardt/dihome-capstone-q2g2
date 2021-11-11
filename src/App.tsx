@@ -11,9 +11,11 @@ import { useProperties } from "./providers/Properties";
 
 function App() {
   const { authenticate } = useAuth();
+  const { getProperties } = useProperties();
 
   useEffect(() => {
     authenticate();
+    getProperties();
   });
 
   return (
