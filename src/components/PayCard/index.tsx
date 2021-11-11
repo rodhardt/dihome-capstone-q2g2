@@ -1,5 +1,5 @@
 import { RowBox, PayCardStyled } from "./styles";
-import logo from "../../assets/Images/dihome2.png";
+import logo from "../../assets/Images/logoWithoutName.png";
 
 interface PayCardProps {
   img: any;
