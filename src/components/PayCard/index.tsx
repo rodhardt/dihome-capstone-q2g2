@@ -6,6 +6,7 @@ interface PayCardProps {
   planName: string;
   anouncesQuantity: string;
   price: number;
+  callback?: (param?: any) => void;
 }
 
 export const PayCard = ({
@@ -13,6 +14,7 @@ export const PayCard = ({
   planName,
   anouncesQuantity,
   price,
+  callback,
 }: PayCardProps) => {
   return (
     <PayCardStyled>
