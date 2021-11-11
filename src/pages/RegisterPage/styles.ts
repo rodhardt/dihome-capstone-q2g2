@@ -8,7 +8,7 @@ export const BlackFilter = styled.div`
   background-color: #45454550;
 `;
 
-export const LoginPageStyled = styled.main`
+export const RegisterPageStyled = styled.main`
   width: 100vw;
   height: 100vh;
 
@@ -18,13 +18,13 @@ export const LoginPageStyled = styled.main`
   background-size: cover;
 
   .logo {
-    width: 20%;
-    margin: 25px 0px 25px 0px;
+    width: 18%;
+    margin: 10px 0px 10px 0px;
   }
 `;
 
-export const FormLogin = styled.form`
-  width: 80%;
+export const FormRegister = styled.form`
+  width: 70%;
   height: 75%;
 
   max-width: 450px;
@@ -32,6 +32,8 @@ export const FormLogin = styled.form`
 
   min-width: 200px;
   min-height: 300px;
+
+  padding: 15px 0px 15px 0px;
 
   display: flex;
   flex-direction: column;
@@ -41,6 +43,39 @@ export const FormLogin = styled.form`
   border-radius: 5px;
 
   background-color: #45454580;
+
+  > .registerButton {
+    width: 70%;
+    height: 12%;
+
+    margin-top: 15px;
+
+    border-radius: 5px;
+    border: none;
+
+    font-size: 18px;
+    color: var(--mainGray);
+    background-color: var(--darkBlue);
+  }
+
+  > .backToLogin {
+    width: 50%;
+    height: 8%;
+
+    margin-top: 15px;
+    border-radius: 5px;
+    border: none;
+
+    font-size: 18px;
+    color: var(--darkBlue);
+    border: 2px solid var(--darkBlue);
+    background-color: #45454500;
+  }
+
+  > div {
+    width: 80%;
+    height: 17%;
+  }
 
   > input {
     width: 80%;
@@ -55,45 +90,6 @@ export const FormLogin = styled.form`
 
     padding: 5px;
   }
-
-  > .loginButton {
-    width: 80%;
-    height: 35px;
-
-    margin-top: 20px;
-
-    border-radius: 5px;
-    border: none;
-
-    font-size: 18px;
-    color: var(--mainGray);
-    background-color: var(--darkBlue);
-  }
-
-  > .registerButton {
-    width: 70%;
-    height: 30px;
-
-    border: none;
-    border-radius: 5px;
-
-    font-size: 13px;
-    color: #707070;
-    background-color: var(--mainGray);
-  }
-
-  padding-bottom: 20px;
-`;
-
-export const Linha = styled.div`
-  width: 80%;
-  height: 2px;
-  border-radius: 20px;
-  opacity: 0.5;
-
-  background-color: var(--mainGray);
-
-  margin: 25px 0px 25px 0px;
 `;
 
 export const BoxForm = styled.div`
@@ -103,14 +99,19 @@ export const BoxForm = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+
+  > img {
+    width: 100px;
+    height: 100px;
+  }
 `;
 
-export const Title = styled.div`
+export const Title = styled.section`
   width: 100%;
+  height: 20px;
 
-  padding-top: 10px;
-  margin-left: 25px;
-  margin-top: 10px;
+  margin: 0px 0px 0px 40px;
 
   display: flex;
   align-items: flex-start;

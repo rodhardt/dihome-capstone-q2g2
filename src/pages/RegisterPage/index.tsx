@@ -2,9 +2,8 @@ import {
   BackPage,
   BlackFilter,
   BoxForm,
-  FormLogin,
-  Linha,
-  LoginPageStyled,
+  FormRegister,
+  RegisterPageStyled,
   Title,
   FlexCenter,
 } from "./styles";
@@ -13,19 +12,17 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { TextField } from "@material-ui/core";
 import { useAuth } from "../../providers/Authentication";
+import { UserData } from "../../assets/Types/user";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { BsArrowLeftCircle } from "react-icons/bs";
+import { Linha } from "../LoginPage/styles";
 import logoName from "../../assets/Images/logoWithName.png";
 
-interface UserSignInData {
-  email: string;
-  password: string;
-}
-
-const LoginPage = () => {
+const RegisterPage = () => {
   const history = useHistory();
   const formSchema = yup.object().shape({
+    name: yup.string().required("Informe seu e-mail.").email("E-mail inválido"),
     email: yup
       .string()
       .required("Informe seu nome")
@@ -38,6 +35,7 @@ const LoginPage = () => {
         /^(?=.*\d)(?=.*[a-z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/,
         "Deve contert no mínimo um número, uma letra e um caractere especial."
       ),
+    phone: yup.string().required("Informe seu telefone"),
   });
 
   const {
@@ -46,15 +44,22 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
 
-  const { signIn } = useAuth();
+  const { registerUser } = useAuth();
 
-  const handleForm = (userSignInData: UserSignInData) => {
-    signIn(userSignInData);
+  const handleForm = (userData: UserData) => {
+    const newUser = {
+      ...userData,
+      consultant: false,
+      advertised_properties: [],
+      saved_properties: [],
+      signed_plan: "none",
+    };
+    registerUser(newUser);
   };
 
   return (
     <>
-      <LoginPageStyled>
+      <RegisterPageStyled>
         <BlackFilter>
           <BackPage>
             <BsArrowLeftCircle />
@@ -64,32 +69,35 @@ const LoginPage = () => {
           <FlexCenter>
             <img className="logo" src={logoName} alt="" />
             <BoxForm>
-              <FormLogin
+              <FormRegister
                 className="form_register"
                 onSubmit={handleSubmit(handleForm)}
               >
                 <Title>
-                  <h2>Login</h2>
+                  <h2>Cadastro</h2>
                 </Title>
+                <input placeholder="Nome" {...register("name")} />
                 <input placeholder="E-mail" {...register("email")} />
                 <input placeholder="Senha" {...register("password")} />
-                <button className="loginButton" type="submit">
-                  entrar
+                <input placeholder="Telefone" {...register("phone")} />
+
+                <button className="registerButton" type="submit">
+                  cadastrar
                 </button>
-                <Linha></Linha>
                 <button
-                  className="registerButton"
-                  onClick={() => history.push("/registrar")}
+                  onClick={() => history.push("/login")}
+                  className="backToLogin"
+                  type="submit"
                 >
-                  criar nova conta
+                  Login
                 </button>
-              </FormLogin>
+              </FormRegister>
             </BoxForm>
           </FlexCenter>
         </BlackFilter>
-      </LoginPageStyled>
+      </RegisterPageStyled>
     </>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
