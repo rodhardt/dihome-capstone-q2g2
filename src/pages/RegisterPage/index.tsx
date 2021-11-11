@@ -5,6 +5,7 @@ import {
   FormRegister,
   RegisterPageStyled,
   Title,
+  FlexCenter,
 } from "./styles";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -15,6 +16,8 @@ import { UserData } from "../../assets/Types/user";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { BsArrowLeftCircle } from "react-icons/bs";
+import { Linha } from "../LoginPage/styles";
+import logoName from "../../assets/Images/logoWithName.png";
 
 const RegisterPage = () => {
   const history = useHistory();
@@ -61,26 +64,36 @@ const RegisterPage = () => {
           <BackPage>
             <BsArrowLeftCircle />
 
-            <Link to="/login">voltar para login</Link>
+            <Link to="/">voltar para início</Link>
           </BackPage>
-          <BoxForm>
-            <FormRegister
-              className="form_register"
-              onSubmit={handleSubmit(handleForm)}
-            >
-              <Title>
-                <h2>Cadastro</h2>
-              </Title>
-              <input placeholder="Nome" {...register("name")} />
-              <input placeholder="E-mail" {...register("email")} />
-              <input placeholder="Senha" {...register("password")} />
-              <input placeholder="Telefone" {...register("phone")} />
+          <FlexCenter>
+            <img className="logo" src={logoName} alt="" />
+            <BoxForm>
+              <FormRegister
+                className="form_register"
+                onSubmit={handleSubmit(handleForm)}
+              >
+                <Title>
+                  <h2>Cadastro</h2>
+                </Title>
+                <input placeholder="Nome" {...register("name")} />
+                <input placeholder="E-mail" {...register("email")} />
+                <input placeholder="Senha" {...register("password")} />
+                <input placeholder="Telefone" {...register("phone")} />
 
-              <button className="registerButton" type="submit">
-                cadastrar
-              </button>
-            </FormRegister>
-          </BoxForm>
+                <button className="registerButton" type="submit">
+                  cadastrar
+                </button>
+                <button
+                  onClick={() => history.push("/login")}
+                  className="backToLogin"
+                  type="submit"
+                >
+                  Login
+                </button>
+              </FormRegister>
+            </BoxForm>
+          </FlexCenter>
         </BlackFilter>
       </RegisterPageStyled>
     </>
