@@ -42,6 +42,7 @@ function PropertyCard({ properties, type }: any) {
       },
     },
   };
+  //teste
   return (
     <>
       {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
