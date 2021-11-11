@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 export const PayCardStyled = styled.div`
   width: 90%;
-  height: 130px;
+  height: 110px;
+
+  max-width: 230px;
 
   background-color: #dddddd;
   border-radius: 10px;
@@ -10,6 +12,8 @@ export const PayCardStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin: 15px;
 
   > button {
     width: 35%;
@@ -20,6 +24,12 @@ export const PayCardStyled = styled.div`
     color: var(--mainGray);
 
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    font-size: small;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 220px;
   }
 `;
 
@@ -32,15 +42,15 @@ export const RowBox = styled.div`
   justify-content: space-evenly;
 
   > img {
-    width: 65px;
-    height: 65px;
+    width: 55px;
+    height: 55px;
     margin-top: 20px;
   }
 
   > ul {
     li {
       list-style: none;
-      font-size: 13px;
+      font-size: 11px;
     }
   }
 `;

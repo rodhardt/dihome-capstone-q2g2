@@ -8,7 +8,6 @@ import logoFour from "../../assets/Images/logoFour.png";
 const PayPage = () => {
   return (
     <PayPageStyled>
-      PayPage
       <PayCard
         img={logoOne}
         planName={"Plano básico"}
@@ -17,7 +16,7 @@ const PayPage = () => {
       />
       <PayCard
         img={logoTwo}
-        planName={"Plano em dobro"}
+        planName={"Plano triplo"}
         anouncesQuantity={"Até 3 imóveis"}
         price={69.9}
       />
