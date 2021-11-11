@@ -1,5 +1,4 @@
 import { RowBox, PayCardStyled } from "./styles";
-import logo from "../../assets/Images/logoWithoutName.png";
 
 interface PayCardProps {
   img: any;
@@ -19,7 +18,7 @@ export const PayCard = ({
   return (
     <PayCardStyled>
       <RowBox>
-        <img src={logo} alt="" />
+        <img src={img} alt="" />
         <ul>
           <li>{planName}</li>
           <li>{anouncesQuantity}</li>

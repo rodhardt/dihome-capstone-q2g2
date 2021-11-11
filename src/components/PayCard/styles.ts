@@ -32,8 +32,8 @@ export const RowBox = styled.div`
   justify-content: space-evenly;
 
   > img {
-    width: 150px;
-    height: 150px;
+    width: 65px;
+    height: 65px;
     margin-top: 20px;
   }
 
