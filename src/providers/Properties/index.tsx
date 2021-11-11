@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import api from "../../services/api";
 import { PropertyData } from "../../assets/Types/property";
 import { useAuth } from "../Authentication";
@@ -9,7 +15,7 @@ interface PropertiesProviderProps {
 
 interface PropertiesProviderData {
   properties: PropertyData[];
-  getProperties: () => void;
+
   addProperty: (newProperty: PropertyData) => void;
   updateProperty: (newProperty: PropertyData) => void;
 }
@@ -22,13 +28,12 @@ export const PropertiesProvider = ({ children }: PropertiesProviderProps) => {
   const [properties, setProperties] = useState<PropertyData[]>([]);
 
   const { authToken } = useAuth();
-
-  const getProperties = () => {
+  useEffect(() => {
     api
-      .get("/properties")
+      .get("/property")
       .then((response) => setProperties(response.data))
       .catch((err) => console.log(err));
-  };
+  }, []);
 
   const addProperty = (newProperty: PropertyData) => {
     const newPropertyId = { ...newProperty, id: properties.length + 1 };
@@ -53,7 +58,7 @@ export const PropertiesProvider = ({ children }: PropertiesProviderProps) => {
     <PropertiesContext.Provider
       value={{
         properties,
-        getProperties,
+
         addProperty,
         updateProperty,
       }}
