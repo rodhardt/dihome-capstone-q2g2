@@ -19,6 +19,7 @@ interface AuthProviderData {
   signIn: (UserSignInData: UserSignInData) => void;
   registerUser: (userData: UserData) => void;
   logout: () => void;
+  updateUser: (userData: UserData) => void;
   registerPreviousPage: () => void;
   returnPreviousPage: () => void;
 }
@@ -82,6 +83,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     history.push("/");
   };
 
+  const updateUser = (newUserData: UserData) => {
+    setUserInfo(newUserData);
+    api
+      .patch(`/users/${userId}`, newUserData, {
+        headers: { Authorization: `Bearer ${authToken}` },
+      })
+      .catch((err) => console.log(err));
+  };
+
   const registerPreviousPage = () => {
     setPreviousPage(`${history.location.pathname}`);
   };
@@ -99,6 +109,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         signIn,
         registerUser,
         logout,
+        updateUser,
         registerPreviousPage,
         returnPreviousPage,
       }}
