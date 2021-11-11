@@ -52,6 +52,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  const returnPreviousPage = () => {
+    history.push(previousPage);
+  };
+
   const signIn = (userSignInData: UserSignInData) => {
     api
       .post("/signin", userSignInData)
@@ -60,6 +64,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         localStorage.setItem("@dihome:id", response.data.user.id);
         setAuthToken(response.data.accessToken);
         setUserInfo(response.data);
+        history.push(previousPage);
       })
       .catch((err) => console.log(err));
   };
@@ -72,6 +77,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         localStorage.setItem("@dihome:id", response.data.user.id);
         setAuthToken(response.data.accessToken);
         setUserInfo(response.data);
+        history.push(previousPage);
       })
       .catch((err) => console.log(err));
   };
@@ -94,10 +100,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const registerPreviousPage = () => {
     setPreviousPage(`${history.location.pathname}`);
-  };
-
-  const returnPreviousPage = () => {
-    history.push(previousPage);
   };
 
   return (

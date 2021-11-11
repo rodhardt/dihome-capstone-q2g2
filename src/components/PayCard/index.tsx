@@ -45,6 +45,7 @@ export const PayCard = ({
       confirmText: "confirmar",
       confirmFunction: () => {
         updateUser(newUserInfo);
+        console.log(newUserInfo);
         setIsOpenSecondModal(true);
       },
     },
