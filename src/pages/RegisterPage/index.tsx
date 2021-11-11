@@ -15,6 +15,7 @@ import { UserData } from "../../assets/Types/user";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { BsArrowLeftCircle } from "react-icons/bs";
+import { Linha } from "../LoginPage/styles";
 
 const RegisterPage = () => {
   const history = useHistory();
@@ -61,7 +62,7 @@ const RegisterPage = () => {
           <BackPage>
             <BsArrowLeftCircle />
 
-            <Link to="/login">voltar para login</Link>
+            <Link to="/">voltar para início</Link>
           </BackPage>
           <BoxForm>
             <FormRegister
@@ -78,6 +79,13 @@ const RegisterPage = () => {
 
               <button className="registerButton" type="submit">
                 cadastrar
+              </button>
+              <button
+                onClick={() => history.push("/login")}
+                className="backToLogin"
+                type="submit"
+              >
+                Login
               </button>
             </FormRegister>
           </BoxForm>

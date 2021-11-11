@@ -53,6 +53,20 @@ export const FormRegister = styled.form`
     background-color: var(--darkBlue);
   }
 
+  > .backToLogin {
+    width: 50%;
+    height: 8%;
+
+    margin-top: 15px;
+    border-radius: 5px;
+    border: none;
+
+    font-size: 18px;
+    color: var(--darkBlue);
+    border: 2px solid var(--darkBlue);
+    background-color: #45454500;
+  }
+
   > div {
     width: 80%;
     height: 17%;
