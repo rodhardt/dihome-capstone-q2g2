@@ -13,7 +13,6 @@ export const PayCardStyled = styled.div`
 
   > button {
     width: 35%;
-    margin-bottom: 10px;
 
     border: none;
     border-radius: 5px;
@@ -26,18 +25,19 @@ export const PayCardStyled = styled.div`
 
 export const RowBox = styled.div`
   width: 100%;
-  height: 80%;
+  height: 70%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
 
-  > div {
-    margin-left: 50px;
+  > img {
+    width: 150px;
+    height: 150px;
+    margin-top: 20px;
   }
 
   > ul {
-    width: 50%;
     li {
       list-style: none;
       font-size: 13px;

@@ -1,7 +1,8 @@
 import { RowBox, PayCardStyled } from "./styles";
+import logo from "../../assets/Images/dihome2.png";
 
 interface PayCardProps {
-  img: string;
+  img: any;
   planName: string;
   anouncesQuantity: string;
   price: number;
@@ -16,7 +17,7 @@ export const PayCard = ({
   return (
     <PayCardStyled>
       <RowBox>
-        <div>{img}</div>
+        <img src={logo} alt="" />
         <ul>
           <li>{planName}</li>
           <li>{anouncesQuantity}</li>
