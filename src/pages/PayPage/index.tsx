@@ -5,9 +5,12 @@ import logoTwo from "../../assets/Images/logoTwo.png";
 import logoThree from "../../assets/Images/logoThree.png";
 import logoFour from "../../assets/Images/logoFour.png";
 import { useState } from "react";
+import ConfirmedModal from "../../components/ConfirmedModal";
 
 const PayPage = () => {
   const [plan, setPlan] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
   const handlePlan = (planName: string) => setPlan(planName);
 
   return (
