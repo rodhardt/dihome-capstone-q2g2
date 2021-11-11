@@ -16,7 +16,7 @@ function ConfirmedModal({ modalContent }: ModalProps) {
     <ConfirmedModalStyled>
       <div className="modal-card">
         <header>
-          <h4>{modalContent.title}Título</h4>
+          <h4>{modalContent.title}</h4>
           <button className="close-button" onClick={() => closeFunction()}>
             X
           </button>
