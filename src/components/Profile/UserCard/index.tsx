@@ -43,7 +43,7 @@ function UserCard() {
           {userInfo?.subscriptionType !== "Nenhum" ? (
             <div className="user-plan subscribe">
               <AiFillStar />
-              Plano {userInfo.subscriptionType}
+              {userInfo.subscriptionType}
             </div>
           ) : (
             <div
