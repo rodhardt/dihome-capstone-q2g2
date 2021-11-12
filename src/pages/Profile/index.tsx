@@ -5,6 +5,7 @@ import { ProfileStyled } from "./styles";
 import { useAuth } from "../../providers/Authentication";
 
 import UserCard from "../../components/Profile/UserCard";
+import BookmarkedProperties from "../../components/Profile/BookmarkedProperties";
 
 function Profile() {
   const history = useHistory();
@@ -23,6 +24,7 @@ function Profile() {
   return (
     <ProfileStyled>
       <UserCard />
+      <BookmarkedProperties />
     </ProfileStyled>
   );
 }
