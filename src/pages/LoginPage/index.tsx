@@ -50,6 +50,7 @@ const LoginPage = () => {
 
   const handleForm = (userSignInData: UserSignInData) => {
     signIn(userSignInData);
+    console.log(userSignInData);
   };
 
   return (

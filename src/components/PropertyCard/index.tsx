@@ -24,24 +24,28 @@ import { useAuth } from "../../providers/Authentication";
 
 function PropertyCard({ properties, type }: any) {
   const history = useHistory();
+
   const [isOpenModal, setIsOpenModal] = useState(false);
+
   const { registerPreviousPage } = useAuth();
+
   const modalInformation = {
     title: "Atenção",
     closeFunction: () => setIsOpenModal(false),
-    message: "Voce não esta logado",
+    message: "Voce não esta logado!",
     confirmButton: {
       confirmText: "Logar",
       confirmFunction: () => {
         registerPreviousPage();
         history.push("/login");
       },
-      cancelButton: {
-        cancelText: "Sair",
-        cancelFunction: () => console.log("sair"),
-      },
+    },
+    cancelButton: {
+      cancelText: "Sair",
+      cancelFunction: () => console.log("sair"),
     },
   };
+
   return (
     <>
       {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
