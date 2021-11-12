@@ -25,7 +25,7 @@ import { useAuth } from "../../providers/Authentication";
 function PropertyCard({ properties, type }: any) {
   const history = useHistory();
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const { registerPreviousPage } = useAuth();
+  const { registerPreviousPage, authToken, userInfo, updateUser } = useAuth();
   const modalInformation = {
     title: "Atenção",
     closeFunction: () => setIsOpenModal(false),
@@ -42,6 +42,11 @@ function PropertyCard({ properties, type }: any) {
       },
     },
   };
+  const handleUpdateUser = () => {
+    let newUser = userInfo;
+    newUser.bookmarkedProperties.push(properties.id);
+    updateUser(newUser);
+  };
   //teste
   return (
     <>
@@ -54,7 +59,13 @@ function PropertyCard({ properties, type }: any) {
               <p>{properties.type}</p>
             </HeaderCard>
             <ImgHouse>
-              <button onClick={() => setIsOpenModal(true)}>
+              <button
+                onClick={() =>
+                  authToken.length > 0
+                    ? handleUpdateUser()
+                    : setIsOpenModal(true)
+                }
+              >
                 <MdBookmarkAdded />
               </button>
               <img src={properties.mainImage} alt={"House"} />
