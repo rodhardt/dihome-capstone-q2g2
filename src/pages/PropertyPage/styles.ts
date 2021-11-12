@@ -100,7 +100,7 @@ export const TitleAnounce = styled.div`
 
 export const ContactOwner = styled.section`
   width: 88%;
-  height: 160px;
+  height: 170px;
   margin-top: 20px;
   background-color: var(--opacityBlue);
   border-radius: 5px;
@@ -132,19 +132,35 @@ export const ContactOwner = styled.section`
 
     button {
       width: 70%;
-      height: 25px;
+      height: 30px;
       font-size: 13px;
       margin-top: 15px;
       display: flex;
       text-align: center;
       align-items: center;
       justify-content: center;
+      border-radius: 5px;
+      color: var(--darkBlue);
+      background-color: var(--mainGray);
+      border: 2px solid var(--darkBlue);
+      max-width: 200px;
+
+      :hover {
+        background-color: var(--darkBlue);
+        color: var(--mainGray);
+        border: none;
+        transition: 250ms;
+      }
 
       svg {
         width: 18px;
         height: 18px;
         margin-left: 8px;
       }
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
     }
   }
 `;
