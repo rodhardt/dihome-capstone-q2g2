@@ -87,7 +87,7 @@ function PropertyCard({ properties, type }: any) {
               </InfosHouse>
             </InfosCard>
             <HousePrice>
-              <button>
+              <button onClick={() => history.push(`/imovel/${properties.id}`)}>
                 <img src={ButtonLogo} alt="Botão" />
               </button>
               <p>R${properties.price.toLocaleString()}</p>
