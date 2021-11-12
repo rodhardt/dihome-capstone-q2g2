@@ -9,7 +9,6 @@ interface PayCardProps {
   planName: string;
   anouncesQuantity: string;
   price: number;
-  handlePlan: (planName: string) => void;
 }
 
 export const PayCard = ({
@@ -17,7 +16,6 @@ export const PayCard = ({
   planName,
   anouncesQuantity,
   price,
-  handlePlan,
 }: PayCardProps) => {
   const history = useHistory();
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -84,7 +82,6 @@ export const PayCard = ({
       </RowBox>
       <button
         onClick={() => {
-          handlePlan(planName);
           setIsOpenModal(true);
         }}
       >

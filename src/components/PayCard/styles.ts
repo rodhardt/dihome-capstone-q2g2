@@ -15,6 +15,10 @@ export const PayCardStyled = styled.div`
 
   margin: 15px;
 
+  :hover {
+    box-shadow: 0px 0px 20px var(--darkBlue);
+  }
+
   > button {
     width: 35%;
 
@@ -24,8 +28,15 @@ export const PayCardStyled = styled.div`
     color: var(--mainGray);
 
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
+    padding: 2px;
     font-size: small;
+
+    :hover {
+      color: var(--darkBlue);
+      background-color: var(--mainGray);
+
+      transition: 500ms;
+    }
   }
 
   @media (min-width: 1024px) {
