@@ -6,6 +6,7 @@ import { useAuth } from "../../providers/Authentication";
 
 import UserCard from "../../components/Profile/UserCard";
 import BookmarkedProperties from "../../components/Profile/BookmarkedProperties";
+import AnnouncedProperties from "../../components/Profile/AnnouncedProperties";
 
 function Profile() {
   const history = useHistory();
@@ -24,6 +25,7 @@ function Profile() {
   return (
     <ProfileStyled>
       <UserCard />
+      <AnnouncedProperties />
       <BookmarkedProperties />
     </ProfileStyled>
   );
