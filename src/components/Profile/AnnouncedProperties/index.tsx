@@ -10,6 +10,7 @@ import { ImDropbox } from "react-icons/im";
 
 import ConfirmedModal from "../../ConfirmedModal";
 import AnnounceFormModal from "../AnnounceFormModal";
+import PropertyCard from "../../PropertyCard";
 
 function AnnouncedProperties() {
   const { userInfo } = useAuth();
@@ -72,24 +73,47 @@ function AnnouncedProperties() {
                     ) ? (
                       <tr>
                         <td>{property.title}</td>
-                        <td>property.viewCount</td>
-                        <td>property.bookMarkCount</td>
+                        <td>{property.viewsCount}</td>
+                        <td>{property.bookmarkCount}</td>
                       </tr>
                     ) : null}
                   </>
                 ))}
-                <tr>
-                  <td>teste</td>
-                  <td>4324</td>
-                  <td>5434</td>
-                </tr>
               </table>
             </div>
             <ul>
-              {userInfo.announcedProperties?.map((property, index) => (
-                <li key={index}>cards</li>
+              {properties.map((property, index) => (
+                <>
+                  {userInfo.announcedProperties?.includes(property.id || 0) &&
+                  property.consultantStatus === "aprovado" ? (
+                    <li key={index}>
+                      <PropertyCard properties={property} type="DashBoard" />
+                    </li>
+                  ) : null}
+                </>
               ))}
             </ul>
+            <div className="table-container status">
+              <table>
+                <tr>
+                  <th>Nome</th>
+                  <th>Status</th>
+                  <th>Comentário</th>
+                </tr>
+                {properties.map((property, index) => (
+                  <>
+                    {userInfo.announcedProperties?.includes(property.id || 0) &&
+                    property.consultantStatus !== "aprovado" ? (
+                      <tr>
+                        <td>{property.title}</td>
+                        <td>aguardando análise</td>
+                        <td>...</td>
+                      </tr>
+                    ) : null}
+                  </>
+                ))}
+              </table>
+            </div>
           </>
         ) : (
           <div className="null-announced">
