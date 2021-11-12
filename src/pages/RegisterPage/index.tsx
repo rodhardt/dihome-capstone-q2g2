@@ -50,9 +50,9 @@ const RegisterPage = () => {
     const newUser = {
       ...userData,
       consultant: false,
-      advertised_properties: [],
-      saved_properties: [],
-      signed_plan: "none",
+      announcedProperties: [],
+      bookmarkedProperties: [],
+      subscriptionType: "Nenhum",
     };
     registerUser(newUser);
   };
