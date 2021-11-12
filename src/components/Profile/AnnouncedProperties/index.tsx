@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { AnnouncedPropertiesStyled } from "./styles";
 
 import { useAuth } from "../../../providers/Authentication";
+import { useProperties } from "../../../providers/Properties";
 import { GoMegaphone } from "react-icons/go";
 import { ImDropbox } from "react-icons/im";
 
@@ -12,6 +13,7 @@ import AnnounceFormModal from "../AnnounceFormModal";
 
 function AnnouncedProperties() {
   const { userInfo } = useAuth();
+  const { properties } = useProperties();
   const history = useHistory();
 
   const [isAnnouncingAttempt, setIsAnnouncingAttempt] = useState(false);
@@ -56,6 +58,33 @@ function AnnouncedProperties() {
               <GoMegaphone />
               Anuncie Já!
             </button>
+            <div className="table-container">
+              <table>
+                <tr>
+                  <th>Nome</th>
+                  <th>Acessos</th>
+                  <th>Salvos</th>
+                </tr>
+                {properties.map((property, index) => (
+                  <>
+                    {userInfo.announcedProperties?.includes(
+                      property.id || 0
+                    ) ? (
+                      <tr>
+                        <td>{property.title}</td>
+                        <td>property.viewCount</td>
+                        <td>property.bookMarkCount</td>
+                      </tr>
+                    ) : null}
+                  </>
+                ))}
+                <tr>
+                  <td>teste</td>
+                  <td>4324</td>
+                  <td>5434</td>
+                </tr>
+              </table>
+            </div>
             <ul>
               {userInfo.announcedProperties?.map((property, index) => (
                 <li key={index}>cards</li>

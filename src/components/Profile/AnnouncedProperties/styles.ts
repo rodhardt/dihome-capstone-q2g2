@@ -36,4 +36,41 @@ export const AnnouncedPropertiesStyled = styled.section`
     color: white;
     background-color: var(--darkBlue);
   }
+
+  .table-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 25px auto;
+    text-align: center;
+  }
+
+  .table-container tr {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .table-container tr:first-child {
+    border-bottom: 2px solid var(--darkBlue);
+  }
+
+  .table-container th {
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .table-container td,
+  th {
+    width: 80px;
+    font-size: 14px;
+    padding: 5px 0;
+  }
+
+  .table-container tr td:first-child {
+    border-right: 1px solid var(--darkBlue);
+  }
+
+  .table-container tr td:last-child {
+    border-left: 1px solid var(--darkBlue);
+  }
 `;
