@@ -41,7 +41,7 @@ function UserCard() {
             Editar
           </button>
           {userInfo?.subscriptionType !== "Nenhum" ? (
-            <div className="user-plan">
+            <div className="user-plan subscribe">
               <AiFillStar />
               Plano {userInfo.subscriptionType}
             </div>
