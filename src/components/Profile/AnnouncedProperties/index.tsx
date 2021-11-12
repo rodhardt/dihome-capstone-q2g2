@@ -15,7 +15,7 @@ function AnnouncedProperties() {
   const history = useHistory();
 
   const [isAnnouncingAttempt, setIsAnnouncingAttempt] = useState(false);
-  const [isAnnouncingViable, setIsAnnouncingViable] = useState(true);
+  const [isAnnouncingViable, setIsAnnouncingViable] = useState(false);
 
   const closeAnnouncingAttempt = () => {
     setIsAnnouncingAttempt(false);
@@ -45,11 +45,23 @@ function AnnouncedProperties() {
       )}
       <AnnouncedPropertiesStyled>
         {userInfo.announcedProperties?.length > 0 ? (
-          <ul>
-            {userInfo.announcedProperties?.map((property, index) => (
-              <li key={index}>cards</li>
-            ))}
-          </ul>
+          <>
+            <button
+              onClick={() =>
+                userInfo.subscriptionType === "Nenhum"
+                  ? setIsAnnouncingAttempt(true)
+                  : setIsAnnouncingViable(true)
+              }
+            >
+              <GoMegaphone />
+              Anuncie Já!
+            </button>
+            <ul>
+              {userInfo.announcedProperties?.map((property, index) => (
+                <li key={index}>cards</li>
+              ))}
+            </ul>
+          </>
         ) : (
           <div className="null-announced">
             <p>Você não anunciou nenhum imóvel.</p>
@@ -58,7 +70,7 @@ function AnnouncedProperties() {
               onClick={() =>
                 userInfo.subscriptionType === "Nenhum"
                   ? setIsAnnouncingAttempt(true)
-                  : null
+                  : setIsAnnouncingViable(true)
               }
             >
               <GoMegaphone />
