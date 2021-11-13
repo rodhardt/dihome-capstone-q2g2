@@ -33,22 +33,45 @@ const PropertyPage = () => {
   const history = useHistory()
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenSecondModal, setIsOpenSecondModal] = useState(false);
+  const [isOpenThirdModal, setIsOpenThirdModal] = useState(false);
+  
   const { id }: IdFromUrl = useParams();
   const { properties } = useProperties();
-  const { userInfo, updateUser } = useAuth()
+  const { userInfo, updateUser, authToken } = useAuth()
 
   const propertyToRender = properties.find((item) => item.id == id);
 
-  const newUserInfo = {
-    id: userInfo.id,
-    password: userInfo.password,
-    name: userInfo.name,
-    email: userInfo.email,
-    telephone: userInfo.telephone,
-    consultant: userInfo.consultant,
-    announcedProperties: userInfo.announcedProperties,
-    bookmarkedProperties: [...userInfo.bookmarkedProperties, id],
-    subscriptionType: userInfo.subscriptionType,
+  const handleBookmark = () => {
+    (!authToken ? 
+      (setIsOpenThirdModal(true)
+      ) : (
+        (userInfo.bookmarkedProperties.find((item) => item == id) === undefined) ? (
+           updateUser({ 
+             id: userInfo.id,
+             password: userInfo.password,
+             name: userInfo.name,
+             email: userInfo.email,
+             telephone: userInfo.telephone,
+             consultant: userInfo.consultant,
+             announcedProperties: userInfo.announcedProperties,
+             bookmarkedProperties: [...userInfo.bookmarkedProperties, id],
+             subscriptionType: userInfo.subscriptionType
+           })
+           ) : (
+           updateUser({
+               id: userInfo.id,
+             password: userInfo.password,
+             name: userInfo.name,
+             email: userInfo.email,
+             telephone: userInfo.telephone,
+             consultant: userInfo.consultant,
+             announcedProperties: userInfo.announcedProperties,
+             bookmarkedProperties: userInfo.bookmarkedProperties.filter((item) => item !== id),
+             subscriptionType: userInfo.subscriptionType
+             })
+           )
+      )
+    )
   }
 
   const modalInformation = {
@@ -81,10 +104,27 @@ const PropertyPage = () => {
     },
   };
 
+  const thirdModalInformation = {
+    title: "Você não está logado!",
+    closeFunction: () => setIsOpenThirdModal(false),
+    message: "Faça login para conseguir completar esta ação.",
+    confirmButton: {
+      confirmText: "Login",
+      confirmFunction: () => {
+        history.push('/login')
+      },
+    },
+    cancelButton: {
+      cancelText: "cancelar",
+      cancelFunction: () => {},
+    },
+  };
+
   return (
     <PropertyPageStyled>
        {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
        {isOpenSecondModal && <ConfirmedModal modalContent={secondModalInformation} />}
+       {isOpenThirdModal && <ConfirmedModal modalContent={thirdModalInformation} />}
       <MaxWidthAdapter>
         <BackButton onClick={() => history.push('/imoveis')}>
           <BsArrowLeftCircle />
@@ -105,7 +145,7 @@ const PropertyPage = () => {
               {propertyToRender?.state}
             </h2>
           </div>
-          <button onClick={() => updateUser(newUserInfo)}>
+          <button onClick={handleBookmark}>
             <MdBookmarkAdded />
           </button>
         </TitleAnounce>

@@ -70,6 +70,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         localStorage.setItem("@dihome:id", response.data.user.id);
         setAuthToken(response.data.accessToken);
         setUserInfo(response.data.user);
+        setUserId(response.data.user.id);
         history.push(previousPage);
       })
       .catch((err) => console.log(err));
@@ -83,6 +84,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         localStorage.setItem("@dihome:id", response.data.user.id);
         setAuthToken(response.data.accessToken);
         setUserInfo(response.data.user);
+        setUserId(response.data.user.id);
         history.push(previousPage);
       })
       .catch((err) => console.log(err));
@@ -96,6 +98,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const updateUser = (newUserData: UserData) => {
+    console.log(newUserData);
+    console.log(authToken);
+    console.log(userId);
     setUserInfo(newUserData);
     api
       .patch(`/users/${userId}`, newUserData, {
