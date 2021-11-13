@@ -10,17 +10,10 @@ import AnnouncedProperties from "../../components/Profile/AnnouncedProperties";
 import ConsultantTable from "../../components/Profile/ConsultantTable";
 
 function Profile() {
-  const history = useHistory();
-  const { userInfo } = useAuth();
-
-  const protectRoute = () => {
-    if (!!!userInfo.id) {
-      history.push("/");
-    }
-  };
+  const { userInfo, authenticate } = useAuth();
 
   useEffect(() => {
-    protectRoute();
+    authenticate();
   }, []);
 
   return (
