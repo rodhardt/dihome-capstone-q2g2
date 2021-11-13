@@ -48,8 +48,8 @@ export const LoadingScreenStyled = styled.div`
   }
 
   .partial-card {
-    background-color: var(--orange);
-    color: white;
+    background-color: #ffffff90;
+    color: var(--darkBlue);
     font-weight: bold;
     width: 100%;
     height: 100%;
