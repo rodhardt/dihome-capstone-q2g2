@@ -14,8 +14,6 @@ export const RegisterPageStyled = styled.main`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  width: 18%;
-  margin: 10px 0px 10px 0px;
 `;
 
 export const FormRegister = styled.form`

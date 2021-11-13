@@ -52,6 +52,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         })
         .catch((err) => console.log(err));
     }
+    if (history.location.pathname === "/perfil" && authToken === "") {
+      setPreviousPage("/perfil");
+      history.push("/login");
+    }
   };
 
   const returnPreviousPage = () => {
