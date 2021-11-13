@@ -2,21 +2,18 @@ import styled from "styled-components";
 
 export const PayCardStyled = styled.div`
   width: 90%;
-  height: 110px;
-
+  height: 88px;
   max-width: 230px;
-
   background-color: #dddddd;
   border-radius: 10px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  margin: 15px;
+  margin: 5px;
 
   :hover {
-    box-shadow: 0px 0px 20px var(--darkBlue);
+    box-shadow: 0px 0px 5px var(--darkBlue);
+    transition: 200ms;
   }
 
   > button {
@@ -26,7 +23,6 @@ export const PayCardStyled = styled.div`
     border-radius: 5px;
     background-color: var(--darkBlue);
     color: var(--mainGray);
-
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding: 2px;
     font-size: small;
@@ -34,13 +30,19 @@ export const PayCardStyled = styled.div`
     :hover {
       color: var(--darkBlue);
       background-color: var(--mainGray);
-
       transition: 500ms;
     }
   }
 
+  @media (min-width: 768px) {
+    height: 110px;
+    margin: 20px;
+  }
+
   @media (min-width: 1024px) {
     max-width: 220px;
+    margin: 10px;
+
   }
 `;
 

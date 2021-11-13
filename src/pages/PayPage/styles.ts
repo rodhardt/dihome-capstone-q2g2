@@ -1,24 +1,22 @@
 import styled from "styled-components";
 
 export const PayPageStyled = styled.main`
-  width: 100vw;
-  height: 100vh;
-
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 
   @media (min-width: 768px) {
+    min-height: 450px;
   }
 `;
 
 export const ButtonBox = styled.div`
   display: flex;
   justify-content: center;
-
   width: 100%;
-
   margin-bottom: 5%;
 
   > button {
