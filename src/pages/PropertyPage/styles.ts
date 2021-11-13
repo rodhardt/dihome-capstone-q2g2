@@ -198,6 +198,18 @@ export const Linha = styled.div`
 export const PropertyInfos = styled.div`
   width: 80%;
 
+  .propertyList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+
+
   div {
     display: flex;
     align-items: center;
@@ -212,9 +224,10 @@ export const PropertyInfos = styled.div`
 
   ul {
     width: 100%;
-    list-style: none;
     display: flex;
+    list-style: none;
     flex-direction: column;
+    justify-content: center;
   }
   li {
     display: flex;
@@ -234,6 +247,7 @@ export const PropertyInfos = styled.div`
       margin-right: 15px;
     }
   }
+
 `;
 
 export const PropertyDiscription = styled.section`

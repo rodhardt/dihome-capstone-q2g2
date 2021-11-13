@@ -7,7 +7,7 @@ import { FaUserCircle, FaBed, FaSink } from "react-icons/fa";
 import { RiRulerLine, RiRuler2Line } from "react-icons/ri";
 import { MdBookmarkAdded } from "react-icons/md";
 import { MdOutlineLibraryBooks } from "react-icons/md";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import Footer from "../../components/Footer";
 import { useProperties } from "../../providers/Properties";
 import {
@@ -21,24 +21,72 @@ import {
   PropertyPageStyled,
   TitleAnounce,
 } from "./styles";
+import { useAuth } from "../../providers/Authentication";
+import { useState } from "react";
+import ConfirmedModal from "../../components/ConfirmedModal";
 
 interface IdFromUrl {
   id: any;
 }
 
 const PropertyPage = () => {
+  const history = useHistory()
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenSecondModal, setIsOpenSecondModal] = useState(false);
   const { id }: IdFromUrl = useParams();
-
   const { properties } = useProperties();
+  const { userInfo, updateUser } = useAuth()
 
   const propertyToRender = properties.find((item) => item.id == id);
 
-  console.log(propertyToRender);
+  const newUserInfo = {
+    id: userInfo.id,
+    password: userInfo.password,
+    name: userInfo.name,
+    email: userInfo.email,
+    telephone: userInfo.telephone,
+    consultant: userInfo.consultant,
+    announcedProperties: userInfo.announcedProperties,
+    bookmarkedProperties: [...userInfo.bookmarkedProperties, id],
+    subscriptionType: userInfo.subscriptionType,
+  }
+
+  const modalInformation = {
+    title: "Agendar visita",
+    closeFunction: () => setIsOpenModal(false),
+    message: "Escolha a data e hora da visita: CALENDÁRIO ABAIXO",
+    confirmButton: {
+      confirmText: "confirmar",
+      confirmFunction: () => {
+      },
+    },
+    cancelButton: {
+      cancelText: "cancelar",
+      cancelFunction: () => {},
+    },
+  };
+
+  const secondModalInformation = {
+    title: "Enviar mensagem",
+    closeFunction: () => setIsOpenSecondModal(false),
+    message: "Chat: ABRIR CHAT ABAIXO",
+    confirmButton: {
+      confirmText: "confirmar",
+      confirmFunction: () => {
+      },
+    },
+    cancelButton: {
+      cancelText: "cancelar",
+      cancelFunction: () => {},
+    },
+  };
 
   return (
     <PropertyPageStyled>
+       {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
+       {isOpenSecondModal && <ConfirmedModal modalContent={secondModalInformation} />}
       <MaxWidthAdapter>
-        <BackButton>
+        <BackButton onClick={() => history.push('/imoveis')}>
           <BsArrowLeftCircle />
           <h2>voltar para imóveis</h2>
         </BackButton>
@@ -57,7 +105,7 @@ const PropertyPage = () => {
               {propertyToRender?.state}
             </h2>
           </div>
-          <button onClick={() => console.log("save")}>
+          <button onClick={() => updateUser(newUserInfo)}>
             <MdBookmarkAdded />
           </button>
         </TitleAnounce>
@@ -71,13 +119,12 @@ const PropertyPage = () => {
               <h3>Joje Lucas</h3>
             </div>
           </div>
-            
           <div className="contact">
-            <button>
+            <button onClick={() => setIsOpenModal(true)}>
               Quero visitar
               <BsCalendarWeek />
             </button>
-            <button>
+            <button onClick={() => setIsOpenSecondModal(true)}>
               Enviar mensagem
               <FiSend />
             </button>
@@ -89,36 +136,40 @@ const PropertyPage = () => {
             <IoDocumentTextOutline />
             <h2>Sobre o imóvel</h2>
           </div>
-          <ul>
-            <li>
-              <MdOutlineMapsHomeWork />
-              Tipo: {propertyToRender?.type}
-            </li>
-            <li>
-              <AiOutlineAim />
-              Objetivo: {propertyToRender?.goal}
-            </li>
-            <li>
-              <FaBed />
-              {propertyToRender?.dorms} quartos
-            </li>
-            <li>
-              <AiFillCar />
-              {propertyToRender?.parking} vagas
-            </li>
-            <li>
-              <FaSink />
-              {propertyToRender?.bathrooms} banheiros
-            </li>
-            <li>
-              <RiRulerLine />
-              {propertyToRender?.houseArea}m² área constuída
-            </li>
-            <li>
-              <RiRuler2Line />
-              {propertyToRender?.landArea}m² área do terreno
-            </li>
-          </ul>
+          <div className='propertyList'>
+            <ul>
+              <li>
+                <MdOutlineMapsHomeWork />
+                Tipo: {propertyToRender?.type}
+              </li>
+              <li>
+                <AiOutlineAim />
+                Objetivo: {propertyToRender?.goal}
+              </li>
+              <li>
+                <FaBed />
+                {propertyToRender?.dorms} quartos
+              </li>
+              <li>
+                <AiFillCar />
+                {propertyToRender?.parking} vagas
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <FaSink />
+                {propertyToRender?.bathrooms} banheiros
+              </li>
+              <li>
+                <RiRulerLine />
+                {propertyToRender?.houseArea}m² área constuída
+              </li>
+              <li>
+                <RiRuler2Line />
+                {propertyToRender?.landArea}m² área do terreno
+              </li>
+            </ul>
+          </div>
         </PropertyInfos>
         <PropertyDiscription>
           <div>
