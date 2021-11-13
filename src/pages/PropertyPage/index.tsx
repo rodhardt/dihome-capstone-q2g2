@@ -70,8 +70,8 @@ const PropertyPage = () => {
              subscriptionType: userInfo.subscriptionType
              })
            )
-      )
-    )
+       )
+     )
   }
 
   const modalInformation = {
