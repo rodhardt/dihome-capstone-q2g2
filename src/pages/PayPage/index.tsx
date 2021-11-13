@@ -1,3 +1,4 @@
+import { AiOutlineRollback } from 'react-icons/ai'
 import { PayCard } from "../../components/PayCard";
 import { BoxTitle, ButtonBox, PayPageStyled } from "./styles";
 import logoOne from "../../assets/Images/logoWithoutName.png";
@@ -40,7 +41,10 @@ const PayPage = () => {
         />
       </PayPageStyled>
       <ButtonBox>
-        <button onClick={() => history.push("/perfil")}>voltar</button>
+        <button onClick={() => history.push("/perfil")}>
+          <AiOutlineRollback />
+          voltar
+        </button>
       </ButtonBox>
     </>
   );

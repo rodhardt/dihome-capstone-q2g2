@@ -21,10 +21,19 @@ export const ButtonBox = styled.div`
 
   > button {
     padding: 5px 10px 5px 10px;
-
     color: var(--darkBlue);
     border: 2px solid var(--darkBlue);
     border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      width: 20px;
+      height: auto;
+      margin-right: 5px;
+    }
 
     :hover {
       color: var(--mainGray);
