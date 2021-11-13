@@ -71,7 +71,7 @@ function AnnouncedProperties() {
                     {userInfo.announcedProperties?.includes(
                       property.id || 0
                     ) ? (
-                      <tr>
+                      <tr key={index}>
                         <td>{property.title}</td>
                         <td>{property.viewsCount}</td>
                         <td>{property.bookmarkCount}</td>
@@ -81,6 +81,7 @@ function AnnouncedProperties() {
                 ))}
               </table>
             </div>
+            <h3>Meus Anúncios</h3>
             <ul>
               {properties.map((property, index) => (
                 <>
@@ -94,6 +95,7 @@ function AnnouncedProperties() {
               ))}
             </ul>
             <div className="table-container status">
+              <h3>Anúncios em Análise</h3>
               <table>
                 <tr>
                   <th>Nome</th>
@@ -104,7 +106,7 @@ function AnnouncedProperties() {
                   <>
                     {userInfo.announcedProperties?.includes(property.id || 0) &&
                     property.consultantStatus !== "aprovado" ? (
-                      <tr>
+                      <tr key={index}>
                         <td>{property.title}</td>
                         <td>aguardando análise</td>
                         <td>...</td>

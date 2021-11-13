@@ -47,7 +47,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         .get(`/users/${userId}`, {
           headers: { Authorization: `Bearer ${authToken}` },
         })
-        .then((response) => setUserInfo(response.data))
+        .then((response) => {
+          setUserInfo(response.data);
+        })
         .catch((err) => console.log(err));
     }
   };
@@ -63,7 +65,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         localStorage.setItem("@dihome:token", response.data.accessToken);
         localStorage.setItem("@dihome:id", response.data.user.id);
         setAuthToken(response.data.accessToken);
-        setUserInfo(response.data);
+        setUserInfo(response.data.user);
         history.push(previousPage);
       })
       .catch((err) => console.log(err));
@@ -76,7 +78,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         localStorage.setItem("@dihome:token", response.data.accessToken);
         localStorage.setItem("@dihome:id", response.data.user.id);
         setAuthToken(response.data.accessToken);
-        setUserInfo(response.data);
+        setUserInfo(response.data.user);
         history.push(previousPage);
       })
       .catch((err) => console.log(err));
