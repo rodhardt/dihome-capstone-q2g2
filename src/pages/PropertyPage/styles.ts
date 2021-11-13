@@ -106,6 +106,8 @@ export const ContactOwner = styled.section`
   border-radius: 5px;
   padding: 5px 5px 5px 10px;
 
+  
+
   .user {
     display: flex;
     align-items: center;
@@ -128,7 +130,6 @@ export const ContactOwner = styled.section`
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-evenly;
 
     button {
       width: 70%;
@@ -158,10 +159,30 @@ export const ContactOwner = styled.section`
         margin-left: 8px;
       }
     }
+  }
 
-    @media (min-width: 768px) {
-      flex-direction: row;
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    width: 60%;
+    height: 110px;
+
+    .contact {
+      
+    button {
+      width: 110%;
+      }
     }
+
+    .userAndTitle {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  } 
+
   }
 `;
 

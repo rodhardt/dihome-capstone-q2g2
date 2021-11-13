@@ -62,24 +62,25 @@ const PropertyPage = () => {
           </button>
         </TitleAnounce>
         <ContactOwner>
-          <div className="title">
-            <h2>Contate o proprietário.</h2>
-          </div>
-          <div>
+          <div className='userAndTitle'>
+            <div className="title">
+              <h2>Contate o proprietário.</h2>
+            </div>
             <div className="user">
               <FaUserCircle />
               <h3>Joje Lucas</h3>
             </div>
-            <div className="contact">
-              <button>
-                Quero visitar
-                <BsCalendarWeek />
-              </button>
-              <button>
-                Enviar mensagem
-                <FiSend />
-              </button>
-            </div>
+          </div>
+            
+          <div className="contact">
+            <button>
+              Quero visitar
+              <BsCalendarWeek />
+            </button>
+            <button>
+              Enviar mensagem
+              <FiSend />
+            </button>
           </div>
         </ContactOwner>
         <Linha></Linha>
