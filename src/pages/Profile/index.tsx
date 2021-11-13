@@ -14,7 +14,7 @@ function Profile() {
   const { userInfo } = useAuth();
 
   const protectRoute = () => {
-    if (!!userInfo.id) {
+    if (!!!userInfo.id) {
       history.push("/");
     }
   };

@@ -90,7 +90,7 @@ function PropertyCard({ properties, type }: any) {
               <button>
                 <img src={ButtonLogo} alt="Botão" />
               </button>
-              <p>R${properties.price.toLocaleString()}</p>
+              <p>R$ {properties.price.toLocaleString()}</p>
             </HousePrice>
           </ContainerPropertyCard>
         )}
