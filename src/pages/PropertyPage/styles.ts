@@ -266,3 +266,39 @@ export const PropertyDiscription = styled.section`
     }
   }
 `;
+
+export const MapSection = styled.section`
+  width: 80%;
+  height: 200px;
+  background-color: #cccccc;
+  border-radius: 10px;
+  margin-bottom: 20px;
+`
+
+export const WithoutMapSection = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  h3 {
+    text-align: center;
+    margin: 10px 0px 20px 0px;
+  }
+
+  button {
+    margin-bottom: 20px;
+    padding: 5px 10px 5px 10px;
+    border: 2px solid var(--darkBlue);
+    color: var(--darkBlue);
+    border-radius: 5px;
+
+    :hover {
+      border: 2px solid var(--mainGray);
+      color: var(--mainGray);
+      background-color: var(--darkBlue);
+      transition: 200ms;
+    }
+  }
+
+`

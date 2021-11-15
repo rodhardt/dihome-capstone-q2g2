@@ -15,15 +15,19 @@ import {
   ContactOwner,
   ImageBoxes,
   Linha,
+  MapSection,
   MaxWidthAdapter,
   PropertyDiscription,
   PropertyInfos,
   PropertyPageStyled,
   TitleAnounce,
+  WithoutMapSection,
 } from "./styles";
 import { useAuth } from "../../providers/Authentication";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ConfirmedModal from "../../components/ConfirmedModal";
+import axios from "axios";
+import { GoogleMap, withScriptjs, withGoogleMap, Marker } from 'react-google-maps'
 
 interface IdFromUrl {
   id: any;
@@ -34,6 +38,9 @@ const PropertyPage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenSecondModal, setIsOpenSecondModal] = useState(false);
   const [isOpenThirdModal, setIsOpenThirdModal] = useState(false);
+
+  const [latitude, setLatitude] = useState<any[]>()
+  const [longitude, setLongitude] = useState<any[]>()
   
   const { id }: IdFromUrl = useParams();
   const { properties } = useProperties();
@@ -119,6 +126,30 @@ const PropertyPage = () => {
       cancelFunction: () => {},
     },
   };
+  
+  const Map = () => {
+
+    axios
+    .get(`https://maps.googleapis.com/maps/api/geocode/json?address=${propertyToRender?.street}+${propertyToRender?.number}+${propertyToRender?.district},+${propertyToRender?.city}+${propertyToRender?.state},+CA&key=AIzaSyA2fg_5N-eAH3IKzPQT9FhNYDenHGn31Is`)
+    .then((response) => setLatitude(response.data.results[0].geometry.location.lat))
+    .catch((error) => console.log('error', error))
+
+    axios
+    .get(`https://maps.googleapis.com/maps/api/geocode/json?address=${propertyToRender?.street}+${propertyToRender?.number}+${propertyToRender?.district},+${propertyToRender?.city}+${propertyToRender?.state},+CA&key=AIzaSyA2fg_5N-eAH3IKzPQT9FhNYDenHGn31Is`)
+    .then((response) => setLongitude(response.data.results[0].geometry.location.lng))
+    .catch((error) => console.log('error', error))
+
+    return (
+      <GoogleMap 
+        defaultZoom={10} 
+        defaultCenter={{lat: latitude, lng: longitude}}
+      >
+        <Marker position={{lat: latitude, lng: longitude}}/>
+      </GoogleMap>
+    )
+  }
+
+  const WrappedMap = withScriptjs(withGoogleMap(Map))
 
   return (
     <PropertyPageStyled>
@@ -220,7 +251,35 @@ const PropertyPage = () => {
             <p>{propertyToRender?.description}</p>
           </div>
         </PropertyDiscription>
-        <section>MAPA!!!!!!!!!!!!</section>
+
+
+        {!!authToken ? (
+
+          <>
+          <h3 style={{ margin: `0px 0px 10px 0px` }}>Localização aproximada.</h3>
+        <MapSection className='secao'>
+            <WrappedMap 
+                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyA2fg_5N-eAH3IKzPQT9FhNYDenHGn31Is"
+                loadingElement={<div style={{ height: `90%`, width: `90%` }} />}
+                containerElement={<div style={{ 
+                  height: `200px`, 
+                  display: `flex`, 
+                  alignItems:`center`, 
+                  justifyContent: `center` 
+                }} 
+                />
+                }
+              mapElement={<div style={{ height: `85%`, width: `85%` }} />}
+              />
+            </MapSection>
+          </>
+            ) : (
+          <WithoutMapSection>
+            <h3>Faça login para ter acesso à localização.</h3>
+            <button onClick={() => history.push('/login')}>Login</button>
+          </WithoutMapSection>
+            )
+          }
         <Footer />
       </MaxWidthAdapter>
     </PropertyPageStyled>
