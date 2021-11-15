@@ -16,6 +16,8 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { BsArrowLeftCircle } from "react-icons/bs";
 import logoName from "../../assets/Images/logoWithName.png";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 interface UserSignInData {
   email: string;
@@ -51,6 +53,11 @@ const LoginPage = () => {
     signIn(userSignInData);
   };
 
+  useEffect(() => {
+    toast.error(errors.email?.message);
+    toast.error(errors.password?.message);
+  }, [errors]);
+
   return (
     <>
       <LoginPageStyled>
@@ -70,9 +77,15 @@ const LoginPage = () => {
                 <Title>
                   <h2>Login</h2>
                 </Title>
-                <input placeholder="E-mail" {...register("email")} />
-                <input placeholder="Senha" {...register("password")} />
-                <button className="loginButton" type="submit">
+                <input 
+                  placeholder="E-mail" 
+                  type='text'
+                  {...register("email")} />
+                <input 
+                  placeholder="Senha" 
+                  type='password'
+                  {...register("password")} />
+                <button className="loginButton" type="submit" >
                   entrar
                 </button>
                 <Linha></Linha>
