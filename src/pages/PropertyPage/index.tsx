@@ -170,17 +170,15 @@ const PropertyPage = () => {
     ))
   }
 
-
-  //const authenticate = () => {
-  // if(userInfo.consultant === false && propertyToRender?.consultantStatus === 'em aberto') {
-  //    history.push('/imoveis')
-  //  }
-  //}
-  //
-  //useState(() => {
-  //  authenticate()
-  //}, [])
-
+  const authenticate = () => {
+   if(userInfo.consultant === false && propertyToRender?.consultantStatus === 'em aberto') {
+      history.push('/imoveis')
+    }
+  }
+  
+  useState(() => {
+    authenticate()
+  }, [])
 
   return (
     <PropertyPageStyled>
