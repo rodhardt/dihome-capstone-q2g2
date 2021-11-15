@@ -14,6 +14,7 @@ import {
   BackButton,
   ContactOwner,
   ImageBoxes,
+  ImagesCarossel,
   Linha,
   MapSection,
   MaxWidthAdapter,
@@ -29,6 +30,7 @@ import ConfirmedModal from "../../components/ConfirmedModal";
 import axios from "axios";
 import { GoogleMap, withScriptjs, withGoogleMap, Marker } from 'react-google-maps'
 import { ConsultantButtons } from "../../components/Consultant/Buttons";
+import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 
 interface IdFromUrl {
   id: any;
@@ -142,7 +144,7 @@ const PropertyPage = () => {
 
     return (
       <GoogleMap 
-        defaultZoom={10} 
+        defaultZoom={13} 
         defaultCenter={{lat: latitude, lng: longitude}}
       >
         <Marker position={{lat: latitude, lng: longitude}}/>
@@ -181,25 +183,64 @@ const PropertyPage = () => {
     consultantAuthenticate()
   }, [])
 
-console.log(userInfo)
+  const [isOpenImages, setIsOpenImages] = useState(false)
+  const [counterForImages, setCounterForImages] = useState(0)
+
+  const handleOpenImages = () => {
+    setIsOpenImages(true)
+  }
+
+  const handleAdd = () => {
+    if(counterForImages + 1 !== propertyToRender?.images.length) {
+      setCounterForImages(counterForImages + 1)
+    }
+    else {
+      setCounterForImages(0)
+    }
+  }
+
+  const handleDec = () => {
+    if(counterForImages > 0) {
+      setCounterForImages(counterForImages - 1)
+    }
+  }
 
   return (
     <PropertyPageStyled>
        {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
        {isOpenSecondModal && <ConfirmedModal modalContent={secondModalInformation} />}
        {isOpenThirdModal && <ConfirmedModal modalContent={thirdModalInformation} />}
+
       <MaxWidthAdapter>
         <BackButton onClick={() => history.push('/imoveis')}>
           <BsArrowLeftCircle />
           <h2>voltar para imóveis</h2>
         </BackButton>
-        <ImageBoxes>
+
+      {
+      isOpenImages ? (
+        <ImagesCarossel>
+          <div className='flexRow'>
+            <button onClick={handleDec} className='goAndBack'><GrLinkPrevious /></button>
+            <img src={propertyToRender?.images[counterForImages]} alt="" />
+            <button onClick={handleAdd} className='goAndBack'><GrLinkNext /></button>
+          </div>
+          <div className='counter'>
+            {`${counterForImages + 1} de ${propertyToRender?.images.length}`}
+          </div>
+          <button className='closeButton' onClick={() => setIsOpenImages(false)}>fechar</button>
+        </ImagesCarossel>
+      ) : (
+        <ImageBoxes onClick={handleOpenImages}>
           <img className="mainImage" src={propertyToRender?.mainImage} alt="" />
           <div className="otherImages">
             <img src={propertyToRender?.images[1]} alt="" />
             <img src={propertyToRender?.images[2]} alt="" />
           </div>
         </ImageBoxes>
+      )
+      }
+
         <TitleAnounce>
           <div className="districtAndTitle">
             <h2>

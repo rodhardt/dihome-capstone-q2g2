@@ -27,6 +27,11 @@ export const ImageBoxes = styled.section`
     width: 60%;
     margin: 10px;
     border-radius: 5px;
+    :hover {
+        opacity: 0.5;
+        cursor: pointer;
+
+    }
   }
 
   .otherImages {
@@ -40,9 +45,97 @@ export const ImageBoxes = styled.section`
       width: 90%;
       margin: 10px 10px 5px 10px;
       border-radius: 5px;
+      :hover {
+        opacity: 0.5;
+        cursor: pointer;
+      }
     }
   }
+
+  
+
 `;
+
+export const ImagesCarossel = styled.section`
+  width: 100%;
+  height: 100vh;
+  z-index: 3;
+  background-color: #00000090;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+
+  .flexRow {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  img {
+    width: 85%;
+    border-radius: 10px;
+    z-index: 4;
+  }
+
+  .goAndBack {
+  
+    margin: 10px;
+    border-radius: 50%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border: 2px solid var(--darkBlue);
+    background-color: var(--darkBlue);
+      :hover {
+        background-color: var(--lightBlue);
+        transition: 200ms;
+      }
+
+      svg {
+        width: 24px;
+        height: auto;
+      }
+  }
+
+  .closeButton {
+    margin: 10px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border: 3px solid var(--darkBlue);
+    background-color: var(--mainGray);
+    color: var(--darkBlue);
+    font-weight: bold;
+    
+    :hover {
+      background-color: var(--darkBlue);
+      color: var(--mainGray);
+      transition: 300ms;
+    }
+  }
+
+  .counter {
+    text-align: center;
+    background-color: var(--darkBlue);
+    width: 20%;
+    border-radius: 10px;
+    font-weight: bold;
+    color: var(--mainGray);
+    margin-top: 10px;
+  }
+
+`
+
+
+
+
 
 export const BackButton = styled.div`
   width: 100%;
