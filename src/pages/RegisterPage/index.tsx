@@ -22,11 +22,14 @@ import logoName from "../../assets/Images/logoWithName.png";
 const RegisterPage = () => {
   const history = useHistory();
   const formSchema = yup.object().shape({
-    name: yup.string().required("Informe seu e-mail.").email("E-mail inválido"),
-    email: yup
+    name: yup
       .string()
       .required("Informe seu nome")
       .min(5, "Mínimo de 5 caracteres"),
+    email: yup
+      .string()
+      .required("Informe seu e-mail.")
+      .email("E-mail inválido"),
     password: yup
       .string()
       .required("Senha necessária")
@@ -35,7 +38,7 @@ const RegisterPage = () => {
         /^(?=.*\d)(?=.*[a-z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/,
         "Deve contert no mínimo um número, uma letra e um caractere especial."
       ),
-    phone: yup.string().required("Informe seu telefone"),
+    telephone: yup.string().required("Informe seu telefone"),
   });
 
   const {
@@ -50,10 +53,11 @@ const RegisterPage = () => {
     const newUser = {
       ...userData,
       consultant: false,
-      advertised_properties: [],
-      saved_properties: [],
-      signed_plan: "none",
+      announcedProperties: [],
+      bookmarkedProperties: [],
+      subscriptionType: "Nenhum",
     };
+
     registerUser(newUser);
   };
 
@@ -79,7 +83,7 @@ const RegisterPage = () => {
                 <input placeholder="Nome" {...register("name")} />
                 <input placeholder="E-mail" {...register("email")} />
                 <input placeholder="Senha" {...register("password")} />
-                <input placeholder="Telefone" {...register("phone")} />
+                <input placeholder="Telefone" {...register("telephone")} />
 
                 <button className="registerButton" type="submit">
                   cadastrar
@@ -87,7 +91,6 @@ const RegisterPage = () => {
                 <button
                   onClick={() => history.push("/login")}
                   className="backToLogin"
-                  type="submit"
                 >
                   Login
                 </button>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ConfirmedModalStyled = styled.div`
+export const UserEditStyled = styled.div`
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -54,24 +54,6 @@ export const ConfirmedModalStyled = styled.div`
     font-weight: bold;
   }
 
-  .modal-card p {
-    color: black;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-  }
-
-  .modal-card .input-container {
-    padding: 0px 20px 15px;
-    height: 150px;
-  }
-
-  .modal-card textarea {
-    width: 100%;
-    height: 100%;
-  }
-
   .buttons-container {
     display: flex;
     flex-direction: row;
@@ -109,5 +91,26 @@ export const ConfirmedModalStyled = styled.div`
   .modal-card .cancel-button:hover {
     background-color: #00000060;
     color: var(--mainGray);
+  }
+
+  .form-container {
+    flex-grow: 1;
+    padding: 20px;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-container input {
+    width: 100%;
+    border: 2px solid var(--mainGray);
+    border-radius: 10px;
+    padding: 2px 10px;
+  }
+
+  .input-container input:focus {
+    border: 2px solid var(--darkBlue);
   }
 `;
