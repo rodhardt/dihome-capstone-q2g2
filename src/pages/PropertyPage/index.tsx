@@ -170,15 +170,20 @@ const PropertyPage = () => {
     ))
   }
 
-  const authenticate = () => {
-   if(userInfo.consultant === false && propertyToRender?.consultantStatus === 'em aberto') {
+  const consultantAuthenticate = () => {
+    if(userInfo.consultant === false && propertyToRender?.consultantStatus === 'em aberto') {
+      history.push('/imoveis')
+    }
+    else if (userInfo.consultant === undefined && propertyToRender?.consultantStatus === 'em aberto') {
       history.push('/imoveis')
     }
   }
   
-  useState(() => {
-    authenticate()
+  useEffect(() => {
+    consultantAuthenticate()
   }, [])
+
+console.log(userInfo)
 
   return (
     <PropertyPageStyled>
