@@ -97,10 +97,15 @@ function Dashboard() {
           typeValues[index] === "includes" &&
           !activeValues[index].includes(
             propertyValues[propertyKeys.indexOf(filterName)]
+          ) &&
+          !(
+            activeValues[index].includes(5) &&
+            propertyValues[propertyKeys.indexOf(filterName)] >= 5
           )
         ) {
           return false;
         }
+
         if (
           typeValues[index] === "equal" &&
           activeValues[index] !==
