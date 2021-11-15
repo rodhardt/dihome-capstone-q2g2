@@ -14,16 +14,23 @@ import {
   BackButton,
   ContactOwner,
   ImageBoxes,
+  ImagesCarossel,
   Linha,
+  MapSection,
   MaxWidthAdapter,
   PropertyDiscription,
   PropertyInfos,
   PropertyPageStyled,
   TitleAnounce,
+  WithoutMapSection,
 } from "./styles";
 import { useAuth } from "../../providers/Authentication";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ConfirmedModal from "../../components/ConfirmedModal";
+import axios from "axios";
+import { GoogleMap, withScriptjs, withGoogleMap, Marker } from 'react-google-maps'
+import { ConsultantButtons } from "../../components/Consultant/Buttons";
+import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 
 interface IdFromUrl {
   id: any;
@@ -34,6 +41,9 @@ const PropertyPage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenSecondModal, setIsOpenSecondModal] = useState(false);
   const [isOpenThirdModal, setIsOpenThirdModal] = useState(false);
+
+  const [latitude, setLatitude] = useState<any[]>()
+  const [longitude, setLongitude] = useState<any[]>()
   
   const { id }: IdFromUrl = useParams();
   const { properties } = useProperties();
@@ -59,7 +69,7 @@ const PropertyPage = () => {
            })
            ) : (
            updateUser({
-               id: userInfo.id,
+             id: userInfo.id,
              password: userInfo.password,
              name: userInfo.name,
              email: userInfo.email,
@@ -119,6 +129,30 @@ const PropertyPage = () => {
       cancelFunction: () => {},
     },
   };
+  
+  const Map = () => {
+
+    axios
+    .get(`https://maps.googleapis.com/maps/api/geocode/json?address=${propertyToRender?.street}+${propertyToRender?.number}+${propertyToRender?.district},+${propertyToRender?.city}+${propertyToRender?.state},+CA&key=AIzaSyA2fg_5N-eAH3IKzPQT9FhNYDenHGn31Is`)
+    .then((response) => setLatitude(response.data.results[0].geometry.location.lat))
+    .catch((error) => console.log('error', error))
+
+    axios
+    .get(`https://maps.googleapis.com/maps/api/geocode/json?address=${propertyToRender?.street}+${propertyToRender?.number}+${propertyToRender?.district},+${propertyToRender?.city}+${propertyToRender?.state},+CA&key=AIzaSyA2fg_5N-eAH3IKzPQT9FhNYDenHGn31Is`)
+    .then((response) => setLongitude(response.data.results[0].geometry.location.lng))
+    .catch((error) => console.log('error', error))
+
+    return (
+      <GoogleMap 
+        defaultZoom={13} 
+        defaultCenter={{lat: latitude, lng: longitude}}
+      >
+        <Marker position={{lat: latitude, lng: longitude}}/>
+      </GoogleMap>
+    )
+  }
+
+  const WrappedMap = withScriptjs(withGoogleMap(Map))
 
   const handleSchedule = () => {
     (!authToken ? (
@@ -136,23 +170,77 @@ const PropertyPage = () => {
     ))
   }
 
+  const consultantAuthenticate = () => {
+    if(userInfo.consultant === false && propertyToRender?.consultantStatus === 'em aberto') {
+      history.push('/imoveis')
+    }
+    else if (userInfo.consultant === undefined && propertyToRender?.consultantStatus === 'em aberto') {
+      history.push('/imoveis')
+    }
+  }
+  
+  useEffect(() => {
+    consultantAuthenticate()
+  }, [])
+
+  const [isOpenImages, setIsOpenImages] = useState(false)
+  const [counterForImages, setCounterForImages] = useState(0)
+
+  const handleOpenImages = () => {
+    setIsOpenImages(true)
+  }
+
+  const handleAdd = () => {
+    if(counterForImages + 1 !== propertyToRender?.images.length) {
+      setCounterForImages(counterForImages + 1)
+    }
+    else {
+      setCounterForImages(0)
+    }
+  }
+
+  const handleDec = () => {
+    if(counterForImages > 0) {
+      setCounterForImages(counterForImages - 1)
+    }
+  }
+
   return (
     <PropertyPageStyled>
        {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
        {isOpenSecondModal && <ConfirmedModal modalContent={secondModalInformation} />}
        {isOpenThirdModal && <ConfirmedModal modalContent={thirdModalInformation} />}
+
       <MaxWidthAdapter>
         <BackButton onClick={() => history.push('/imoveis')}>
           <BsArrowLeftCircle />
           <h2>voltar para imóveis</h2>
         </BackButton>
-        <ImageBoxes>
+
+      {
+      isOpenImages ? (
+        <ImagesCarossel>
+          <div className='flexRow'>
+            <button onClick={handleDec} className='goAndBack'><GrLinkPrevious /></button>
+            <img src={propertyToRender?.images[counterForImages]} alt="" />
+            <button onClick={handleAdd} className='goAndBack'><GrLinkNext /></button>
+          </div>
+          <div className='counter'>
+            {`${counterForImages + 1} de ${propertyToRender?.images.length}`}
+          </div>
+          <button className='closeButton' onClick={() => setIsOpenImages(false)}>fechar</button>
+        </ImagesCarossel>
+      ) : (
+        <ImageBoxes onClick={handleOpenImages}>
           <img className="mainImage" src={propertyToRender?.mainImage} alt="" />
           <div className="otherImages">
             <img src={propertyToRender?.images[1]} alt="" />
             <img src={propertyToRender?.images[2]} alt="" />
           </div>
         </ImageBoxes>
+      )
+      }
+
         <TitleAnounce>
           <div className="districtAndTitle">
             <h2>
@@ -161,9 +249,15 @@ const PropertyPage = () => {
               {propertyToRender?.state}
             </h2>
           </div>
+
+          {(propertyToRender?.consultantStatus === 'em aberto') ? (
+            <ConsultantButtons propertyToRender={propertyToRender}/>
+          ) : (
           <button onClick={handleBookmark}>
             <MdBookmarkAdded />
           </button>
+          )}
+
         </TitleAnounce>
         <ContactOwner>
           <div className='userAndTitle'>
@@ -236,7 +330,35 @@ const PropertyPage = () => {
             <p>{propertyToRender?.description}</p>
           </div>
         </PropertyDiscription>
-        <section>MAPA!!!!!!!!!!!!</section>
+
+
+        {!!authToken ? (
+
+          <>
+          <h3 style={{ margin: `0px 0px 10px 0px` }}>Localização aproximada.</h3>
+        <MapSection className='secao'>
+            <WrappedMap 
+                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyA2fg_5N-eAH3IKzPQT9FhNYDenHGn31Is"
+                loadingElement={<div style={{ height: `90%`, width: `90%` }} />}
+                containerElement={<div style={{ 
+                  height: `200px`, 
+                  display: `flex`, 
+                  alignItems:`center`, 
+                  justifyContent: `center` 
+                }} 
+                />
+                }
+              mapElement={<div style={{ height: `85%`, width: `85%` }} />}
+              />
+            </MapSection>
+          </>
+            ) : (
+          <WithoutMapSection>
+            <h3>Faça login para ter acesso à localização.</h3>
+            <button onClick={() => history.push('/login')}>Login</button>
+          </WithoutMapSection>
+            )
+          }
         <Footer />
       </MaxWidthAdapter>
     </PropertyPageStyled>
