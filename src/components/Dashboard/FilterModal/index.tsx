@@ -140,7 +140,7 @@ function FilterModal({ handleFilter, closeWindow }: FilterModalProps) {
       houseArea: houseAreaChosen,
       landArea: landAreaChosen,
     };
-    console.log(filters);
+    handleFilter(filters);
   };
 
   const resetSearch = () => {
@@ -157,7 +157,7 @@ function FilterModal({ handleFilter, closeWindow }: FilterModalProps) {
       houseArea: [0, 0],
       landArea: [0, 0],
     };
-    console.log(filters);
+    handleFilter(filters);
   };
 
   return (
@@ -166,15 +166,18 @@ function FilterModal({ handleFilter, closeWindow }: FilterModalProps) {
         <header>
           <h4>Filtrar Imóveis</h4>
 
-          <button
-            className="close-button"
-            onClick={() => console.log("fechou")}
-          >
+          <button className="close-button" onClick={() => closeWindow()}>
             X
           </button>
         </header>
         <div className="buttons-container">
-          <button className="confirm-button" onClick={() => handleSubmit()}>
+          <button
+            className="confirm-button"
+            onClick={() => {
+              handleSubmit();
+              closeWindow();
+            }}
+          >
             Filtrar
           </button>
           <button
