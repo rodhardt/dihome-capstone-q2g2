@@ -39,7 +39,6 @@ const PropertyPage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenSecondModal, setIsOpenSecondModal] = useState(false);
   const [isOpenThirdModal, setIsOpenThirdModal] = useState(false);
-  
 
   const [latitude, setLatitude] = useState<any[]>()
   const [longitude, setLongitude] = useState<any[]>()
@@ -129,7 +128,6 @@ const PropertyPage = () => {
     },
   };
   
-
   const Map = () => {
 
     axios
