@@ -11,7 +11,6 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { TextField } from "@material-ui/core";
 import { useAuth } from "../../providers/Authentication";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
