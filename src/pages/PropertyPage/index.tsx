@@ -120,6 +120,22 @@ const PropertyPage = () => {
     },
   };
 
+  const handleSchedule = () => {
+    (!authToken ? (
+      setIsOpenThirdModal(true)
+    ) : (
+      setIsOpenModal(true)
+    ))
+  }
+
+  const handleChat = () => {
+    (!authToken ? (
+      setIsOpenThirdModal(true)
+    ) : (
+      setIsOpenSecondModal(true)
+    ))
+  }
+
   return (
     <PropertyPageStyled>
        {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
@@ -160,11 +176,11 @@ const PropertyPage = () => {
             </div>
           </div>
           <div className="contact">
-            <button onClick={() => setIsOpenModal(true)}>
+            <button onClick={handleSchedule}>
               Quero visitar
               <BsCalendarWeek />
             </button>
-            <button onClick={() => setIsOpenSecondModal(true)}>
+            <button onClick={handleChat}>
               Enviar mensagem
               <FiSend />
             </button>
