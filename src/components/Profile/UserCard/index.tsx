@@ -40,10 +40,10 @@ function UserCard() {
           <button className="edit-button" onClick={() => setIsEditing(true)}>
             Editar
           </button>
-          {!!userInfo.subscriptionType ? (
-            <div className="user-plan">
+          {userInfo?.subscriptionType !== "Nenhum" ? (
+            <div className="user-plan subscribe">
               <AiFillStar />
-              Plano{userInfo.subscriptionType}
+              {userInfo.subscriptionType}
             </div>
           ) : (
             <div

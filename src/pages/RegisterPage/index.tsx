@@ -10,11 +10,13 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
+import { TextField } from "@material-ui/core";
 import { useAuth } from "../../providers/Authentication";
 import { UserData } from "../../assets/Types/user";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { BsArrowLeftCircle } from "react-icons/bs";
+import { Linha } from "../LoginPage/styles";
 import logoName from "../../assets/Images/logoWithName.png";
 
 const RegisterPage = () => {

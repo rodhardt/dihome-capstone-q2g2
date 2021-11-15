@@ -6,23 +6,32 @@ import { BsBookmark } from "react-icons/bs";
 import { MdOutlineHomeWork } from "react-icons/md";
 
 import { useAuth } from "../../../providers/Authentication";
+import { useProperties } from "../../../providers/Properties";
 import PropertyCard from "../../PropertyCard";
 
 function BookmarkedProperties() {
   const history = useHistory();
 
   const { userInfo } = useAuth();
+  const { properties } = useProperties();
 
   return (
     <BookmarkedPropertiesStyled>
       {userInfo.bookmarkedProperties?.length > 0 ? (
-        <ul>
-          {userInfo.bookmarkedProperties?.map((property, index) => (
-            <li key={index}>
-              <PropertyCard properties={property} type="DashBoard" />
-            </li>
-          ))}
-        </ul>
+        <>
+          <h3>Imóveis Salvos</h3>
+          <ul>
+            {properties.map((property, index) => (
+              <>
+                {userInfo.bookmarkedProperties?.includes(property.id || 0) ? (
+                  <li key={index}>
+                    <PropertyCard properties={property} type="DashBoard" />
+                  </li>
+                ) : null}
+              </>
+            ))}
+          </ul>
+        </>
       ) : (
         <div className="null-bookmarked">
           <p>Você ainda não tem imóveis salvos.</p>

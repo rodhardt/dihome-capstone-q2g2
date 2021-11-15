@@ -24,24 +24,31 @@ import { useAuth } from "../../providers/Authentication";
 
 function PropertyCard({ properties, type }: any) {
   const history = useHistory();
+
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const { registerPreviousPage } = useAuth();
+  const { registerPreviousPage, authToken, userInfo, updateUser } = useAuth();
   const modalInformation = {
     title: "Atenção",
     closeFunction: () => setIsOpenModal(false),
-    message: "Voce não esta logado",
+    message: "Voce não esta logado!",
     confirmButton: {
       confirmText: "Logar",
       confirmFunction: () => {
         registerPreviousPage();
         history.push("/login");
       },
-      cancelButton: {
-        cancelText: "Sair",
-        cancelFunction: () => console.log("sair"),
-      },
+    },
+    cancelButton: {
+      cancelText: "Sair",
+      cancelFunction: () => console.log("sair"),
     },
   };
+  const handleUpdateUser = () => {
+    let newUser = userInfo;
+    newUser.bookmarkedProperties.push(properties.id);
+    updateUser(newUser);
+  };
+  //teste
   return (
     <>
       {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
@@ -53,7 +60,13 @@ function PropertyCard({ properties, type }: any) {
               <p>{properties.type}</p>
             </HeaderCard>
             <ImgHouse>
-              <button onClick={() => setIsOpenModal(true)}>
+              <button
+                onClick={() =>
+                  authToken.length > 0
+                    ? handleUpdateUser()
+                    : setIsOpenModal(true)
+                }
+              >
                 <MdBookmarkAdded />
               </button>
               <img src={properties.mainImage} alt={"House"} />
@@ -83,10 +96,10 @@ function PropertyCard({ properties, type }: any) {
               </InfosHouse>
             </InfosCard>
             <HousePrice>
-              <button>
+              <button onClick={() => history.push(`/imovel/${properties.id}`)}>
                 <img src={ButtonLogo} alt="Botão" />
               </button>
-              <p>R${properties.price.toLocaleString()}</p>
+              <p>R$ {properties.price.toLocaleString()}</p>
             </HousePrice>
           </ContainerPropertyCard>
         )}

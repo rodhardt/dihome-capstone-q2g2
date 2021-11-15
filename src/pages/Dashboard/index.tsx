@@ -2,6 +2,9 @@ import PropertyCard from "../../components/PropertyCard";
 import { useProperties } from "../../providers/Properties";
 import { DashboardStyled } from "./styles";
 import { useEffect, useState } from "react";
+
+import { PropertyData } from "../../assets/Types/property";
+
 function Dashboard() {
   const [filterType, setFilTertype] = useState("");
 
@@ -11,7 +14,7 @@ function Dashboard() {
 
   const [filterPrice, setFilterPrice] = useState(0);
 
-  const [list, setList]: any = useState([]);
+  const [list, setList] = useState<PropertyData[]>([]);
 
   const [searchInit, setSearchInit] = useState(false);
 
