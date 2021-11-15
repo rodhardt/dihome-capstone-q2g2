@@ -64,7 +64,7 @@ function Dashboard() {
 
   const handleFilteredProperties = () => {
     const activeKeys = Object.keys(activeFilters);
-    const typeKeys = Object.keys(filterTypes);
+
     const activeValues = Object.values(activeFilters);
     const typeValues = Object.values(filterTypes);
 
