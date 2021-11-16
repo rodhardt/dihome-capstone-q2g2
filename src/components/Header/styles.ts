@@ -1,35 +1,29 @@
+import styled from "styled-components";
+
 export const HeaderStyled = styled.div`
-  .lastBox {
-    background-color: #0f9194;
-    position: absolute;
-    top: 0px;
-    min-width: 100%;
-    height: 20vh;
-  }
   @media only screen and (max-width: 320px) {
     .lastBox {
       background-color: #0f9194;
       position: absolute;
       top: 0px;
       min-width: 100%;
-      height: 15vh;
+      height: 35px;
     }
     .notLoged {
       display: flex;
       .Link {
-        margin-top: 8%;
+        margin-top: 5px;
         text-decoration: none;
         color: #ffffff;
-        margin-left: 4%;
-        margin-right: 2%;
-        font-size: 3vh;
+        margin-left: 8%;
+        font-size: 15px;
       }
       .LinkImage {
-        height: 13vh;
+        height: 35px;
         width: 100%;
       }
       .LinkFont {
-        height: 5vh;
+        height: 6vh;
         width: 100%;
       }
     }
@@ -37,20 +31,19 @@ export const HeaderStyled = styled.div`
     .Logged {
       display: flex;
       .Link {
-        margin-top: 8%;
+        margin-top: 5px;
         text-decoration: none;
         color: #ffffff;
-        margin-left: 4%;
-        margin-right: 4%;
-        font-size: 3.5vh;
+        margin-left: 8%;
+        font-size: 15px;
       }
       .LinkImage {
-        margin-top: 5%;
-        height: 13vh;
+        height: 35px;
         width: 100%;
       }
       .LinkFont {
-        height: 5vh;
+        margin-top: 5px;
+        height: 15px;
         width: 100%;
       }
     }
@@ -62,24 +55,23 @@ export const HeaderStyled = styled.div`
       position: absolute;
       top: 0px;
       min-width: 100%;
-      height: 15vh;
+      height: 35px;
     }
     .notLoged {
       display: flex;
       .Link {
-        margin-top: 4vh;
+        margin-top: 5px;
         text-decoration: none;
         color: #ffffff;
-        margin-left: 7.5%;
-        font-size: 3.5vh;
+        margin-left: 8%;
+        font-size: 15px;
       }
       .LinkImage {
-        margin-top: 1vh;
-        height: 12vh;
+        height: 35px;
         width: 100%;
       }
       .LinkFont {
-        height: 5vh;
+        height: 6vh;
         width: 100%;
       }
     }
@@ -87,20 +79,19 @@ export const HeaderStyled = styled.div`
     .Logged {
       display: flex;
       .Link {
-        margin-top: 5vh;
+        margin-top: 5px;
         text-decoration: none;
         color: #ffffff;
-        margin-left: 9%;
-        font-size: 4vh;
+        margin-left: 8%;
+        font-size: 15px;
       }
       .LinkImage {
-        margin-top: 2vh;
-        height: 12vh;
+        height: 35px;
         width: 100%;
       }
       .LinkFont {
-        margin-top: 20%;
-        height: 5vh;
+        margin-top: 5px;
+        height: 15px;
         width: 100%;
       }
     }
@@ -111,19 +102,19 @@ export const HeaderStyled = styled.div`
       position: absolute;
       top: 0px;
       min-width: 100%;
-      height: 15vh;
+      height: 35px;
     }
     .notLoged {
       display: flex;
       .Link {
-        margin-top: 5vh;
+        margin-top: 5px;
         text-decoration: none;
         color: #ffffff;
         margin-left: 8%;
-        font-size: 3.5vh;
+        font-size: 15px;
       }
       .LinkImage {
-        height: 15vh;
+        height: 35px;
         width: 100%;
       }
       .LinkFont {
@@ -135,36 +126,43 @@ export const HeaderStyled = styled.div`
     .Logged {
       display: flex;
       .Link {
-        margin-top: 5vh;
+        margin-top: 5px;
         text-decoration: none;
         color: #ffffff;
-        margin-left: 10%;
-        font-size: 3.5vh;
+        margin-left: 8%;
+        font-size: 15px;
       }
       .LinkImage {
-        height: 15vh;
+        height: 35px;
         width: 100%;
       }
       .LinkFont {
-        margin-top: 0.5vh;
-        height: 5vh;
+        margin-top: 5px;
+        height: 15px;
         width: 100%;
       }
     }
   }
   @media only screen and (min-width: 426px) and (max-width: 767px) {
+    .lastBox {
+      background-color: #0f9194;
+      position: absolute;
+      top: 0px;
+      min-width: 100%;
+      height: 40px;
+    }
     .notLoged {
       display: flex;
       .Link {
-        margin-top: 5.5vh;
+        margin-top: 10px;
         text-decoration: none;
         color: #ffffff;
         margin-left: 10%;
-        font-size: 6vh;
+        font-size: 15px;
       }
       .LinkImage {
-        margin-right: 5vh;
-        height: 18vh;
+        margin-right: 15px;
+        height: 38px;
         width: 100%;
       }
       .LinkFont {
@@ -176,38 +174,46 @@ export const HeaderStyled = styled.div`
     .Logged {
       display: flex;
       .Link {
-        margin-top: 5.5vh;
+        margin-top: 10px;
         text-decoration: none;
         color: #ffffff;
         margin-left: 10%;
-        font-size: 6vh;
+        font-size: 15px;
       }
       .LinkImage {
-        margin-right: 5vh;
-        height: 18vh;
+        margin-right: 15px;
+        height: 38px;
         width: 100%;
       }
       .LinkFont {
-        margin-right: 1vh;
-        margin-top: 0.9vh;
-        height: 8vh;
+        margin-right: 7px;
+        margin-top: 0.9px;
+        height: 20px;
         width: 100%;
       }
     }
   }
   @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .lastBox {
+      background-color: #0f9194;
+      position: absolute;
+      top: 0px;
+      min-width: 100%;
+      height: 80px;
+    }
+
     .notLoged {
       display: flex;
       .Link {
-        margin-top: 6vh;
+        margin-top: 10px;
         text-decoration: none;
         color: #ffffff;
         margin-left: 10%;
-        font-size: 6vh;
+        font-size: 30px;
       }
       .LinkImage {
-        margin-right: 5vh;
-        height: 18vh;
+        margin-right: 5px;
+        height: 80px;
         width: 100%;
       }
       .LinkFont {
@@ -219,37 +225,45 @@ export const HeaderStyled = styled.div`
     .Logged {
       display: flex;
       .Link {
-        margin-top: 6vh;
+        margin-top: 10px;
         text-decoration: none;
         color: #ffffff;
         margin-left: 10%;
-        font-size: 6vh;
+        font-size: 30px;
       }
       .LinkImage {
-        margin-right: 5vh;
-        height: 18vh;
+        margin-right: 5px;
+        height: 80px;
         width: 100%;
       }
       .LinkFont {
-        margin-top: 1.5vh;
-        height: 7vh;
+        margin-top: 10px;
+        height: 40px;
         width: 100%;
       }
     }
   }
 
   @media only screen and (min-width: 1024px) {
+    .lastBox {
+      background-color: #0f9194;
+      position: absolute;
+      top: 0px;
+      min-width: 100%;
+      height: 80px;
+    }
+
     .notLoged {
       display: flex;
       .Link {
-        margin-top: 8vh;
+        margin-top: 8px;
         text-decoration: none;
         color: #ffffff;
         margin-left: 13%;
-        font-size: 6vh;
+        font-size: 30px;
       }
       .LinkImage {
-        height: 18vh;
+        height: 70px;
         width: 100%;
       }
       .LinkFont {
@@ -261,19 +275,19 @@ export const HeaderStyled = styled.div`
     .Logged {
       display: flex;
       .Link {
-        margin-top: 5vh;
+        margin-top: 8px;
         text-decoration: none;
         color: #ffffff;
-        margin-left: 12%;
-        font-size: 8vh;
+        margin-left: 13%;
+        font-size: 30px;
       }
       .LinkImage {
-        height: 18vh;
+        height: 70px;
         width: 100%;
       }
       .LinkFont {
-        margin-top: 3.3vh;
-        height: 7vh;
+        margin-top: 13px;
+        height: 30px;
         width: 100%;
       }
     }

@@ -19,6 +19,7 @@ interface AuthProviderData {
   signIn: (UserSignInData: UserSignInData) => void;
   registerUser: (userData: UserData) => void;
   logout: () => void;
+  updateUser: (userData: UserData) => void;
   registerPreviousPage: () => void;
   returnPreviousPage: () => void;
 }
@@ -46,19 +47,31 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         .get(`/users/${userId}`, {
           headers: { Authorization: `Bearer ${authToken}` },
         })
-        .then((response) => setUserInfo(response.data))
+        .then((response) => {
+          setUserInfo(response.data);
+        })
         .catch((err) => console.log(err));
+    }
+    if (history.location.pathname === "/perfil" && authToken === "") {
+      setPreviousPage("/perfil");
+      history.push("/login");
     }
   };
 
-  const signIn = (UserSignInData: UserSignInData) => {
+  const returnPreviousPage = () => {
+    history.push(previousPage);
+  };
+
+  const signIn = (userSignInData: UserSignInData) => {
     api
-      .post("/login", UserSignInData)
+      .post("/signin", userSignInData)
       .then((response) => {
         localStorage.setItem("@dihome:token", response.data.accessToken);
         localStorage.setItem("@dihome:id", response.data.user.id);
         setAuthToken(response.data.accessToken);
-        setUserInfo(response.data);
+        setUserInfo(response.data.user);
+        setUserId(response.data.user.id);
+        history.push(previousPage);
       })
       .catch((err) => console.log(err));
   };
@@ -70,7 +83,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         localStorage.setItem("@dihome:token", response.data.accessToken);
         localStorage.setItem("@dihome:id", response.data.user.id);
         setAuthToken(response.data.accessToken);
-        setUserInfo(response.data);
+        setUserInfo(response.data.user);
+        setUserId(response.data.user.id);
+        history.push(previousPage);
       })
       .catch((err) => console.log(err));
   };
@@ -82,12 +97,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     history.push("/");
   };
 
-  const registerPreviousPage = () => {
-    setPreviousPage(`${history.location.pathname}`);
+  const updateUser = (newUserData: UserData) => {
+    console.log(newUserData);
+    console.log(authToken);
+    console.log(userId);
+    setUserInfo(newUserData);
+    api
+      .patch(`/users/${userId}`, newUserData, {
+        headers: { Authorization: `Bearer ${authToken}` },
+      })
+      .catch((err) => console.log(err));
   };
 
-  const returnPreviousPage = () => {
-    history.push(previousPage);
+  const registerPreviousPage = () => {
+    setPreviousPage(`${history.location.pathname}`);
   };
 
   return (
@@ -99,6 +122,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         signIn,
         registerUser,
         logout,
+        updateUser,
         registerPreviousPage,
         returnPreviousPage,
       }}

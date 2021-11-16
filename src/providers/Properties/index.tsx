@@ -22,11 +22,12 @@ export const PropertiesProvider = ({ children }: PropertiesProviderProps) => {
   const [properties, setProperties] = useState<PropertyData[]>([]);
 
   const { authToken } = useAuth();
-
   const getProperties = () => {
     api
       .get("/property")
-      .then((response) => setProperties(response.data))
+      .then((response) => {
+        setProperties(response.data);
+      })
       .catch((err) => console.log(err));
   };
 
