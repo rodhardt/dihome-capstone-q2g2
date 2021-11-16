@@ -2,8 +2,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 
+import { PropertyData } from "../../../assets/Types/property";
+
 import { AnnounceFormModalStyled } from "./styles";
 import { useAuth } from "../../../providers/Authentication";
+import { useProperties } from "../../../providers/Properties";
 
 interface AnnounceFormModalData {
   closeWindow: () => void;
@@ -25,12 +28,13 @@ interface PropertyFormData {
   landArea: number;
   description: string;
   mainImage: string;
-  images: string[];
+  images: string;
   price: number;
 }
 
 function AnnounceFormModal({ closeWindow }: AnnounceFormModalData) {
-  const { userInfo } = useAuth();
+  const { userInfo, updateUser } = useAuth();
+  const { properties, addProperty } = useProperties();
 
   const formSchema = yup.object().shape({
     title: yup.string().required("Dê um título ao seu anúncio"),
@@ -60,7 +64,7 @@ function AnnounceFormModal({ closeWindow }: AnnounceFormModalData) {
 
   const handleForm = (announcingData: PropertyFormData) => {
     const newProperty = {
-      announcerId: userInfo.id,
+      announcerId: userInfo.id || 0,
       consultantStatus: "em aberto",
       announcerStatus: "ativo",
       viewsCount: 0,
@@ -80,10 +84,14 @@ function AnnounceFormModal({ closeWindow }: AnnounceFormModalData) {
       landArea: announcingData.landArea,
       description: announcingData.description,
       mainImage: announcingData.mainImage,
-      images: announcingData.images,
+      images: [announcingData.images],
       price: announcingData.price,
     };
-    console.log(newProperty);
+    addProperty(newProperty);
+    let newUser = userInfo;
+    newUser.announcedProperties.push(properties.length);
+    updateUser(newUser);
+    closeWindow();
   };
 
   return (

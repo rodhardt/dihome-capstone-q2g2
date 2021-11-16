@@ -50,6 +50,7 @@ function AnnouncedProperties() {
         {userInfo.announcedProperties?.length > 0 ? (
           <>
             <button
+              className="announce-now"
               onClick={() =>
                 userInfo.subscriptionType === "Nenhum"
                   ? setIsAnnouncingAttempt(true)
@@ -59,7 +60,9 @@ function AnnouncedProperties() {
               <GoMegaphone />
               Anuncie Já!
             </button>
+            <h2>Meus Anúncios</h2>
             <div className="table-container">
+              <h3>Performance</h3>
               <table>
                 <tr>
                   <th>Nome</th>
@@ -81,7 +84,7 @@ function AnnouncedProperties() {
                 ))}
               </table>
             </div>
-            <h3>Meus Anúncios</h3>
+
             <ul>
               {properties.map((property, index) => (
                 <>

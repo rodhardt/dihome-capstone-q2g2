@@ -35,13 +35,14 @@ export const UserCardStyled = styled.section`
   .tags-container {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     margin-top: 20px;
   }
 
   .edit-button {
     background-color: var(--darkBlue);
     color: var(--mainGray);
-    width: 110px;
+    width: 120px;
     height: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 6px;
@@ -55,7 +56,8 @@ export const UserCardStyled = styled.section`
   }
 
   .user-plan {
-    width: 110px;
+    width: 120px;
+    padding-right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,6 +69,10 @@ export const UserCardStyled = styled.section`
 
   .user-plan svg {
     margin-right: 5px;
+  }
+
+  .subscribe {
+    text-align: center;
   }
 
   .subscribe:hover {
