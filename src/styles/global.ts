@@ -26,4 +26,12 @@ export default createGlobalStyle`
     button:hover {
         cursor: pointer;
     }
+
+    main, section {
+        background-color: var(--mainGray)
+    }
+
+    ul {
+        list-style: none;
+    }
 `;
