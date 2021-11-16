@@ -52,10 +52,9 @@ export const ImageBoxes = styled.section`
   }
 `;
 
-export const ImagesCarossel = styled.section`
+export const Filter = styled.div`
   width: 100%;
   height: 100vh;
-  z-index: 3;
   background-color: #00000090;
   display: flex;
   align-items: center;
@@ -64,6 +63,17 @@ export const ImagesCarossel = styled.section`
   position: fixed;
   top: 0px;
   left: 0px;
+`;
+
+export const ImagesCarossel = styled.section`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  transform: translate(0%, 50%);
 
   .flexRow {
     display: flex;
@@ -75,7 +85,6 @@ export const ImagesCarossel = styled.section`
   img {
     width: 75%;
     border-radius: 10px;
-    z-index: 4;
   }
 
   .goAndBack {
@@ -86,7 +95,6 @@ export const ImagesCarossel = styled.section`
     justify-content: center;
     border: 2px solid var(--darkBlue);
     background-color: var(--darkBlue);
-    z-index: 4;
 
     :hover {
       background-color: var(--lightBlue);
@@ -96,7 +104,6 @@ export const ImagesCarossel = styled.section`
     svg {
       width: 24px;
       height: auto;
-      z-index: 4;
     }
   }
 
@@ -111,7 +118,6 @@ export const ImagesCarossel = styled.section`
     background-color: var(--mainGray);
     color: var(--darkBlue);
     font-weight: bold;
-    z-index: 4;
 
     :hover {
       background-color: var(--darkBlue);

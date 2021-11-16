@@ -13,6 +13,7 @@ import { useProperties } from "../../providers/Properties";
 import {
   BackButton,
   ContactOwner,
+  Filter,
   ImageBoxes,
   ImagesCarossel,
   Linha,
@@ -183,8 +184,11 @@ const PropertyPage = () => {
     }
   };
 
+  const [lastImage, setLastImage] = useState(0);
+
   useEffect(() => {
     consultantAuthenticate();
+    setLastImage(propertyToRender?.images.length || 1);
   }, [propertyToRender]);
 
   const [isOpenImages, setIsOpenImages] = useState(false);
@@ -205,6 +209,8 @@ const PropertyPage = () => {
   const handleDec = () => {
     if (counterForImages > 0) {
       setCounterForImages(counterForImages - 1);
+    } else {
+      setCounterForImages(lastImage - 1);
     }
   };
 
@@ -223,26 +229,31 @@ const PropertyPage = () => {
           <h2>voltar para imóveis</h2>
         </BackButton>
         {isOpenImages ? (
-          <ImagesCarossel>
-            <div className="flexRow">
-              <button onClick={handleDec} className="goAndBack">
-                <GrLinkPrevious />
+          <>
+            <Filter onClick={() => setIsOpenImages(false)}></Filter>
+            <ImagesCarossel>
+              <div className="flexRow">
+                <button onClick={handleDec} className="goAndBack">
+                  <GrLinkPrevious />
+                </button>
+                <img src={propertyToRender?.images[counterForImages]} alt="" />
+                <button onClick={handleAdd} className="goAndBack">
+                  <GrLinkNext />
+                </button>
+              </div>
+              <div className="counter">
+                {`${counterForImages + 1} de ${
+                  propertyToRender?.images.length
+                }`}
+              </div>
+              <button
+                className="closeButton"
+                onClick={() => setIsOpenImages(false)}
+              >
+                fechar
               </button>
-              <img src={propertyToRender?.images[counterForImages]} alt="" />
-              <button onClick={handleAdd} className="goAndBack">
-                <GrLinkNext />
-              </button>
-            </div>
-            <div className="counter">
-              {`${counterForImages + 1} de ${propertyToRender?.images.length}`}
-            </div>
-            <button
-              className="closeButton"
-              onClick={() => setIsOpenImages(false)}
-            >
-              fechar
-            </button>
-          </ImagesCarossel>
+            </ImagesCarossel>
+          </>
         ) : (
           <ImageBoxes onClick={handleOpenImages}>
             <img
