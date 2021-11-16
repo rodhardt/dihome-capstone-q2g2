@@ -70,7 +70,7 @@ export const ContentHome = styled.ul`
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 10px;
     height: 150px;
