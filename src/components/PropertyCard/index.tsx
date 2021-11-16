@@ -47,7 +47,7 @@ function PropertyCard({ properties, type }: any) {
     newUser.bookmarkedProperties.push(properties.id);
     updateUser(newUser);
   };
-  //teste
+
   return (
     <>
       {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
