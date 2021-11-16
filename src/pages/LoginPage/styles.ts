@@ -42,6 +42,7 @@ export const FormLogin = styled.form`
     background-color: #f5f5f5;
     color: #707070;
     padding: 5px;
+    transition: 400ms;
 
     :hover {
       padding-left: 20px;
@@ -63,7 +64,6 @@ export const FormLogin = styled.form`
     font-size: 18px;
     color: var(--mainGray);
     background-color: var(--darkBlue);
-
     :hover {
       transition: 300ms;
       background-color: #00000010;

@@ -103,7 +103,7 @@ export const BoxForm = styled.div`
   }
 `;
 
-export const Title = styled.section`
+export const Title = styled.div`
   width: 100%;
   height: 20px;
   margin: 0px 0px 0px 40px;

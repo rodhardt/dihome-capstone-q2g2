@@ -11,6 +11,7 @@ export default createGlobalStyle`
     }
 
     :root {
+        --ligthGray:#606060;
         --mainGray: #F1F1F1;
         --darkOrange: #E08043;
         --orange: #F08847;
@@ -24,5 +25,13 @@ export default createGlobalStyle`
 
     button:hover {
         cursor: pointer;
+    }
+
+    main, section {
+        background-color: var(--mainGray)
+    }
+
+    ul {
+        list-style: none;
     }
 `;
