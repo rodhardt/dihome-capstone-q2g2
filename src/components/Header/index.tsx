@@ -9,7 +9,7 @@ function Header() {
   return (
     <HeaderStyled>
       <div className="lastBox">
-        {authToken !== "" ? (
+        {authToken === "" ? (
           <div className="notLoged">
             <Link className="LinkImageLINK" to="/">
               <img
