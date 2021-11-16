@@ -39,11 +39,7 @@ function Homepage() {
       <ContainerHome>
         <ButtonHome1>
           <Button
-            onClick={() =>
-              authToken.length > 0
-                ? history.push("/imoveis")
-                : history.push("/login")
-            }
+            onClick={() => history.push("/imoveis")}
             startIcon={<FaHome />}
             variant="outlined"
           >

@@ -27,8 +27,13 @@ export default createGlobalStyle`
         cursor: pointer;
     }
 
+    body {
+        background-color: var(--mainGray);
+        min-height: 100vh;
+    }
+
     main, section {
-        background-color: var(--mainGray)
+        background-color: var(--mainGray);
     }
 
     ul {
