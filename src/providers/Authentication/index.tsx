@@ -59,7 +59,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             subscriptionType: response.data.subscriptionType,
           });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          if (history.location.pathname === "/perfil") {
+            setPreviousPage("/perfil");
+            history.push("/login");
+          }
+        });
     }
     if (history.location.pathname === "/perfil" && authToken === "") {
       setPreviousPage("/perfil");
