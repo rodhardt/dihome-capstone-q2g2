@@ -23,11 +23,12 @@ import { useHistory } from "react-router";
 import { useAuth } from "../../providers/Authentication";
 import { AiTwotoneStar, AiOutlineStar } from "react-icons/ai";
 
-function PropertyCard({ properties, type }: any) {
+function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
   const history = useHistory();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { registerPreviousPage, authToken, userInfo, updateUser } = useAuth();
+
   const modalInformation = {
     title: "Atenção",
     closeFunction: () => setIsOpenModal(false),
@@ -46,12 +47,21 @@ function PropertyCard({ properties, type }: any) {
   };
   const handleUpdateUser = () => {
     let newUser = userInfo;
+
     const filterUser = newUser.bookmarkedProperties.filter(
       (item) => item === properties.id
     );
-    if (!filterUser) {
+
+    if (!(filterUser.length > 0)) {
       newUser.bookmarkedProperties.push(properties.id);
       updateUser(newUser);
+      setRenderAtt(renderAtt + 1);
+    } else {
+      newUser.bookmarkedProperties = newUser.bookmarkedProperties.filter(
+        (item) => item !== properties.id
+      );
+      updateUser(newUser);
+      setRenderAtt(renderAtt + 1);
     }
   };
 
@@ -74,7 +84,7 @@ function PropertyCard({ properties, type }: any) {
                 }
               >
                 {userInfo.bookmarkedProperties &&
-                userInfo.bookmarkedProperties.filter(
+                userInfo.bookmarkedProperties.find(
                   (item) => item === properties.id
                 ) ? (
                   <AiTwotoneStar />

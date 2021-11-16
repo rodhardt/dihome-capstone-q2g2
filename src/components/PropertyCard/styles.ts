@@ -67,6 +67,7 @@ export const ImgHouse = styled.div`
     width: 30px;
     border-radius: 70px;
     border: 1px solid black;
+
     background-color: var(--orange);
     :hover {
       background-color: var(--mainGray);

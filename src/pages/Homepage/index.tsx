@@ -31,7 +31,7 @@ function Homepage() {
   const { properties } = useProperties();
   const { authToken } = useAuth();
   const history = useHistory();
-
+  console.log(authToken.length);
   return (
     <HomepageStyled>
       <Header />
@@ -39,7 +39,11 @@ function Homepage() {
       <ContainerHome>
         <ButtonHome1>
           <Button
-            onClick={() => history.push("/imoveis")}
+            onClick={() =>
+              authToken.length > 0
+                ? history.push("/imoveis")
+                : history.push("/login")
+            }
             startIcon={<FaHome />}
             variant="outlined"
           >

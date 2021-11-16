@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [previousPage, setPreviousPage] = useState<string>("/");
 
   const authenticate = () => {
-    if (authToken !== "") {
+    if (authToken.length > 0) {
       api
         .get(`/users/${userId}`, {
           headers: { Authorization: `Bearer ${authToken}` },
@@ -102,6 +102,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     console.log(authToken);
     console.log(userId);
     setUserInfo(newUserData);
+
     api
       .patch(`/users/${userId}`, newUserData, {
         headers: { Authorization: `Bearer ${authToken}` },
