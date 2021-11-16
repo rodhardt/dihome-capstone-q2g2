@@ -7,7 +7,9 @@ import mansãoSpenser from "../../assets/Images/mansãoSpenser.jpeg";
 import evocandoEspiritos from "../../assets/Images/evocandoEspiritos.jpeg";
 import oExorcista from "../../assets/Images/oExorcista.jpeg";
 import alcatraz from "../../assets/Images/alcatraz.jpeg";
-
+import { MdOutlineNavigateNext } from "react-icons/md";
+import { MdOutlineNavigateBefore } from "react-icons/md";
+import { AiOutlineFilter } from "react-icons/ai";
 import PropertyCard from "../../components/PropertyCard";
 import { useProperties } from "../../providers/Properties";
 import { DashboardStyled } from "./styles";
@@ -155,7 +157,7 @@ function Dashboard() {
     setTimeout(() => {
       if (conter <= listFun.length - 2) setConter(conter + 1);
       else setConter(0);
-    }, 5000);
+    }, 15000);
   }, [conter]);
   const listFun = [
     {
@@ -200,8 +202,10 @@ function Dashboard() {
     },
     {
       img: oExorcista,
-      description: "",
-      lastResidentComent: "",
+      description:
+        "Casa com 2 andares e porão espaçoso para compra  R$: 226.660(negocialvel)",
+      lastResidentComent:
+        "Otima casa o melhor é que da ate para usar sua propria alma(ou de familiare) como entrada",
     },
     {
       img: alcatraz,
@@ -210,38 +214,49 @@ function Dashboard() {
       lastResidentComent: "Uma vez dentro nunca mais vai querer( e poder) sair",
     },
   ];
+
   return (
     <>
-      <div>
-        <button
-          onClick={() => {
-            if (conter > 0) setConter(conter - 1);
-          }}
-        >
-          before
-        </button>
-        <section>
-          <img src={listFun[conter].img} alt="imagem casa" />
-          <p>{listFun[conter].description}</p>
-          <p>{listFun[conter].lastResidentComent}</p>
-        </section>
-
-        <button
-          onClick={() => {
-            if (conter <= listFun.length - 2) setConter(conter + 1);
-            else setConter(0);
-          }}
-        >
-          next
-        </button>
-      </div>
-
-      {isChoosingFilters && (
-        <FilterModal handleFilter={handleFilter} closeWindow={closeWindow} />
-      )}
-      {/* <button onClick={() => handleFilteredProperties()}>Teste</button> */}
-      <button onClick={() => setIsChoosingFilters(true)}>Abrir Filtros</button>
       <DashboardStyled>
+        <div className="slider">
+          <button
+            className="changeSlider"
+            onClick={() => {
+              if (conter > 0) setConter(conter - 1);
+            }}
+          >
+            <MdOutlineNavigateBefore />
+          </button>
+
+          <section className="boxSlider">
+            <img src={listFun[conter].img} alt="imagem casa" />
+            <p className="description">
+              {"Descrição: " + listFun[conter].description + "."}
+            </p>
+            <p className="lastResidentComent">
+              {"Comentario do ultimo inquilino: " +
+                listFun[conter].lastResidentComent +
+                "."}
+            </p>
+          </section>
+
+          <button
+            className="changeSlider"
+            onClick={() => {
+              if (conter <= listFun.length - 2) setConter(conter + 1);
+              else setConter(0);
+            }}
+          >
+            <MdOutlineNavigateNext />
+          </button>
+        </div>
+        {isChoosingFilters && (
+          <FilterModal handleFilter={handleFilter} closeWindow={closeWindow} />
+        )}
+        {/* <button onClick={() => handleFilteredProperties()}>Teste</button> */}
+        <button className="filter" onClick={() => setIsChoosingFilters(true)}>
+          <AiOutlineFilter /> Abrir Filtros
+        </button>
         {properties &&
           filteredProperties.map((item) => (
             <PropertyCard properties={item} type="DashBoard" />
@@ -252,3 +267,4 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
