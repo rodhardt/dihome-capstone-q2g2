@@ -18,6 +18,8 @@ import FilterModal from "../../components/Dashboard/FilterModal";
 
 import { PropertyData } from "../../assets/Types/property";
 
+import Header from "../../components/Header";
+
 interface FilterSearchData {
   price: number;
   type: string[];
@@ -219,6 +221,7 @@ function Dashboard() {
   const [renderAtt, setRenderAtt] = useState(1);
   return (
     <>
+      <Header />
       <DashboardStyled>
         <div className="slider">
           <button

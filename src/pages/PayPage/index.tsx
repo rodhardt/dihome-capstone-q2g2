@@ -1,4 +1,4 @@
-import { AiOutlineRollback } from 'react-icons/ai'
+import { AiOutlineRollback } from "react-icons/ai";
 import { PayCard } from "../../components/PayCard";
 import { BoxTitle, ButtonBox, PayPageStyled } from "./styles";
 import logoOne from "../../assets/Images/logoWithoutName.png";
@@ -7,10 +7,13 @@ import logoThree from "../../assets/Images/logoThree.png";
 import logoFour from "../../assets/Images/logoFour.png";
 import { useHistory } from "react-router";
 
+import Header from "../../components/Header";
+
 const PayPage = () => {
   const history = useHistory();
   return (
     <>
+      <Header />
       <BoxTitle>
         <h2>Confira nossos planos</h2>
       </BoxTitle>

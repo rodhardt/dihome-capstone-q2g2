@@ -1,61 +1,42 @@
+import { useEffect, useState } from "react";
+
 import { HeaderStyled } from "./styles";
-import { Link } from "react-router-dom";
-import dihome2 from "../../assets/Images/dihome2.png";
+import { Link, useHistory } from "react-router-dom";
+import logoWithoutName from "../../assets/Images/logoWithoutName.png";
 import { useAuth } from "../../providers/Authentication";
 import { VscAccount } from "react-icons/vsc";
 function Header() {
-  const { authToken, logout } = useAuth();
+  const { authToken } = useAuth();
 
   return (
-    <HeaderStyled>
-      <div className="lastBox">
+    <>
+      <HeaderStyled>
+        <div className="image-container">
+          <Link className="imageLink" to="/">
+            <img
+              className="linkImage"
+              src={logoWithoutName}
+              alt="botão da home page"
+            />
+          </Link>
+        </div>
+        <Link className="link text" to="/imoveis">
+          Imoveis
+        </Link>
+        <Link className="link text" to="/perfil">
+          Anuncie aqui
+        </Link>
         {authToken === "" ? (
-          <div className="notLoged">
-            <Link className="LinkImageLINK" to="/">
-              <img
-                className="LinkImage"
-                src={dihome2}
-                alt="botão da home page"
-              />
-            </Link>
-            <Link className="Link" to="/imoveis">
-              Imoveis
-            </Link>
-            <Link className="Link" to="/registrar">
-              Registro
-            </Link>
-            <Link className="Link" to="/login">
-              Login
-            </Link>
-          </div>
+          <Link className="link login last" to="/login">
+            Login
+          </Link>
         ) : (
-          <div className="Logged">
-            <Link className="LinkImageLINK" to="/">
-              <img
-                className="LinkImage"
-                src={dihome2}
-                alt="botão da home page"
-              />
-            </Link>
-            <Link className="Link" to="/imoveis">
-              Imoveis
-            </Link>
-            <Link
-              className="Link"
-              to=""
-              onClick={() => {
-                logout();
-              }}
-            >
-              Logout
-            </Link>
-            <Link className="Link" to="/perfil">
-              <VscAccount className="LinkFont" />
-            </Link>
-          </div>
+          <Link className="link last" to="/perfil">
+            <VscAccount className="linkFont" />
+          </Link>
         )}
-      </div>
-    </HeaderStyled>
+      </HeaderStyled>
+    </>
   );
 }
 

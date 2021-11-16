@@ -10,6 +10,8 @@ import AnnouncedProperties from "../../components/Profile/AnnouncedProperties";
 import ConsultantTable from "../../components/Profile/ConsultantTable";
 import LoadingScreen from "../../components/LoadingScreen";
 
+import Header from "../../components/Header";
+
 function Profile() {
   const { userInfo, authenticate } = useAuth();
 
@@ -18,15 +20,18 @@ function Profile() {
   }, []);
 
   return (
-    <ProfileStyled>
-      {!!userInfo.id ? null : (
-        <LoadingScreen type="full" message="Carregando seu perfil..." />
-      )}
-      <UserCard />
-      {userInfo.consultant ? <ConsultantTable /> : null}
-      <AnnouncedProperties />
-      <BookmarkedProperties />
-    </ProfileStyled>
+    <>
+      <Header />
+      <ProfileStyled>
+        {!!userInfo.id ? null : (
+          <LoadingScreen type="full" message="Carregando seu perfil..." />
+        )}
+        <UserCard />
+        {userInfo.consultant ? <ConsultantTable /> : null}
+        <AnnouncedProperties />
+        <BookmarkedProperties />
+      </ProfileStyled>
+    </>
   );
 }
 

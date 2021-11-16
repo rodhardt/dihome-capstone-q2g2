@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const HomepageStyled = styled.div`
+export const HomepageStyled = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -21,11 +21,6 @@ export const HomepageStyled = styled.div`
   }
 `;
 
-export const Header = styled.div`
-  width: 100%;
-  height: 3vh;
-  background-color: #0f9194;
-`;
 export const ContainerHome = styled.div`
   width: 87%;
   margin-top: 50px;
