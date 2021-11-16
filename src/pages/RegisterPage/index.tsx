@@ -16,7 +16,7 @@ import { UserData } from "../../assets/Types/user";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { BsArrowLeftCircle } from "react-icons/bs";
-import { Linha } from "../LoginPage/styles";
+import { ErrorMessage, Linha } from "../LoginPage/styles";
 import logoName from "../../assets/Images/logoWithName.png";
 
 const RegisterPage = () => {
@@ -81,9 +81,17 @@ const RegisterPage = () => {
                   <h2>Cadastro</h2>
                 </Title>
                 <input placeholder="Nome" {...register("name")} />
+                <ErrorMessage>{errors && errors.name?.message}</ErrorMessage>
                 <input placeholder="E-mail" {...register("email")} />
+                <ErrorMessage>{errors && errors.email?.message}</ErrorMessage>
                 <input placeholder="Senha" {...register("password")} />
+                <ErrorMessage>
+                  {errors && errors.password?.message}
+                </ErrorMessage>
                 <input placeholder="Telefone" {...register("telephone")} />
+                <ErrorMessage>
+                  {errors && errors.telephone?.message}
+                </ErrorMessage>
 
                 <button className="registerButton" type="submit">
                   cadastrar

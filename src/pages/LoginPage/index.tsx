@@ -7,6 +7,7 @@ import {
   LoginPageStyled,
   Title,
   FlexCenter,
+  ErrorMessage,
 } from "./styles";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -26,18 +27,8 @@ interface UserSignInData {
 const LoginPage = () => {
   const history = useHistory();
   const formSchema = yup.object().shape({
-    email: yup
-      .string()
-      .required("Informe seu nome")
-      .min(5, "Mínimo de 5 caracteres"),
-    password: yup
-      .string()
-      .required("Senha necessária")
-      .min(8, "Mínimo de 8 caracteres")
-      .matches(
-        /^(?=.*\d)(?=.*[a-z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/,
-        "Deve contert no mínimo um número, uma letra e um caractere especial."
-      ),
+    email: yup.string().required("Informe seu e-mail").email("E-mail inválido"),
+    password: yup.string().required("Informe sua senha"),
   });
 
   const {
@@ -72,7 +63,11 @@ const LoginPage = () => {
                   <h2>Login</h2>
                 </Title>
                 <input placeholder="E-mail" {...register("email")} />
+                <ErrorMessage>{errors && errors.email?.message}</ErrorMessage>
                 <input placeholder="Senha" {...register("password")} />
+                <ErrorMessage>
+                  {errors && errors.password?.message}
+                </ErrorMessage>
                 <button className="loginButton" type="submit">
                   entrar
                 </button>

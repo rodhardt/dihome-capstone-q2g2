@@ -42,6 +42,17 @@ export const FormLogin = styled.form`
     background-color: #f5f5f5;
     color: #707070;
     padding: 5px;
+
+    :hover {
+      padding-left: 20px;
+      transition: 150ms;
+      box-shadow: 0px 0px 0px 1px white;
+    }
+
+    :focus {
+      padding-left: 20px;
+      border: 2px solid var(--darkBlue);
+    }
   }
   > .loginButton {
     width: 80%;
@@ -52,6 +63,13 @@ export const FormLogin = styled.form`
     font-size: 18px;
     color: var(--mainGray);
     background-color: var(--darkBlue);
+
+    :hover {
+      transition: 300ms;
+      background-color: #00000010;
+      color: var(--darkBlue);
+      border: 1px solid var(--darkBlue);
+    }
   }
   > .registerButton {
     width: 70%;
@@ -60,7 +78,16 @@ export const FormLogin = styled.form`
     border-radius: 5px;
     font-size: 13px;
     color: #707070;
-    background-color: var(--mainGray);
+    border: 2px solid var(--darkBlue);
+    color: var(--darkBlue);
+    background-color: #00000010;
+
+    :hover {
+      transition: 300ms;
+      background-color: var(--darkBlue);
+      color: var(--mainGray);
+      border: 1px solid var(--darkBlue);
+    }
   }
   padding-bottom: 20px;
 `;
@@ -117,4 +144,8 @@ export const FlexCenter = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+export const ErrorMessage = styled.p`
+  color: #ff4500;
 `;
