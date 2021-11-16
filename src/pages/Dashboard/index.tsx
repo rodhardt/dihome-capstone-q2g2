@@ -154,6 +154,7 @@ function Dashboard() {
     handleFilteredProperties();
   }, [activeFilters]);
 
+  const [renderAtt, setRenderAtt] = useState(1);
   return (
     <>
       {isChoosingFilters && (
@@ -162,9 +163,15 @@ function Dashboard() {
       <button onClick={() => handleFilteredProperties()}>Teste</button>
       <button onClick={() => setIsChoosingFilters(true)}>Abrir Filtros</button>
       <DashboardStyled>
-        {properties &&
+        {renderAtt &&
+          properties &&
           filteredProperties.map((item) => (
-            <PropertyCard properties={item} type="DashBoard" />
+            <PropertyCard
+              properties={item}
+              type="DashBoard"
+              setRenderAtt={setRenderAtt}
+              renderAtt={renderAtt}
+            />
           ))}
       </DashboardStyled>
     </>
