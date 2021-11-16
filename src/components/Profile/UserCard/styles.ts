@@ -14,14 +14,28 @@ export const UserCardStyled = styled.section`
   }
 
   .image-container {
+<<<<<<< HEAD
     width: 80px;
     height: 80px;
+=======
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    border: 2px solid var(--lightBlue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+>>>>>>> development
   }
 
   img {
     width: 80px;
     height: 80px;
     object-fit: cover;
+<<<<<<< HEAD
+=======
+    border-radius: 50%;
+>>>>>>> development
   }
 
   .user-info {
@@ -35,13 +49,21 @@ export const UserCardStyled = styled.section`
   .tags-container {
     display: flex;
     justify-content: space-around;
+<<<<<<< HEAD
+=======
+    align-items: center;
+>>>>>>> development
     margin-top: 20px;
   }
 
   .edit-button {
     background-color: var(--darkBlue);
     color: var(--mainGray);
+<<<<<<< HEAD
     width: 110px;
+=======
+    width: 120px;
+>>>>>>> development
     height: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 6px;
@@ -55,7 +77,12 @@ export const UserCardStyled = styled.section`
   }
 
   .user-plan {
+<<<<<<< HEAD
     width: 110px;
+=======
+    width: 120px;
+    padding-right: 10px;
+>>>>>>> development
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,6 +96,13 @@ export const UserCardStyled = styled.section`
     margin-right: 5px;
   }
 
+<<<<<<< HEAD
+=======
+  .subscribe {
+    text-align: center;
+  }
+
+>>>>>>> development
   .subscribe:hover {
     cursor: pointer;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

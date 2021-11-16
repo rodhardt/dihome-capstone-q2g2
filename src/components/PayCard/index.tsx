@@ -72,7 +72,7 @@ export const PayCard = ({
       {isOpenSecondModal && (
         <ConfirmedModal modalContent={secondModalInformation} />
       )}
-      <RowBox>
+      <RowBox onClick={() => setIsOpenModal(true)}>
         <img src={img} alt="" />
         <ul>
           <li>{planName}</li>

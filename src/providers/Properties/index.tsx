@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode } from "react";
 import api from "../../services/api";
 import { PropertyData } from "../../assets/Types/property";
 import { useAuth } from "../Authentication";
@@ -34,7 +34,11 @@ export const PropertiesProvider = ({ children }: PropertiesProviderProps) => {
   const addProperty = (newProperty: PropertyData) => {
     const newPropertyId = { ...newProperty, id: properties.length + 1 };
     setProperties([...properties, newPropertyId]);
-    api.post("/property", newProperty).catch((err) => console.log(err));
+    api
+      .post("/property", newProperty, {
+        headers: { Authorization: `Bearer ${authToken}` },
+      })
+      .catch((err) => console.log(err));
   };
 
   const updateProperty = (propertyNewData: PropertyData) => {

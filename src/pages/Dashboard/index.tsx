@@ -239,7 +239,6 @@ function Dashboard() {
       {isChoosingFilters && (
         <FilterModal handleFilter={handleFilter} closeWindow={closeWindow} />
       )}
-      {/* <button onClick={() => handleFilteredProperties()}>Teste</button> */}
       <button onClick={() => setIsChoosingFilters(true)}>Abrir Filtros</button>
       <DashboardStyled>
         {properties &&

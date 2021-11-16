@@ -42,15 +42,30 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [previousPage, setPreviousPage] = useState<string>("/");
 
   const authenticate = () => {
-    if (authToken !== "") {
+    if (authToken.length > 0) {
       api
         .get(`/users/${userId}`, {
           headers: { Authorization: `Bearer ${authToken}` },
         })
         .then((response) => {
-          setUserInfo(response.data);
+          setUserInfo({
+            id: response.data.id,
+            name: response.data.name,
+            email: response.data.email,
+            telephone: response.data.telephone,
+            consultant: response.data.consultant,
+            announcedProperties: response.data.announcedProperties,
+            bookmarkedProperties: response.data.bookmarkedProperties,
+            subscriptionType: response.data.subscriptionType,
+          });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          if (history.location.pathname === "/perfil") {
+            setPreviousPage("/perfil");
+            history.push("/login");
+          }
+        });
     }
     if (history.location.pathname === "/perfil" && authToken === "") {
       setPreviousPage("/perfil");
@@ -98,10 +113,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const updateUser = (newUserData: UserData) => {
-    console.log(newUserData);
-    console.log(authToken);
-    console.log(userId);
     setUserInfo(newUserData);
+
     api
       .patch(`/users/${userId}`, newUserData, {
         headers: { Authorization: `Bearer ${authToken}` },

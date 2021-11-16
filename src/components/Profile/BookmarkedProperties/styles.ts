@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const BookmarkedPropertiesStyled = styled.section`
+  width: 95%;
+  max-width: 700px;
+  margin: auto;
+
   .null-bookmarked {
     display: flex;
     flex-direction: column;
