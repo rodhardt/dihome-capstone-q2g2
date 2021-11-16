@@ -3,7 +3,7 @@ import nightCity from "../../assets/Images/nightCity.jpg";
 
 export const BlackFilter = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-color: #45454550;
 `;
 
