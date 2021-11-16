@@ -52,8 +52,8 @@ export const ConsultantButtons = ({
         const newPropertyData = {
           id: propertyToRender.id,
           announcerId: propertyToRender.announcerId,
-          consultantStatus: "ativo",
-          announcerStatus: propertyToRender.consultantStatus,
+          consultantStatus: "aprovado",
+          announcerStatus: propertyToRender.announcerStatus,
           viewsCount: propertyToRender.viewsCount,
           bookmarkCount: propertyToRender.bookmarkCount,
           title: propertyToRender.title,
