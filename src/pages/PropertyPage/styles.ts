@@ -63,9 +63,10 @@ export const Filter = styled.div`
   position: fixed;
   top: 0px;
   left: 0px;
+  z-index: 1;
 `;
 
-export const ImagesCarossel = styled.section`
+export const ImagesCarossel = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -74,17 +75,20 @@ export const ImagesCarossel = styled.section`
   top: 0px;
   left: 0px;
   transform: translate(0%, 50%);
+  z-index: 1;
 
   .flexRow {
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: center;
+    z-index: 1;
   }
 
   img {
     width: 75%;
     border-radius: 10px;
+    z-index: 1;
   }
 
   .goAndBack {
@@ -95,6 +99,7 @@ export const ImagesCarossel = styled.section`
     justify-content: center;
     border: 2px solid var(--darkBlue);
     background-color: var(--darkBlue);
+    z-index: 1;
 
     :hover {
       background-color: var(--lightBlue);
@@ -104,6 +109,7 @@ export const ImagesCarossel = styled.section`
     svg {
       width: 24px;
       height: auto;
+      z-index: 1;
     }
   }
 
@@ -118,6 +124,7 @@ export const ImagesCarossel = styled.section`
     background-color: var(--mainGray);
     color: var(--darkBlue);
     font-weight: bold;
+    z-index: 1;
 
     :hover {
       background-color: var(--darkBlue);
@@ -134,6 +141,7 @@ export const ImagesCarossel = styled.section`
     font-weight: bold;
     color: var(--mainGray);
     margin-top: 10px;
+    z-index: 1;
   }
 `;
 
