@@ -15,7 +15,8 @@ export const LoginPageStyled = styled.main`
   background-repeat: no-repeat;
   background-size: cover;
   .logo {
-    width: 20%;
+    width: 40%;
+    max-width: 200px;
     margin: 25px 0px 25px 0px;
   }
 `;
