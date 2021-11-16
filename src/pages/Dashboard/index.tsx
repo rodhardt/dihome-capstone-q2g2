@@ -215,6 +215,7 @@ function Dashboard() {
     },
   ];
 
+  const [renderAtt, setRenderAtt] = useState(1);
   return (
     <>
       <DashboardStyled>
@@ -257,9 +258,15 @@ function Dashboard() {
         <button className="filter" onClick={() => setIsChoosingFilters(true)}>
           <AiOutlineFilter /> Abrir Filtros
         </button>
-        {properties &&
+
+        {renderAtt &&
           filteredProperties.map((item) => (
-            <PropertyCard properties={item} type="DashBoard" />
+            <PropertyCard
+              properties={item}
+              type="DashBoard"
+              setRenderAtt={setRenderAtt}
+              renderAtt={renderAtt}
+            />
           ))}
       </DashboardStyled>
     </>
@@ -267,4 +274,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-

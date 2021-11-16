@@ -14,14 +14,20 @@ export const UserCardStyled = styled.section`
   }
 
   .image-container {
-    width: 80px;
-    height: 80px;
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    border: 2px solid var(--lightBlue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   img {
     width: 80px;
     height: 80px;
     object-fit: cover;
+    border-radius: 50%;
   }
 
   .user-info {
@@ -35,13 +41,14 @@ export const UserCardStyled = styled.section`
   .tags-container {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     margin-top: 20px;
   }
 
   .edit-button {
     background-color: var(--darkBlue);
     color: var(--mainGray);
-    width: 110px;
+    width: 120px;
     height: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 6px;
@@ -55,7 +62,8 @@ export const UserCardStyled = styled.section`
   }
 
   .user-plan {
-    width: 110px;
+    width: 120px;
+    padding-right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,6 +75,10 @@ export const UserCardStyled = styled.section`
 
   .user-plan svg {
     margin-right: 5px;
+  }
+
+  .subscribe {
+    text-align: center;
   }
 
   .subscribe:hover {
