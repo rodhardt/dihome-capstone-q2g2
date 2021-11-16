@@ -14,14 +14,20 @@ export const UserCardStyled = styled.section`
   }
 
   .image-container {
-    width: 80px;
-    height: 80px;
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    border: 2px solid var(--lightBlue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   img {
     width: 80px;
     height: 80px;
     object-fit: cover;
+    border-radius: 50%;
   }
 
   .user-info {
