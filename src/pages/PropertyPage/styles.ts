@@ -28,9 +28,8 @@ export const ImageBoxes = styled.section`
     margin: 10px;
     border-radius: 5px;
     :hover {
-        opacity: 0.5;
-        cursor: pointer;
-
+      opacity: 0.5;
+      cursor: pointer;
     }
   }
 
@@ -51,9 +50,6 @@ export const ImageBoxes = styled.section`
       }
     }
   }
-
-  
-
 `;
 
 export const ImagesCarossel = styled.section`
@@ -77,13 +73,12 @@ export const ImagesCarossel = styled.section`
   }
 
   img {
-    width: 85%;
+    width: 75%;
     border-radius: 10px;
     z-index: 4;
   }
 
   .goAndBack {
-  
     margin: 10px;
     border-radius: 50%;
     align-items: center;
@@ -91,15 +86,18 @@ export const ImagesCarossel = styled.section`
     justify-content: center;
     border: 2px solid var(--darkBlue);
     background-color: var(--darkBlue);
-      :hover {
-        background-color: var(--lightBlue);
-        transition: 200ms;
-      }
+    z-index: 4;
 
-      svg {
-        width: 24px;
-        height: auto;
-      }
+    :hover {
+      background-color: var(--lightBlue);
+      transition: 200ms;
+    }
+
+    svg {
+      width: 24px;
+      height: auto;
+      z-index: 4;
+    }
   }
 
   .closeButton {
@@ -113,7 +111,8 @@ export const ImagesCarossel = styled.section`
     background-color: var(--mainGray);
     color: var(--darkBlue);
     font-weight: bold;
-    
+    z-index: 4;
+
     :hover {
       background-color: var(--darkBlue);
       color: var(--mainGray);
@@ -130,12 +129,7 @@ export const ImagesCarossel = styled.section`
     color: var(--mainGray);
     margin-top: 10px;
   }
-
-`
-
-
-
-
+`;
 
 export const BackButton = styled.div`
   width: 100%;
@@ -199,8 +193,6 @@ export const ContactOwner = styled.section`
   border-radius: 5px;
   padding: 5px 5px 5px 10px;
 
-  
-
   .user {
     display: flex;
     align-items: center;
@@ -262,19 +254,17 @@ export const ContactOwner = styled.section`
     height: 110px;
 
     .contact {
-      
-    button {
-      width: 110%;
+      button {
+        width: 110%;
       }
     }
 
     .userAndTitle {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  } 
-
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 `;
 
@@ -300,7 +290,6 @@ export const PropertyInfos = styled.div`
       flex-direction: row;
     }
   }
-
 
   div {
     display: flex;
@@ -339,7 +328,6 @@ export const PropertyInfos = styled.div`
       margin-right: 15px;
     }
   }
-
 `;
 
 export const PropertyDiscription = styled.section`
@@ -365,7 +353,7 @@ export const MapSection = styled.section`
   background-color: #cccccc;
   border-radius: 10px;
   margin-bottom: 20px;
-`
+`;
 
 export const WithoutMapSection = styled.div`
   display: flex;
@@ -392,5 +380,4 @@ export const WithoutMapSection = styled.div`
       transition: 200ms;
     }
   }
-
-`
+`;

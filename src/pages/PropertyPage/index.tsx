@@ -217,13 +217,11 @@ const PropertyPage = () => {
       {isOpenThirdModal && (
         <ConfirmedModal modalContent={thirdModalInformation} />
       )}
-
       <MaxWidthAdapter>
         <BackButton onClick={() => history.push("/imoveis")}>
           <BsArrowLeftCircle />
           <h2>voltar para imóveis</h2>
         </BackButton>
-
         {isOpenImages ? (
           <ImagesCarossel>
             <div className="flexRow">
