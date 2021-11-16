@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [previousPage, setPreviousPage] = useState<string>("/");
 
   const authenticate = () => {
-    if (authToken !== "") {
+    if (authToken.length > 0) {
       api
         .get(`/users/${userId}`, {
           headers: { Authorization: `Bearer ${authToken}` },
@@ -59,7 +59,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             subscriptionType: response.data.subscriptionType,
           });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          if (history.location.pathname === "/perfil") {
+            setPreviousPage("/perfil");
+            history.push("/login");
+          }
+        });
     }
     if (history.location.pathname === "/perfil" && authToken === "") {
       setPreviousPage("/perfil");
@@ -108,6 +114,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const updateUser = (newUserData: UserData) => {
     setUserInfo(newUserData);
+
     api
       .patch(`/users/${userId}`, newUserData, {
         headers: { Authorization: `Bearer ${authToken}` },

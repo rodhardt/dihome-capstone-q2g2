@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode } from "react";
 import api from "../../services/api";
 import { PropertyData } from "../../assets/Types/property";
 import { useAuth } from "../Authentication";
