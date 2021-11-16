@@ -36,6 +36,7 @@ import {
 } from "react-google-maps";
 import { ConsultantButtons } from "../../components/Consultant/Buttons";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
+import { AiTwotoneStar, AiOutlineStar } from "react-icons/ai";
 
 interface IdFromUrl {
   id: any;
@@ -56,34 +57,25 @@ const PropertyPage = () => {
 
   const propertyToRender = properties.find((item) => item.id === Number(id));
 
-  const handleBookmark = () => {
-    !authToken
-      ? setIsOpenThirdModal(true)
-      : userInfo.bookmarkedProperties.find((item) => item === id) === undefined
-      ? updateUser({
-          id: userInfo.id,
-          password: userInfo.password,
-          name: userInfo.name,
-          email: userInfo.email,
-          telephone: userInfo.telephone,
-          consultant: userInfo.consultant,
-          announcedProperties: userInfo.announcedProperties,
-          bookmarkedProperties: [...userInfo.bookmarkedProperties, id],
-          subscriptionType: userInfo.subscriptionType,
-        })
-      : updateUser({
-          id: userInfo.id,
-          password: userInfo.password,
-          name: userInfo.name,
-          email: userInfo.email,
-          telephone: userInfo.telephone,
-          consultant: userInfo.consultant,
-          announcedProperties: userInfo.announcedProperties,
-          bookmarkedProperties: userInfo.bookmarkedProperties.filter(
-            (item) => item !== id
-          ),
-          subscriptionType: userInfo.subscriptionType,
-        });
+  const [renderAtt, setRenderAtt] = useState(1);
+  const handleUpdateUser = () => {
+    let newUser = userInfo;
+
+    const filterUser = newUser.bookmarkedProperties.filter(
+      (item) => item === propertyToRender?.id
+    );
+
+    if (!(filterUser.length > 0) && propertyToRender?.id) {
+      newUser.bookmarkedProperties.push(propertyToRender.id);
+      updateUser(newUser);
+      setRenderAtt(renderAtt + 1);
+    } else {
+      newUser.bookmarkedProperties = newUser.bookmarkedProperties.filter(
+        (item) => item !== propertyToRender?.id
+      );
+      updateUser(newUser);
+      setRenderAtt(renderAtt + 1);
+    }
   };
 
   const modalInformation = {
@@ -271,8 +263,19 @@ const PropertyPage = () => {
           {propertyToRender?.consultantStatus === "em aberto" ? (
             <ConsultantButtons propertyToRender={propertyToRender} />
           ) : (
-            <button onClick={handleBookmark}>
-              <MdBookmarkAdded />
+            <button
+              onClick={() =>
+                !!userInfo.id ? handleUpdateUser() : setIsOpenThirdModal(true)
+              }
+            >
+              {renderAtt &&
+              userInfo.bookmarkedProperties?.find(
+                (item) => item === propertyToRender?.id
+              ) ? (
+                <AiTwotoneStar />
+              ) : (
+                <AiOutlineStar />
+              )}
             </button>
           )}
         </TitleAnounce>
