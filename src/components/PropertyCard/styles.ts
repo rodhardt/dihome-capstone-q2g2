@@ -8,7 +8,7 @@ export const ContainerGlobal = styled.div`
 export const ContainerPropertyCard = styled.div`
   background-color: var(--opacityBlue);
   width: 250px;
-  height: 305px;
+  height: 280px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,7 +34,7 @@ export const InfosCard = styled.div`
     ::first-letter {
       text-transform: uppercase;
     }
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
   }
 `;
@@ -53,9 +53,10 @@ export const ImgHouse = styled.div`
   width: 100%;
   img {
     width: 90%;
+    height: 111px;
     border-radius: 10px;
     position: relative;
-    z-index: -1;
+    z-index: 1;
     right: 9px;
   }
   button {
@@ -70,6 +71,7 @@ export const ImgHouse = styled.div`
     :hover {
       background-color: var(--mainGray);
     }
+    z-index: 2;
   }
 `;
 export const HousePrice = styled.div`
@@ -88,6 +90,7 @@ export const HousePrice = styled.div`
   position: relative;
   bottom: 50px;
   left: 10px;
+  z-index: 2;
 `;
 export const SmallContainer = styled.div`
   background-color: var(--opacityBlue);
