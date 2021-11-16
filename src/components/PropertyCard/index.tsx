@@ -15,12 +15,13 @@ import { MdOutlineBathroom } from "react-icons/md";
 import { BiBed } from "react-icons/bi";
 import { GiHomeGarage } from "react-icons/gi";
 import { RiRuler2Line } from "react-icons/ri";
-import { MdBookmarkAdded } from "react-icons/md";
+
 import ButtonLogo from "../../assets/Images/ButtonCard.png";
 import { useState } from "react";
 import ConfirmedModal from "../ConfirmedModal";
 import { useHistory } from "react-router";
 import { useAuth } from "../../providers/Authentication";
+import { AiTwotoneStar, AiOutlineStar } from "react-icons/ai";
 
 function PropertyCard({ properties, type }: any) {
   const history = useHistory();
@@ -45,10 +46,15 @@ function PropertyCard({ properties, type }: any) {
   };
   const handleUpdateUser = () => {
     let newUser = userInfo;
-    newUser.bookmarkedProperties.push(properties.id);
-    updateUser(newUser);
+    const filterUser = newUser.bookmarkedProperties.filter(
+      (item) => item === properties.id
+    );
+    if (!filterUser) {
+      newUser.bookmarkedProperties.push(properties.id);
+      updateUser(newUser);
+    }
   };
-  //teste
+
   return (
     <>
       {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
@@ -67,7 +73,14 @@ function PropertyCard({ properties, type }: any) {
                     : setIsOpenModal(true)
                 }
               >
-                <MdBookmarkAdded />
+                {userInfo.bookmarkedProperties &&
+                userInfo.bookmarkedProperties.filter(
+                  (item) => item === properties.id
+                ) ? (
+                  <AiTwotoneStar />
+                ) : (
+                  <AiOutlineStar />
+                )}
               </button>
               <img src={properties.mainImage} alt={"House"} />
             </ImgHouse>
@@ -75,7 +88,7 @@ function PropertyCard({ properties, type }: any) {
               <p>{properties.district}</p>
               <p>
                 {" "}
-                Casa em {""}
+                {properties.type} em {""}
                 {properties.city}-{properties.state}
               </p>
               <InfosHouse>
