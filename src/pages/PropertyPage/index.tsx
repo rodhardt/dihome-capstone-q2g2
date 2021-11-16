@@ -1,4 +1,8 @@
-import { BsArrowLeftCircle, BsCalendarWeek } from "react-icons/bs";
+import {
+  BsArrowLeftCircle,
+  BsCalendarWeek,
+  BsFillCalendarCheckFill,
+} from "react-icons/bs";
 import { MdOutlineMapsHomeWork } from "react-icons/md";
 import { AiOutlineAim, AiFillCar } from "react-icons/ai";
 import { FiSend } from "react-icons/fi";
@@ -22,6 +26,7 @@ import {
   PropertyDiscription,
   PropertyInfos,
   PropertyPageStyled,
+  TimeAndDateModal,
   TitleAnounce,
   WithoutMapSection,
 } from "./styles";
@@ -77,20 +82,6 @@ const PropertyPage = () => {
       updateUser(newUser);
       setRenderAtt(renderAtt + 1);
     }
-  };
-
-  const modalInformation = {
-    title: "Agendar visita",
-    closeFunction: () => setIsOpenModal(false),
-    message: "Escolha a data e hora da visita: CALENDÁRIO ABAIXO",
-    confirmButton: {
-      confirmText: "confirmar",
-      confirmFunction: () => {},
-    },
-    cancelButton: {
-      cancelText: "cancelar",
-      cancelFunction: () => {},
-    },
   };
 
   const secondModalInformation = {
@@ -206,192 +197,224 @@ const PropertyPage = () => {
     }
   };
 
+  const handleCalendar = () => {
+    //enviar dados ao perfil do anunciante
+    setIsOpenModal(false);
+  };
+
   return (
-    <PropertyPageStyled>
-      {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
-      {isOpenSecondModal && (
-        <ConfirmedModal modalContent={secondModalInformation} />
-      )}
-      {isOpenThirdModal && (
-        <ConfirmedModal modalContent={thirdModalInformation} />
-      )}
-      <MaxWidthAdapter>
-        <BackButton onClick={() => history.push("/imoveis")}>
-          <BsArrowLeftCircle />
-          <h2>voltar para imóveis</h2>
-        </BackButton>
-        {isOpenImages ? (
-          <>
-            <Filter onClick={() => setIsOpenImages(false)}></Filter>
-            <ImagesCarossel>
-              <div className="flexRow">
-                <button onClick={handleDec} className="goAndBack">
-                  <GrLinkPrevious />
+    <>
+      {isOpenModal ? (
+        <>
+          <Filter onClick={() => setIsOpenModal(false)}></Filter>
+          <TimeAndDateModal>
+            <div>
+              <div className="header"></div>
+              <BsFillCalendarCheckFill />
+              <input type="datetime-local" />
+              <div>
+                <button onClick={handleCalendar} className="confirm">
+                  agendar
                 </button>
-                <img src={propertyToRender?.images[counterForImages]} alt="" />
-                <button onClick={handleAdd} className="goAndBack">
-                  <GrLinkNext />
+                <button onClick={() => setIsOpenModal(false)} className="back">
+                  voltar
                 </button>
               </div>
-              <div className="counter">
-                {`${counterForImages + 1} de ${
-                  propertyToRender?.images.length
-                }`}
-              </div>
-              <button
-                className="closeButton"
-                onClick={() => setIsOpenImages(false)}
-              >
-                fechar
-              </button>
-            </ImagesCarossel>
-          </>
-        ) : (
-          <ImageBoxes onClick={handleOpenImages}>
-            <img
-              className="mainImage"
-              src={propertyToRender?.mainImage}
-              alt=""
-            />
-            <div className="otherImages">
-              <img src={propertyToRender?.images[1]} alt="" />
-              <img src={propertyToRender?.images[2]} alt="" />
             </div>
-          </ImageBoxes>
+          </TimeAndDateModal>
+        </>
+      ) : null}
+
+      <PropertyPageStyled>
+        {isOpenSecondModal && (
+          <ConfirmedModal modalContent={secondModalInformation} />
         )}
-
-        <TitleAnounce>
-          <div className="districtAndTitle">
-            <h2>
-              <h2>{propertyToRender?.title}</h2>
-              {propertyToRender?.district}, {propertyToRender?.city} -{" "}
-              {propertyToRender?.state}
-            </h2>
-          </div>
-
-          {propertyToRender?.consultantStatus === "em aberto" ? (
-            <ConsultantButtons propertyToRender={propertyToRender} />
-          ) : (
-            <button
-              onClick={() =>
-                !!userInfo.id ? handleUpdateUser() : setIsOpenThirdModal(true)
-              }
-            >
-              {renderAtt &&
-              userInfo.bookmarkedProperties?.find(
-                (item) => item === propertyToRender?.id
-              ) ? (
-                <AiTwotoneStar />
-              ) : (
-                <AiOutlineStar />
-              )}
-            </button>
-          )}
-        </TitleAnounce>
-        <ContactOwner>
-          <div className="userAndTitle">
-            <div className="title">
-              <h2>Contate o proprietário.</h2>
-            </div>
-            <div className="user">
-              <FaUserCircle />
-              <h3>Joje Lucas</h3>
-            </div>
-          </div>
-          <div className="contact">
-            <button onClick={handleSchedule}>
-              Quero visitar
-              <BsCalendarWeek />
-            </button>
-            <button onClick={handleChat}>
-              Enviar mensagem
-              <FiSend />
-            </button>
-          </div>
-        </ContactOwner>
-        <Linha></Linha>
-        <PropertyInfos>
-          <div>
-            <IoDocumentTextOutline />
-            <h2>Sobre o imóvel</h2>
-          </div>
-          <div className="propertyList">
-            <ul>
-              <li>
-                <MdOutlineMapsHomeWork />
-                Tipo: {propertyToRender?.type}
-              </li>
-              <li>
-                <AiOutlineAim />
-                Objetivo: {propertyToRender?.goal}
-              </li>
-              <li>
-                <FaBed />
-                {propertyToRender?.dorms} quartos
-              </li>
-              <li>
-                <AiFillCar />
-                {propertyToRender?.parking} vagas
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <FaSink />
-                {propertyToRender?.bathrooms} banheiros
-              </li>
-              <li>
-                <RiRulerLine />
-                {propertyToRender?.houseArea}m² área constuída
-              </li>
-              <li>
-                <RiRuler2Line />
-                {propertyToRender?.landArea}m² área do terreno
-              </li>
-            </ul>
-          </div>
-        </PropertyInfos>
-        <PropertyDiscription>
-          <div>
-            <MdOutlineLibraryBooks />
-            <h2>Descrição</h2>
-          </div>
-          <div>
-            <p>{propertyToRender?.description}</p>
-          </div>
-        </PropertyDiscription>
-
-        {!!authToken ? (
-          <>
-            <h3 style={{ margin: `0px 0px 10px 0px` }}>
-              Localização aproximada.
-            </h3>
-            <MapSection className="secao">
-              <WrappedMap
-                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyA2fg_5N-eAH3IKzPQT9FhNYDenHGn31Is"
-                loadingElement={<div style={{ height: `90%`, width: `90%` }} />}
-                containerElement={
-                  <div
-                    style={{
-                      height: `200px`,
-                      display: `flex`,
-                      alignItems: `center`,
-                      justifyContent: `center`,
-                    }}
+        {isOpenThirdModal && (
+          <ConfirmedModal modalContent={thirdModalInformation} />
+        )}
+        <MaxWidthAdapter>
+          <BackButton onClick={() => history.push("/imoveis")}>
+            <BsArrowLeftCircle />
+            <h2>voltar para imóveis</h2>
+          </BackButton>
+          {isOpenImages ? (
+            <>
+              <Filter onClick={() => setIsOpenImages(false)}></Filter>
+              <ImagesCarossel>
+                <div className="flexRow">
+                  <button onClick={handleDec} className="goAndBack">
+                    <GrLinkPrevious />
+                  </button>
+                  <img
+                    src={propertyToRender?.images[counterForImages]}
+                    alt=""
                   />
-                }
-                mapElement={<div style={{ height: `85%`, width: `85%` }} />}
+                  <button onClick={handleAdd} className="goAndBack">
+                    <GrLinkNext />
+                  </button>
+                </div>
+                <div className="counter">
+                  {`${counterForImages + 1} de ${
+                    propertyToRender?.images.length
+                  }`}
+                </div>
+                <button
+                  className="closeButton"
+                  onClick={() => setIsOpenImages(false)}
+                >
+                  fechar
+                </button>
+              </ImagesCarossel>
+            </>
+          ) : (
+            <ImageBoxes onClick={handleOpenImages}>
+              <img
+                className="mainImage"
+                src={propertyToRender?.mainImage}
+                alt=""
               />
-            </MapSection>
-          </>
-        ) : (
-          <WithoutMapSection>
-            <h3>Faça login para ter acesso à localização.</h3>
-            <button onClick={() => history.push("/login")}>Login</button>
-          </WithoutMapSection>
-        )}
-        <Footer />
-      </MaxWidthAdapter>
-    </PropertyPageStyled>
+              <div className="otherImages">
+                <img src={propertyToRender?.images[1]} alt="" />
+                <img src={propertyToRender?.images[2]} alt="" />
+              </div>
+            </ImageBoxes>
+          )}
+
+          <TitleAnounce>
+            <div className="districtAndTitle">
+              <h2>
+                <h2>{propertyToRender?.title}</h2>
+                {propertyToRender?.district}, {propertyToRender?.city} -{" "}
+                {propertyToRender?.state}
+              </h2>
+            </div>
+
+            {propertyToRender?.consultantStatus === "em aberto" ? (
+              <ConsultantButtons propertyToRender={propertyToRender} />
+            ) : (
+              <button
+                onClick={() =>
+                  !!userInfo.id ? handleUpdateUser() : setIsOpenThirdModal(true)
+                }
+              >
+                {renderAtt &&
+                userInfo.bookmarkedProperties?.find(
+                  (item) => item === propertyToRender?.id
+                ) ? (
+                  <AiTwotoneStar />
+                ) : (
+                  <AiOutlineStar />
+                )}
+              </button>
+            )}
+          </TitleAnounce>
+          <ContactOwner>
+            <div className="userAndTitle">
+              <div className="title">
+                <h2>Contate o proprietário.</h2>
+              </div>
+              <div className="user">
+                <FaUserCircle />
+                <h3>Joje Lucas</h3>
+              </div>
+            </div>
+            <div className="contact">
+              <button onClick={handleSchedule}>
+                Quero visitar
+                <BsCalendarWeek />
+              </button>
+              <button onClick={handleChat}>
+                Enviar mensagem
+                <FiSend />
+              </button>
+            </div>
+          </ContactOwner>
+          <Linha></Linha>
+          <PropertyInfos>
+            <div>
+              <IoDocumentTextOutline />
+              <h2>Sobre o imóvel</h2>
+            </div>
+            <div className="propertyList">
+              <ul>
+                <li>
+                  <MdOutlineMapsHomeWork />
+                  Tipo: {propertyToRender?.type}
+                </li>
+                <li>
+                  <AiOutlineAim />
+                  Objetivo: {propertyToRender?.goal}
+                </li>
+                <li>
+                  <FaBed />
+                  {propertyToRender?.dorms} quartos
+                </li>
+                <li>
+                  <AiFillCar />
+                  {propertyToRender?.parking} vagas
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <FaSink />
+                  {propertyToRender?.bathrooms} banheiros
+                </li>
+                <li>
+                  <RiRulerLine />
+                  {propertyToRender?.houseArea}m² área constuída
+                </li>
+                <li>
+                  <RiRuler2Line />
+                  {propertyToRender?.landArea}m² área do terreno
+                </li>
+              </ul>
+            </div>
+          </PropertyInfos>
+          <PropertyDiscription>
+            <div>
+              <MdOutlineLibraryBooks />
+              <h2>Descrição</h2>
+            </div>
+            <div>
+              <p>{propertyToRender?.description}</p>
+            </div>
+          </PropertyDiscription>
+
+          {!!authToken ? (
+            <>
+              <h3 style={{ margin: `0px 0px 10px 0px` }}>
+                Localização aproximada.
+              </h3>
+              <MapSection className="secao">
+                <WrappedMap
+                  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyA2fg_5N-eAH3IKzPQT9FhNYDenHGn31Is"
+                  loadingElement={
+                    <div style={{ height: `90%`, width: `90%` }} />
+                  }
+                  containerElement={
+                    <div
+                      style={{
+                        height: `200px`,
+                        display: `flex`,
+                        alignItems: `center`,
+                        justifyContent: `center`,
+                      }}
+                    />
+                  }
+                  mapElement={<div style={{ height: `85%`, width: `85%` }} />}
+                />
+              </MapSection>
+            </>
+          ) : (
+            <WithoutMapSection>
+              <h3>Faça login para ter acesso à localização.</h3>
+              <button onClick={() => history.push("/login")}>Login</button>
+            </WithoutMapSection>
+          )}
+          <Footer />
+        </MaxWidthAdapter>
+      </PropertyPageStyled>
+    </>
   );
 };
 

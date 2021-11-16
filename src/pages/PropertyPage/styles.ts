@@ -395,3 +395,91 @@ export const WithoutMapSection = styled.div`
     }
   }
 `;
+
+export const TimeAndDateModal = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+
+  .header {
+    width: 100%;
+    height: 50px;
+    background-color: var(--darkBlue);
+    border-radius: 10px 10px 0px 0px;
+    z-index: 1;
+  }
+
+  div {
+    width: 70%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--mainGray);
+    border-radius: 10px 10px 10px 10px;
+    max-width: 400px;
+    z-index: 1;
+  }
+
+  div div {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    z-index: 1;
+  }
+
+  svg {
+    width: 150px;
+    margin-top: 20px;
+    height: auto;
+    z-index: 1;
+  }
+
+  input {
+    width: 90%;
+    padding: 10px;
+    z-index: 1;
+    margin-top: 20px;
+  }
+
+  .confirm {
+    background-color: var(--darkBlue);
+    border-radius: 5px;
+    border: 2px solid var(--darkBlue);
+    color: var(--mainGray);
+    transition: 300ms;
+    margin-right: 20px;
+    z-index: 1;
+    padding: 5px;
+
+    :hover {
+      transition: 300ms;
+      background-color: var(--mainGray);
+      color: var(--darkBlue);
+    }
+  }
+
+  .back {
+    transition: 300ms;
+    background-color: var(--mainGray);
+    border: 2px solid var(--darkBlue);
+    color: var(--darkBlue);
+    border-radius: 5px;
+    padding: 5px;
+    z-index: 1;
+    margin-left: 20px;
+
+    :hover {
+      background-color: var(--darkBlue);
+      color: var(--mainGray);
+      transition: 300ms;
+    }
+  }
+`;
