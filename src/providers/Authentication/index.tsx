@@ -48,7 +48,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           headers: { Authorization: `Bearer ${authToken}` },
         })
         .then((response) => {
-          setUserInfo(response.data);
+          setUserInfo({
+            id: response.data.id,
+            name: response.data.name,
+            email: response.data.email,
+            telephone: response.data.telephone,
+            consultant: response.data.consultant,
+            announcedProperties: response.data.announcedProperties,
+            bookmarkedProperties: response.data.bookmarkedProperties,
+            subscriptionType: response.data.subscriptionType,
+          });
         })
         .catch((err) => console.log(err));
     }
@@ -98,9 +107,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const updateUser = (newUserData: UserData) => {
-    console.log(newUserData);
-    console.log(authToken);
-    console.log(userId);
     setUserInfo(newUserData);
     api
       .patch(`/users/${userId}`, newUserData, {
