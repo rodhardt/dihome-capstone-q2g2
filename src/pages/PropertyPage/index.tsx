@@ -28,7 +28,12 @@ import { useAuth } from "../../providers/Authentication";
 import { useEffect, useState } from "react";
 import ConfirmedModal from "../../components/ConfirmedModal";
 import axios from "axios";
-import { GoogleMap, withScriptjs, withGoogleMap, Marker } from 'react-google-maps'
+import {
+  GoogleMap,
+  withScriptjs,
+  withGoogleMap,
+  Marker,
+} from "react-google-maps";
 import { ConsultantButtons } from "../../components/Consultant/Buttons";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 
@@ -37,52 +42,49 @@ interface IdFromUrl {
 }
 
 const PropertyPage = () => {
-  const history = useHistory()
+  const history = useHistory();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenSecondModal, setIsOpenSecondModal] = useState(false);
   const [isOpenThirdModal, setIsOpenThirdModal] = useState(false);
 
-  const [latitude, setLatitude] = useState<any[]>()
-  const [longitude, setLongitude] = useState<any[]>()
-  
+  const [latitude, setLatitude] = useState<any[]>();
+  const [longitude, setLongitude] = useState<any[]>();
+
   const { id }: IdFromUrl = useParams();
   const { properties } = useProperties();
-  const { userInfo, updateUser, authToken } = useAuth()
+  const { userInfo, updateUser, authToken } = useAuth();
 
-  const propertyToRender = properties.find((item) => item.id == id);
+  const propertyToRender = properties.find((item) => item.id === id);
 
   const handleBookmark = () => {
-    (!authToken ? 
-      (setIsOpenThirdModal(true)
-      ) : (
-        (userInfo.bookmarkedProperties.find((item) => item == id) === undefined) ? (
-           updateUser({ 
-             id: userInfo.id,
-             password: userInfo.password,
-             name: userInfo.name,
-             email: userInfo.email,
-             telephone: userInfo.telephone,
-             consultant: userInfo.consultant,
-             announcedProperties: userInfo.announcedProperties,
-             bookmarkedProperties: [...userInfo.bookmarkedProperties, id],
-             subscriptionType: userInfo.subscriptionType
-           })
-           ) : (
-           updateUser({
-             id: userInfo.id,
-             password: userInfo.password,
-             name: userInfo.name,
-             email: userInfo.email,
-             telephone: userInfo.telephone,
-             consultant: userInfo.consultant,
-             announcedProperties: userInfo.announcedProperties,
-             bookmarkedProperties: userInfo.bookmarkedProperties.filter((item) => item !== id),
-             subscriptionType: userInfo.subscriptionType
-             })
-           )
-       )
-     )
-  }
+    !authToken
+      ? setIsOpenThirdModal(true)
+      : userInfo.bookmarkedProperties.find((item) => item === id) === undefined
+      ? updateUser({
+          id: userInfo.id,
+          password: userInfo.password,
+          name: userInfo.name,
+          email: userInfo.email,
+          telephone: userInfo.telephone,
+          consultant: userInfo.consultant,
+          announcedProperties: userInfo.announcedProperties,
+          bookmarkedProperties: [...userInfo.bookmarkedProperties, id],
+          subscriptionType: userInfo.subscriptionType,
+        })
+      : updateUser({
+          id: userInfo.id,
+          password: userInfo.password,
+          name: userInfo.name,
+          email: userInfo.email,
+          telephone: userInfo.telephone,
+          consultant: userInfo.consultant,
+          announcedProperties: userInfo.announcedProperties,
+          bookmarkedProperties: userInfo.bookmarkedProperties.filter(
+            (item) => item !== id
+          ),
+          subscriptionType: userInfo.subscriptionType,
+        });
+  };
 
   const modalInformation = {
     title: "Agendar visita",
@@ -90,8 +92,7 @@ const PropertyPage = () => {
     message: "Escolha a data e hora da visita: CALENDÁRIO ABAIXO",
     confirmButton: {
       confirmText: "confirmar",
-      confirmFunction: () => {
-      },
+      confirmFunction: () => {},
     },
     cancelButton: {
       cancelText: "cancelar",
@@ -105,8 +106,7 @@ const PropertyPage = () => {
     message: "Chat: ABRIR CHAT ABAIXO",
     confirmButton: {
       confirmText: "confirmar",
-      confirmFunction: () => {
-      },
+      confirmFunction: () => {},
     },
     cancelButton: {
       cancelText: "cancelar",
@@ -121,7 +121,7 @@ const PropertyPage = () => {
     confirmButton: {
       confirmText: "Login",
       confirmFunction: () => {
-        history.push('/login')
+        history.push("/login");
       },
     },
     cancelButton: {
@@ -129,117 +129,135 @@ const PropertyPage = () => {
       cancelFunction: () => {},
     },
   };
-  
+
   const Map = () => {
+    axios
+      .get(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${propertyToRender?.street}+${propertyToRender?.number}+${propertyToRender?.district},+${propertyToRender?.city}+${propertyToRender?.state},+CA&key=AIzaSyA2fg_5N-eAH3IKzPQT9FhNYDenHGn31Is`
+      )
+      .then((response) =>
+        setLatitude(response.data.results[0].geometry.location.lat)
+      )
+      .catch((error) => console.log("error", error));
 
     axios
-    .get(`https://maps.googleapis.com/maps/api/geocode/json?address=${propertyToRender?.street}+${propertyToRender?.number}+${propertyToRender?.district},+${propertyToRender?.city}+${propertyToRender?.state},+CA&key=AIzaSyA2fg_5N-eAH3IKzPQT9FhNYDenHGn31Is`)
-    .then((response) => setLatitude(response.data.results[0].geometry.location.lat))
-    .catch((error) => console.log('error', error))
-
-    axios
-    .get(`https://maps.googleapis.com/maps/api/geocode/json?address=${propertyToRender?.street}+${propertyToRender?.number}+${propertyToRender?.district},+${propertyToRender?.city}+${propertyToRender?.state},+CA&key=AIzaSyA2fg_5N-eAH3IKzPQT9FhNYDenHGn31Is`)
-    .then((response) => setLongitude(response.data.results[0].geometry.location.lng))
-    .catch((error) => console.log('error', error))
+      .get(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${propertyToRender?.street}+${propertyToRender?.number}+${propertyToRender?.district},+${propertyToRender?.city}+${propertyToRender?.state},+CA&key=AIzaSyA2fg_5N-eAH3IKzPQT9FhNYDenHGn31Is`
+      )
+      .then((response) =>
+        setLongitude(response.data.results[0].geometry.location.lng)
+      )
+      .catch((error) => console.log("error", error));
 
     return (
-      <GoogleMap 
-        defaultZoom={13} 
-        defaultCenter={{lat: latitude, lng: longitude}}
+      <GoogleMap
+        defaultZoom={13}
+        defaultCenter={{ lat: latitude, lng: longitude }}
       >
-        <Marker position={{lat: latitude, lng: longitude}}/>
+        <Marker position={{ lat: latitude, lng: longitude }} />
       </GoogleMap>
-    )
-  }
+    );
+  };
 
-  const WrappedMap = withScriptjs(withGoogleMap(Map))
+  const WrappedMap = withScriptjs(withGoogleMap(Map));
 
   const handleSchedule = () => {
-    (!authToken ? (
-      setIsOpenThirdModal(true)
-    ) : (
-      setIsOpenModal(true)
-    ))
-  }
+    !authToken ? setIsOpenThirdModal(true) : setIsOpenModal(true);
+  };
 
   const handleChat = () => {
-    (!authToken ? (
-      setIsOpenThirdModal(true)
-    ) : (
-      setIsOpenSecondModal(true)
-    ))
-  }
+    !authToken ? setIsOpenThirdModal(true) : setIsOpenSecondModal(true);
+  };
 
   const consultantAuthenticate = () => {
-    if(userInfo.consultant === false && propertyToRender?.consultantStatus === 'em aberto') {
-      history.push('/imoveis')
+    if (
+      userInfo.consultant === false &&
+      propertyToRender?.consultantStatus === "em aberto"
+    ) {
+      history.push("/imoveis");
+    } else if (
+      userInfo.consultant === undefined &&
+      propertyToRender?.consultantStatus === "em aberto"
+    ) {
+      history.push("/imoveis");
     }
-    else if (userInfo.consultant === undefined && propertyToRender?.consultantStatus === 'em aberto') {
-      history.push('/imoveis')
-    }
-  }
-  
-  useEffect(() => {
-    consultantAuthenticate()
-  }, [])
+  };
 
-  const [isOpenImages, setIsOpenImages] = useState(false)
-  const [counterForImages, setCounterForImages] = useState(0)
+  useEffect(() => {
+    consultantAuthenticate();
+  }, []);
+
+  const [isOpenImages, setIsOpenImages] = useState(false);
+  const [counterForImages, setCounterForImages] = useState(0);
 
   const handleOpenImages = () => {
-    setIsOpenImages(true)
-  }
+    setIsOpenImages(true);
+  };
 
   const handleAdd = () => {
-    if(counterForImages + 1 !== propertyToRender?.images.length) {
-      setCounterForImages(counterForImages + 1)
+    if (counterForImages + 1 !== propertyToRender?.images.length) {
+      setCounterForImages(counterForImages + 1);
+    } else {
+      setCounterForImages(0);
     }
-    else {
-      setCounterForImages(0)
-    }
-  }
+  };
 
   const handleDec = () => {
-    if(counterForImages > 0) {
-      setCounterForImages(counterForImages - 1)
+    if (counterForImages > 0) {
+      setCounterForImages(counterForImages - 1);
     }
-  }
+  };
 
   return (
     <PropertyPageStyled>
-       {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
-       {isOpenSecondModal && <ConfirmedModal modalContent={secondModalInformation} />}
-       {isOpenThirdModal && <ConfirmedModal modalContent={thirdModalInformation} />}
+      {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
+      {isOpenSecondModal && (
+        <ConfirmedModal modalContent={secondModalInformation} />
+      )}
+      {isOpenThirdModal && (
+        <ConfirmedModal modalContent={thirdModalInformation} />
+      )}
 
       <MaxWidthAdapter>
-        <BackButton onClick={() => history.push('/imoveis')}>
+        <BackButton onClick={() => history.push("/imoveis")}>
           <BsArrowLeftCircle />
           <h2>voltar para imóveis</h2>
         </BackButton>
 
-      {
-      isOpenImages ? (
-        <ImagesCarossel>
-          <div className='flexRow'>
-            <button onClick={handleDec} className='goAndBack'><GrLinkPrevious /></button>
-            <img src={propertyToRender?.images[counterForImages]} alt="" />
-            <button onClick={handleAdd} className='goAndBack'><GrLinkNext /></button>
-          </div>
-          <div className='counter'>
-            {`${counterForImages + 1} de ${propertyToRender?.images.length}`}
-          </div>
-          <button className='closeButton' onClick={() => setIsOpenImages(false)}>fechar</button>
-        </ImagesCarossel>
-      ) : (
-        <ImageBoxes onClick={handleOpenImages}>
-          <img className="mainImage" src={propertyToRender?.mainImage} alt="" />
-          <div className="otherImages">
-            <img src={propertyToRender?.images[1]} alt="" />
-            <img src={propertyToRender?.images[2]} alt="" />
-          </div>
-        </ImageBoxes>
-      )
-      }
+        {isOpenImages ? (
+          <ImagesCarossel>
+            <div className="flexRow">
+              <button onClick={handleDec} className="goAndBack">
+                <GrLinkPrevious />
+              </button>
+              <img src={propertyToRender?.images[counterForImages]} alt="" />
+              <button onClick={handleAdd} className="goAndBack">
+                <GrLinkNext />
+              </button>
+            </div>
+            <div className="counter">
+              {`${counterForImages + 1} de ${propertyToRender?.images.length}`}
+            </div>
+            <button
+              className="closeButton"
+              onClick={() => setIsOpenImages(false)}
+            >
+              fechar
+            </button>
+          </ImagesCarossel>
+        ) : (
+          <ImageBoxes onClick={handleOpenImages}>
+            <img
+              className="mainImage"
+              src={propertyToRender?.mainImage}
+              alt=""
+            />
+            <div className="otherImages">
+              <img src={propertyToRender?.images[1]} alt="" />
+              <img src={propertyToRender?.images[2]} alt="" />
+            </div>
+          </ImageBoxes>
+        )}
 
         <TitleAnounce>
           <div className="districtAndTitle">
@@ -250,17 +268,16 @@ const PropertyPage = () => {
             </h2>
           </div>
 
-          {(propertyToRender?.consultantStatus === 'em aberto') ? (
-            <ConsultantButtons propertyToRender={propertyToRender}/>
+          {propertyToRender?.consultantStatus === "em aberto" ? (
+            <ConsultantButtons propertyToRender={propertyToRender} />
           ) : (
-          <button onClick={handleBookmark}>
-            <MdBookmarkAdded />
-          </button>
+            <button onClick={handleBookmark}>
+              <MdBookmarkAdded />
+            </button>
           )}
-
         </TitleAnounce>
         <ContactOwner>
-          <div className='userAndTitle'>
+          <div className="userAndTitle">
             <div className="title">
               <h2>Contate o proprietário.</h2>
             </div>
@@ -286,7 +303,7 @@ const PropertyPage = () => {
             <IoDocumentTextOutline />
             <h2>Sobre o imóvel</h2>
           </div>
-          <div className='propertyList'>
+          <div className="propertyList">
             <ul>
               <li>
                 <MdOutlineMapsHomeWork />
@@ -331,34 +348,35 @@ const PropertyPage = () => {
           </div>
         </PropertyDiscription>
 
-
         {!!authToken ? (
-
           <>
-          <h3 style={{ margin: `0px 0px 10px 0px` }}>Localização aproximada.</h3>
-        <MapSection className='secao'>
-            <WrappedMap 
+            <h3 style={{ margin: `0px 0px 10px 0px` }}>
+              Localização aproximada.
+            </h3>
+            <MapSection className="secao">
+              <WrappedMap
                 googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyA2fg_5N-eAH3IKzPQT9FhNYDenHGn31Is"
                 loadingElement={<div style={{ height: `90%`, width: `90%` }} />}
-                containerElement={<div style={{ 
-                  height: `200px`, 
-                  display: `flex`, 
-                  alignItems:`center`, 
-                  justifyContent: `center` 
-                }} 
-                />
+                containerElement={
+                  <div
+                    style={{
+                      height: `200px`,
+                      display: `flex`,
+                      alignItems: `center`,
+                      justifyContent: `center`,
+                    }}
+                  />
                 }
-              mapElement={<div style={{ height: `85%`, width: `85%` }} />}
+                mapElement={<div style={{ height: `85%`, width: `85%` }} />}
               />
             </MapSection>
           </>
-            ) : (
+        ) : (
           <WithoutMapSection>
             <h3>Faça login para ter acesso à localização.</h3>
-            <button onClick={() => history.push('/login')}>Login</button>
+            <button onClick={() => history.push("/login")}>Login</button>
           </WithoutMapSection>
-            )
-          }
+        )}
         <Footer />
       </MaxWidthAdapter>
     </PropertyPageStyled>
