@@ -119,6 +119,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       .patch(`/users/${userId}`, newUserData, {
         headers: { Authorization: `Bearer ${authToken}` },
       })
+      .then((response) => console.log(response))
       .catch((err) => console.log(err));
   };
 

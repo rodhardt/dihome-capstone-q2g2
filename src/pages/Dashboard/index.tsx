@@ -154,11 +154,12 @@ function Dashboard() {
 
   const [conter, setConter] = useState(0);
   useEffect(() => {
-    setTimeout(() => {
+    setInterval(() => {
       if (conter <= listFun.length - 2) setConter(conter + 1);
       else setConter(0);
     }, 15000);
   }, [conter]);
+
   const listFun = [
     {
       img: CasaAsombrada,
@@ -223,7 +224,9 @@ function Dashboard() {
           <button
             className="changeSlider"
             onClick={() => {
-              if (conter > 0) setConter(conter - 1);
+              conter > 0
+                ? setConter(conter - 1)
+                : setConter(listFun.length - 2);
             }}
           >
             <MdOutlineNavigateBefore />
