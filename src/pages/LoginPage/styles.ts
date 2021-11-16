@@ -148,4 +148,5 @@ export const FlexCenter = styled.div`
 
 export const ErrorMessage = styled.p`
   color: #ff4500;
+  text-align: center;
 `;

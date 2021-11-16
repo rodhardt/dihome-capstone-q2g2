@@ -36,7 +36,7 @@ const RegisterPage = () => {
       .min(8, "Mínimo de 8 caracteres")
       .matches(
         /^(?=.*\d)(?=.*[a-z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/,
-        "Deve contert no mínimo um número, uma letra e um caractere especial."
+        "Deve conter no mínimo um número, uma letra e um caractere especial."
       ),
     telephone: yup.string().required("Informe seu telefone"),
   });
