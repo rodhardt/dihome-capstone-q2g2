@@ -54,12 +54,12 @@ const PropertyPage = () => {
   const { properties } = useProperties();
   const { userInfo, updateUser, authToken } = useAuth();
 
-  const propertyToRender = properties.find((item) => item.id == id);
+  const propertyToRender = properties.find((item) => item.id === id);
 
   const handleBookmark = () => {
     !authToken
       ? setIsOpenThirdModal(true)
-      : userInfo.bookmarkedProperties.find((item) => item == id) === undefined
+      : userInfo.bookmarkedProperties.find((item) => item === id) === undefined
       ? updateUser({
           id: userInfo.id,
           password: userInfo.password,
