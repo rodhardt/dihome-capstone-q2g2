@@ -7,7 +7,7 @@ function Homepage() {
   return (
     <HomepageStyled>
       {properties.map((item, index) =>
-        index > 2 ? <PropertyCard properties={item} type="HomePage" /> : null
+        index < 2 ? <PropertyCard properties={item} type="HomePage" /> : null
       )}
     </HomepageStyled>
   );
