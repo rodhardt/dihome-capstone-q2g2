@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const DashboardStyled = styled.main`
   position: relative;
+
   .slider {
-    width: 80%;
-    max-width: 380px;
-    margin: auto;
+    width: 100%;
+
+    margin: 50px auto 30px;
     display: flex;
     position: relative;
     height: 400px;
@@ -16,11 +17,12 @@ export const DashboardStyled = styled.main`
     background-color: var(--darkBlue);
     border-radius: 10px;
     width: 100%;
+    height: 100%;
   }
 
   .image-container {
     width: 100%;
-    height: 150px;
+    height: 100%;
   }
   .boxSlider img {
     width: 100%;
@@ -32,7 +34,7 @@ export const DashboardStyled = styled.main`
   .slider button {
     position: absolute;
     top: 50%;
-    transform: translateX(-25%);
+    transform: translateX(0%);
     width: 25px;
     height: 25px;
     color: var(--darkblue);
@@ -51,7 +53,7 @@ export const DashboardStyled = styled.main`
 
   .slider button:last-child {
     left: 100%;
-    transform: translateX(-75%);
+    transform: translateX(-100%);
   }
 
   .slider .slider-text {
@@ -62,6 +64,22 @@ export const DashboardStyled = styled.main`
     color: var(--mainGray);
     display: flex;
     align-items: center;
+    position: absolute;
+  }
+
+  .slider .description {
+    margin: 0;
+    background-color: #00000090;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .slider .comment {
+    background-color: #00000090;
+    bottom: 0;
+    margin: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
 
   .filter {
@@ -99,5 +117,26 @@ export const DashboardStyled = styled.main`
     width: 40px;
     height: 40px;
     color: var(--darkOrange);
+  }
+
+  @media screen and (min-width: 900px) {
+    .slider {
+      height: 500px;
+    }
+
+    .slider .description {
+      width: 300px;
+      height: 150px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    .slider .comment {
+      width: 300px;
+      height: 150px;
+      border-radius: 10px;
+      right: 0;
+      font-size: 14px;
+    }
   }
 `;
