@@ -10,6 +10,7 @@ export const BlackFilter = styled.div`
 export const RegisterPageStyled = styled.main`
   width: 100%;
   height: 100%;
+  margin-top: 0;
   background-image: url(${nightCity});
   background-position: center;
   background-repeat: no-repeat;

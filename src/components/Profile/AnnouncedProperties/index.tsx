@@ -40,6 +40,8 @@ function AnnouncedProperties() {
     cancelButton: { cancelText: "Não", cancelFunction: () => null },
   };
 
+  const [renderAtt, setRenderAtt] = useState(0);
+
   return (
     <>
       {isAnnouncingAttempt && <ConfirmedModal modalContent={modalContent} />}
@@ -91,7 +93,12 @@ function AnnouncedProperties() {
                   {userInfo.announcedProperties?.includes(property.id || 0) &&
                   property.consultantStatus === "aprovado" ? (
                     <li key={index}>
-                      <PropertyCard properties={property} type="DashBoard" />
+                      <PropertyCard
+                        properties={property}
+                        type="DashBoard"
+                        setRenderAtt={setRenderAtt}
+                        renderAtt={renderAtt}
+                      />
                     </li>
                   ) : null}
                 </>

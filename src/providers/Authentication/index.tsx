@@ -57,6 +57,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             announcedProperties: response.data.announcedProperties,
             bookmarkedProperties: response.data.bookmarkedProperties,
             subscriptionType: response.data.subscriptionType,
+            markedDates: response.data.markedDates,
           });
         })
         .catch((err) => {

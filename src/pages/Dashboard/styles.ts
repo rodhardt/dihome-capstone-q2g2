@@ -1,124 +1,87 @@
 import styled from "styled-components";
 
 export const DashboardStyled = styled.main`
-  @media only screen and (min-width: 120px) and (max-width: 425px) {
-    .filter {
-      margin-left: 5px;
-      margin-bottom: 7px;
-      color: red;
-      background-color: #0f9;
-      border: 0.5px solid green;
-      border-radius: 8px;
-    }
-    .slider {
-      margin: 10px;
-      background-color: #0f9;
-      display: flex;
-      margin-botton: 3px;
-      border-radius: 8px;
-      img {
-        margin-top: 4px;
-        margin-left: 15px;
-        height: 100px;
-        width: 260px;
-      }
-      p {
-        color: blue;
-        margin-left: 5px;
-      }
-      .lastResidentComent {
-        color: red;
-      }
-      button {
-        color: grey;
-        border: solid 0.5px blue;
-        border-radius: 10px;
-        margin-top: 35%;
-        background-color: #0f9;
-        height: 20px;
-        font-size: 10px;
-      }
-    }
+  position: relative;
+  .slider {
+    width: 80%;
+    max-width: 380px;
+    margin: auto;
+    display: flex;
+    position: relative;
+    height: 400px;
+    align-items: center;
   }
-  @media only screen and (min-width: 426px) and (max-width: 768px) {
-    .filter {
-      margin-left: 5px;
-      margin-bottom: 7px;
-      color: red;
-      background-color: #0f9;
-      border: 0.5px solid green;
-      border-radius: 8px;
-    }
-    .slider {
-      margin: 10px;
-      background-color: #0f9;
-      display: flex;
-      margin-botton: 3px;
-      border-radius: 8px;
-      img {
-        margin-top: 4px;
-        margin-left: 15px;
-        height: 100px;
-        width: 260px;
-      }
-      p {
-        color: blue;
-        margin-left: 5px;
-      }
-      .lastResidentComent {
-        color: red;
-      }
-      button {
-        color: grey;
-        border: solid 0.5px blue;
-        border-radius: 10px;
-        margin-top: 13%;
-        background-color: #0f9;
-        height: 20px;
-        font-size: 10px;
-      }
-    }
+
+  .boxSlider {
+    background-color: var(--darkBlue);
+    border-radius: 10px;
+    width: 100%;
   }
-  @media only screen and (min-width: 769px) {
-    .filter {
-      margin-left: 5px;
-      margin-bottom: 7px;
-      color: red;
-      background-color: #0f9;
-      border: 0.5px solid green;
-      border-radius: 8px;
-    }
-    .slider {
-      margin: 10px;
-      margin-left: 10%;
-      background-color: #0f9;
-      display: flex;
-      margin-botton: 3px;
-      border-radius: 8px;
-      height: 250px;
-      width: 80%;
-      img {
-        margin-top: 4px;
-        margin-left: 15px;
-        height: 100px;
-        width: 260px;
-      }
-      p {
-        color: blue;
-        margin-left: 5px;
-      }
-      .lastResidentComent {
-        color: red;
-      }
-      button {
-        color: grey;
-        border: solid 0.5px blue;
-        border-radius: 10px;
-        margin-top: 110px;
-        background-color: #0f9;
-        height: 20px;
-        font-size: 10px;
-      }
-    }
+
+  .image-container {
+    width: 100%;
+    height: 150px;
+  }
+  .boxSlider img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .slider button {
+    position: absolute;
+    top: 50%;
+    transform: translateX(-25%);
+    width: 25px;
+    height: 25px;
+    color: var(--darkblue);
+    border: 1px solid var(--darkBlue);
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slider button svg {
+    color: var(--darkBlue);
+    width: 100%;
+    height: 100%;
+  }
+
+  .slider button:last-child {
+    left: 100%;
+    transform: translateX(-75%);
+  }
+
+  .slider .slider-text {
+    font-size: 12px;
+    margin: 5px auto;
+    height: 80px;
+    padding: 5px 10px;
+    color: var(--mainGray);
+    display: flex;
+    align-items: center;
+  }
+
+  .filter {
+    color: var(--orange);
+    border: 2px solid var(--orange);
+    border-radius: 7px;
+    background-color: #ffffff00;
+    display: flex;
+    align-items: center;
+    padding: 2px 6px;
+
+    margin: 10px auto 25px;
+  }
+
+  .filter svg {
+    margin: 0 5px 0 0;
+  }
+
+  .filter:hover {
+    color: white;
+    background-color: var(--lightOrange);
   }
 `;

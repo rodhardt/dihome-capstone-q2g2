@@ -30,6 +30,10 @@ export default createGlobalStyle`
     body {
         background-color: var(--mainGray);
         min-height: 100vh;
+        position: absolute;
+        max-width: 100vw;
+        width: 100%;
+        height: 100%;
     }
 
     main, section {
@@ -38,5 +42,14 @@ export default createGlobalStyle`
 
     ul {
         list-style: none;
+    }
+
+    a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    main {
+        margin-top: 50px;
     }
 `;

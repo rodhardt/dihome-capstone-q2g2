@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
-export const HomepageStyled = styled.div`
+export const HomepageStyled = styled.main`
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   min-height: 100vh;
-  align-items: center;
+  align-items: flex-start;
   background-color: var(--mainGray);
   img {
     width: 100%;
@@ -21,17 +22,13 @@ export const HomepageStyled = styled.div`
   }
 `;
 
-export const Header = styled.div`
-  width: 100%;
-  height: 3vh;
-  background-color: #0f9194;
-`;
 export const ContainerHome = styled.div`
-  width: 87%;
+  width: 95%;
+  max-width: 1000px;
   margin-top: 50px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
 
   p {
@@ -43,6 +40,17 @@ export const ButtonHome1 = styled.div`
     color: var(--orange);
     border-color: var(--orange);
     text-transform: none;
+    margin-right: 15px;
+  }
+  @media screen and (min-width: 470px) {
+    button p {
+      font-size: 13px;
+    }
+  }
+  @media screen and (min-width: 680px) {
+    button {
+      margin-bottom: 30px;
+    }
   }
 `;
 export const ButtonHome2 = styled.div`
@@ -50,6 +58,17 @@ export const ButtonHome2 = styled.div`
     color: var(--darkBlue);
     border-color: var(--darkBlue);
     text-transform: none;
+    margin-left: 15px;
+  }
+  @media screen and (min-width: 470px) {
+    button p {
+      font-size: 13px;
+    }
+  }
+  @media screen and (min-width: 680px) {
+    button {
+      margin-bottom: 30px;
+    }
   }
 `;
 export const ContentHome = styled.ul`
@@ -70,7 +89,7 @@ export const ContentHome = styled.ul`
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 10px;
     height: 150px;
@@ -83,6 +102,36 @@ export const ContentHome = styled.ul`
       height: 40px;
     }
   }
+  @media screen and (min-width: 434px) {
+    h4 {
+      font-size: 18px;
+    }
+    li p {
+      font-size: 11px;
+      width: 100px;
+    }
+    li {
+      width: 49%;
+      height: 180px;
+    }
+  }
+  @media screen and (min-width: 680px) {
+    ul {
+      justify-content: space-between;
+    }
+    li {
+      width: 24%;
+    }
+    h4 {
+      font-size: 20px;
+    }
+    li p {
+      font-size: 13px;
+      width: 120px;
+    }
+    li img {
+    }
+  }
 `;
 export const Unstyled = styled.div`
   width: 100%;
@@ -90,6 +139,12 @@ export const Unstyled = styled.div`
   img {
     width: 200px;
     height: 28px;
+  }
+  @media screen and (min-width: 780px) {
+    img {
+      width: 30%;
+      height: 32px;
+    }
   }
 `;
 export const Unstyled2 = styled.div`
@@ -102,6 +157,15 @@ export const Unstyled2 = styled.div`
     height: 28px;
   }
   flex-direction: row-reverse;
+  @media screen and (min-width: 780px) {
+    img {
+      width: 30%;
+      height: 32px;
+    }
+  }
+  @media screen and (min-width: 1150px) {
+    margin-top: 50px;
+  }
 `;
 export const Infos = styled.div`
   margin-top: 30px;
@@ -111,21 +175,36 @@ export const Infos = styled.div`
   margin-bottom: 20px;
   p {
     width: 80%;
+    max-width: 650px;
     text-align: center;
     font-size: 11px;
     color: var(--ligthGray);
+    margin: 15px auto;
   }
   h2 {
     font-size: 20px;
   }
+  @media screen and (min-width: 680px) {
+    h2 {
+      font-size: 24px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
 `;
 export const PropertyList = styled.ul`
-  margin-top: 10px;
+  margin-top: 30px;
   list-style: none;
   display: flex;
-
+  max-width: 500px;
   flex-wrap: wrap;
   justify-content: center;
+
+  h3 {
+    width: 100%;
+    text-align: center;
+  }
   li {
     margin: 10px;
     height: 200px;

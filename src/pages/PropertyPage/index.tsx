@@ -43,6 +43,7 @@ import {
 import { ConsultantButtons } from "../../components/Consultant/Buttons";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import { AiTwotoneStar, AiOutlineStar } from "react-icons/ai";
+import { UserData } from '../../assets/Types/user'
 
 interface IdFromUrl {
   id: any;
@@ -167,7 +168,6 @@ const PropertyPage = () => {
     }
   };
 
-  console.log(userInfo)
 
   const [lastImage, setLastImage] = useState(0);
 
@@ -199,10 +199,29 @@ const PropertyPage = () => {
     }
   };
 
+  const [date, setDate] = useState('')
+
   const handleCalendar = () => {
-    //enviar dados ao perfil do anunciante
+
+    const userSchedule = {
+      id: userInfo?.id,
+      password: userInfo?.password,
+      name: userInfo?.name,
+      email: userInfo?.email,
+      telephone: userInfo?.telephone,
+      consultant: userInfo?.consultant,
+      announcedProperties: userInfo?.announcedProperties,
+      bookmarkedProperties: userInfo?.bookmarkedProperties,
+      subscriptionType: userInfo?.subscriptionType,
+      markedDates: [...userInfo?.markedDates, date]
+      }
+    updateUser(userSchedule)
     setIsOpenModal(false);
   };
+
+  console.log('user info', userInfo)
+  console.log('date', date)
+
 
   return (
     <>
@@ -213,7 +232,7 @@ const PropertyPage = () => {
             <div>
               <div className="header"></div>
               <BsFillCalendarCheckFill />
-              <input type="datetime-local" />
+              <input type="datetime-local" onChange={(evt) => setDate(evt.target.value)}/>
               <div>
                 <button onClick={handleCalendar} className="confirm">
                   agendar

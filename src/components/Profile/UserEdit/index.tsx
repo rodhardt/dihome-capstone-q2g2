@@ -40,6 +40,7 @@ function UserEdit({ closeModal }: UserEditProps) {
       announcedProperties: userInfo.announcedProperties,
       bookmarkedProperties: userInfo.bookmarkedProperties,
       subscriptionType: userInfo.subscriptionType,
+      markedDates: userInfo.markedDates,
     };
     updateUser(newUserInfo);
   };

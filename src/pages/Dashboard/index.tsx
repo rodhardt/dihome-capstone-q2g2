@@ -18,6 +18,8 @@ import FilterModal from "../../components/Dashboard/FilterModal";
 
 import { PropertyData } from "../../assets/Types/property";
 
+import Header from "../../components/Header";
+
 interface FilterSearchData {
   price: number;
   type: string[];
@@ -152,94 +154,105 @@ function Dashboard() {
     handleFilteredProperties();
   }, [activeFilters]);
 
-  const [conter, setConter] = useState(0);
+  const [counter, setCounter] = useState(0);
+
+  const slide = () => {
+    if (counter <= listFun.length - 2) {
+      setCounter(counter + 1);
+    } else {
+      setCounter(0);
+    }
+  };
+
   useEffect(() => {
-    setInterval(() => {
-      if (conter <= listFun.length - 2) setConter(conter + 1);
-      else setConter(0);
-    }, 15000);
-  }, [conter]);
+    const slideCall = setInterval(slide, 5000);
+    return () => clearInterval(slideCall);
+  }, []);
 
   const listFun = [
     {
       img: CasaAsombrada,
       description:
-        "Bela casa para alugar em amityville aluguel acessível por apenas R$: 1.000 trincas e cadeados ja incluidos alem de ajuda na mudança",
+        "Bela casa acessível para alugar em amityville por apenas R$: 1.000 trincas e cadeados já inclusos além de ajuda na mudança",
       lastResidentComent: "o preço é de matar",
     },
     {
       img: casaIt,
       description:
-        "Casa antiga a venda em Derry, Maine preço  R$:100.000 caso tenha crianças damos um desconto especial de 66.6% ",
+        "Casa antiga a venda em Derry, Maine preço R$ 100.000, caso tenha crianças damos um desconto especial de 66.6% ",
       lastResidentComent:
-        "A vizinhança é tão acolhedoura que voce nem tem que se preocupar com o futuro dos seus filhos",
+        "A vizinhança é tão acolhedoura que você nem tem que se preocupar com o futuro dos seus filhos",
     },
     {
       img: gondor,
       description:
-        "Belo castelo medieval a venda por R$: 1.000.000.000 exercito não incluido",
-      lastResidentComent: "O castelo é otimo mas o  vizinho é insuportavel",
+        "Belo castelo medieval a venda por R$ 1.000.000.000 exército não incluso",
+      lastResidentComent: "O castelo é otimo, mas o vizinho é insuportável",
     },
     {
       img: hobbt,
       description:
-        "Chale a preço amigavel nas montanhas R$: 80.000 com possiveis artefatos antigos",
+        "Chalé a preço amigável nas montanhas R$ 80.000 com possíveis artefatos antigos",
       lastResidentComent:
-        "Tirando ladrões de talheres os vizinhos são otimos......meu precioso....",
+        "Tirando ladrões de talheres os vizinhos são ótimos......meu precioso....",
     },
     {
       img: mansãoSpenser,
       description:
-        "Antiga mansão ao stilo vitoriano a venda com um porão muito grande R$: 1.000.000 caso tenha a cura para o T-virus a um desconto de 30%",
+        "Antiga mansão ao estilo vitoriano a venda com um porão muito grande R$ 1.000.000 caso tenha a cura para o T-virus há um desconto de 30%",
       lastResidentComent:
-        "Os vizinhos parecem meio mortos mas se tiver muita munição é bem calmo....",
+        "Os vizinhos parecem meio mortos, mas se tiver muita munição é bem calmo....",
     },
     {
       img: evocandoEspiritos,
       description:
-        "Casa de 2 andares com fazenda proxima para alugar R$: 1.300 o mes ",
+        "Casa de 2 andares com fazenda próxima para alugar R$ 1.300 / mês",
       lastResidentComent:
-        "A um cheiro estranho vindo das paredes pode precisar de detetizador",
+        "Há um cheiro estranho vindo das paredes, pode precisar de detetizador",
     },
     {
       img: oExorcista,
       description:
-        "Casa com 2 andares e porão espaçoso para compra  R$: 226.660(negocialvel)",
+        "Casa com 2 andares e porão espaçoso para compra R$ 226.660 (negociável)",
       lastResidentComent:
-        "Otima casa o melhor é que da ate para usar sua propria alma(ou de familiare) como entrada",
+        "Ótima casa o melhor é que dá até para usar sua própria alma(ou de familiare) como entrada",
     },
     {
       img: alcatraz,
       description:
-        "Ilha paradiziaca com complexo habtacional semi-novo incluido",
-      lastResidentComent: "Uma vez dentro nunca mais vai querer( e poder) sair",
+        "Ilha paradisíaca com complexo habitacional semi-novo incluso",
+      lastResidentComent: "Uma vez dentro nunca mais vai querer(e poder) sair",
     },
   ];
 
   const [renderAtt, setRenderAtt] = useState(1);
   return (
     <>
+      <Header />
       <DashboardStyled>
         <div className="slider">
           <button
             className="changeSlider"
             onClick={() => {
-              conter > 0
-                ? setConter(conter - 1)
-                : setConter(listFun.length - 2);
+              counter > 0
+                ? setCounter(counter - 1)
+                : setCounter(listFun.length - 2);
             }}
           >
             <MdOutlineNavigateBefore />
           </button>
 
           <section className="boxSlider">
-            <img src={listFun[conter].img} alt="imagem casa" />
-            <p className="description">
-              {"Descrição: " + listFun[conter].description + "."}
+            <p className="slider-text description">
+              {"Descrição: " + listFun[counter].description + "."}
             </p>
-            <p className="lastResidentComent">
+            <div className="image-container">
+              <img src={listFun[counter].img} alt="imagem casa" />
+            </div>
+
+            <p className="slider-text comment">
               {"Comentario do ultimo inquilino: " +
-                listFun[conter].lastResidentComent +
+                listFun[counter].lastResidentComent +
                 "."}
             </p>
           </section>
@@ -247,8 +260,8 @@ function Dashboard() {
           <button
             className="changeSlider"
             onClick={() => {
-              if (conter <= listFun.length - 2) setConter(conter + 1);
-              else setConter(0);
+              if (counter <= listFun.length - 2) setCounter(counter + 1);
+              else setCounter(0);
             }}
           >
             <MdOutlineNavigateNext />
@@ -263,14 +276,16 @@ function Dashboard() {
         </button>
 
         {renderAtt &&
-          filteredProperties.map((item) => (
-            <PropertyCard
-              properties={item}
-              type="DashBoard"
-              setRenderAtt={setRenderAtt}
-              renderAtt={renderAtt}
-            />
-          ))}
+          filteredProperties
+            .filter((property) => property.consultantStatus === "aprovado")
+            .map((item) => (
+              <PropertyCard
+                properties={item}
+                type="DashBoard"
+                setRenderAtt={setRenderAtt}
+                renderAtt={renderAtt}
+              />
+            ))}
       </DashboardStyled>
     </>
   );

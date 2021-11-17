@@ -8,4 +8,5 @@ export interface UserData {
   announcedProperties: number[];
   bookmarkedProperties: number[];
   subscriptionType: string;
+  markedDates: string[];
 }

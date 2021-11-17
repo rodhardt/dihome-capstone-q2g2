@@ -8,6 +8,7 @@ export const BlackFilter = styled.div`
 `;
 
 export const LoginPageStyled = styled.main`
+  margin-top: 0;
   width: 100vw;
   height: 100vh;
   background-image: url(${nightCity});

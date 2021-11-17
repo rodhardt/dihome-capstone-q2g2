@@ -1,4 +1,5 @@
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
 import { BookmarkedPropertiesStyled } from "./styles";
 
@@ -15,6 +16,8 @@ function BookmarkedProperties() {
   const { userInfo } = useAuth();
   const { properties } = useProperties();
 
+  const [renderAtt, setRenderAtt] = useState(0);
+
   return (
     <BookmarkedPropertiesStyled>
       {userInfo.bookmarkedProperties?.length > 0 ? (
@@ -25,7 +28,12 @@ function BookmarkedProperties() {
               <>
                 {userInfo.bookmarkedProperties?.includes(property.id || 0) ? (
                   <li key={index}>
-                    <PropertyCard properties={property} type="DashBoard" />
+                    <PropertyCard
+                      properties={property}
+                      type="DashBoard"
+                      setRenderAtt={setRenderAtt}
+                      renderAtt={renderAtt}
+                    />
                   </li>
                 ) : null}
               </>
