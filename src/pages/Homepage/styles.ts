@@ -22,11 +22,12 @@ export const HomepageStyled = styled.main`
 `;
 
 export const ContainerHome = styled.div`
-  width: 87%;
+  width: 95%;
+  max-width: 1000px;
   margin-top: 50px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
 
   p {
@@ -38,6 +39,17 @@ export const ButtonHome1 = styled.div`
     color: var(--orange);
     border-color: var(--orange);
     text-transform: none;
+    margin-right: 15px;
+  }
+  @media screen and (min-width: 470px) {
+    button p {
+      font-size: 13px;
+    }
+  }
+  @media screen and (min-width: 680px) {
+    button {
+      margin-bottom: 30px;
+    }
   }
 `;
 export const ButtonHome2 = styled.div`
@@ -45,6 +57,17 @@ export const ButtonHome2 = styled.div`
     color: var(--darkBlue);
     border-color: var(--darkBlue);
     text-transform: none;
+    margin-left: 15px;
+  }
+  @media screen and (min-width: 470px) {
+    button p {
+      font-size: 13px;
+    }
+  }
+  @media screen and (min-width: 680px) {
+    button {
+      margin-bottom: 30px;
+    }
   }
 `;
 export const ContentHome = styled.ul`
@@ -65,7 +88,7 @@ export const ContentHome = styled.ul`
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 10px;
     height: 150px;
@@ -76,6 +99,36 @@ export const ContentHome = styled.ul`
     img {
       width: 45px;
       height: 40px;
+    }
+  }
+  @media screen and (min-width: 434px) {
+    h4 {
+      font-size: 18px;
+    }
+    li p {
+      font-size: 11px;
+      width: 100px;
+    }
+    li {
+      width: 49%;
+      height: 180px;
+    }
+  }
+  @media screen and (min-width: 680px) {
+    ul {
+      justify-content: space-between;
+    }
+    li {
+      width: 24%;
+    }
+    h4 {
+      font-size: 20px;
+    }
+    li p {
+      font-size: 13px;
+      width: 120px;
+    }
+    li img {
     }
   }
 `;
