@@ -34,11 +34,6 @@ function Homepage() {
   console.log(authToken.length);
   return (
     <HomepageStyled>
-<<<<<<< HEAD
-      {properties.map((item, index) =>
-        index < 2 ? <PropertyCard properties={item} type="HomePage" /> : null
-      )}
-=======
       <Header />
       <img src={LogoBannerHome} alt="banner" />
       <ContainerHome>
@@ -135,7 +130,6 @@ function Homepage() {
         </Button>
       </PropertyList>
       <Footer />
->>>>>>> development
     </HomepageStyled>
   );
 }

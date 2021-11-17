@@ -14,6 +14,9 @@ export const ContainerPropertyCard = styled.div`
   align-items: center;
   padding: 5px;
   border-radius: 10px;
+  @media (min-width: 700px) {
+    width: 80%;
+  }
 `;
 export const HeaderCard = styled.div`
   display: flex;
