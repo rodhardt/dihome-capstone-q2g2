@@ -89,7 +89,7 @@ function AnnounceFormModal({ closeWindow }: AnnounceFormModalData) {
     };
     addProperty(newProperty);
     let newUser = userInfo;
-    newUser.announcedProperties.push(properties.length);
+    newUser.announcedProperties.push(properties.length + 1);
     updateUser(newUser);
     closeWindow();
   };
