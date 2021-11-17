@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const HomepageStyled = styled.main`
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   min-height: 100vh;
-  align-items: center;
+  align-items: flex-start;
   background-color: var(--mainGray);
   img {
     width: 100%;
@@ -162,6 +163,9 @@ export const Unstyled2 = styled.div`
       height: 32px;
     }
   }
+  @media screen and (min-width: 1150px) {
+    margin-top: 50px;
+  }
 `;
 export const Infos = styled.div`
   margin-top: 30px;
@@ -190,12 +194,17 @@ export const Infos = styled.div`
   }
 `;
 export const PropertyList = styled.ul`
-  margin-top: 10px;
+  margin-top: 30px;
   list-style: none;
   display: flex;
-
+  max-width: 500px;
   flex-wrap: wrap;
   justify-content: center;
+
+  h3 {
+    width: 100%;
+    text-align: center;
+  }
   li {
     margin: 10px;
     height: 200px;

@@ -13,6 +13,7 @@ import {
   ImgCity,
 } from "./styles";
 import Button from "@material-ui/core/Button";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { MdMapsHomeWork } from "react-icons/md";
@@ -32,6 +33,16 @@ function Homepage() {
   const { properties } = useProperties();
   const { authToken } = useAuth();
   const history = useHistory();
+
+  const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
+
+  const handleWidth = () => {
+    setScreenWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWidth);
+  }, []);
 
   return (
     <>
@@ -109,11 +120,13 @@ function Homepage() {
             em nossas páginas de forma profissional e atraente.
           </p>
         </Infos>
-        <Unstyled2>
-          <img src={styleComponentLefth} alt="styledComponent" />
-        </Unstyled2>
-        <h3>Aqui estão alguns de nossos anúncios</h3>
+        {screenWidth < 1150 && (
+          <Unstyled2>
+            <img src={styleComponentLefth} alt="styledComponent" />
+          </Unstyled2>
+        )}
         <PropertyList>
+          <h3>Aqui estão alguns de nossos anúncios</h3>
           {properties.map(
             (item, index) =>
               index < 2 && (
@@ -132,6 +145,11 @@ function Homepage() {
             Veja mais anuncios
           </Button>
         </PropertyList>
+        {screenWidth >= 1150 && (
+          <Unstyled2>
+            <img src={styleComponentLefth} alt="styledComponent" />
+          </Unstyled2>
+        )}
         <Footer />
       </HomepageStyled>
     </>
