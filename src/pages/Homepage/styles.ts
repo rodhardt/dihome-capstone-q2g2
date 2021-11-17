@@ -94,7 +94,7 @@ export const ContentHome = styled.ul`
     margin-top: 10px;
     height: 150px;
     p {
-      color: var(--ligthGray);
+      color: var(--lightGray);
       width: 80px;
     }
     img {
@@ -178,7 +178,7 @@ export const Infos = styled.div`
     max-width: 650px;
     text-align: center;
     font-size: 11px;
-    color: var(--ligthGray);
+    color: var(--lightGray);
     margin: 15px auto;
   }
   h2 {
@@ -198,12 +198,14 @@ export const PropertyList = styled.ul`
   list-style: none;
   display: flex;
   max-width: 500px;
+  min-height: 240px;
   flex-wrap: wrap;
   justify-content: center;
 
   h3 {
     width: 100%;
     text-align: center;
+    height: 20px;
   }
   li {
     margin: 10px;
