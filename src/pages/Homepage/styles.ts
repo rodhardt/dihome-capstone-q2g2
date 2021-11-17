@@ -139,6 +139,12 @@ export const Unstyled = styled.div`
     width: 200px;
     height: 28px;
   }
+  @media screen and (min-width: 780px) {
+    img {
+      width: 30%;
+      height: 32px;
+    }
+  }
 `;
 export const Unstyled2 = styled.div`
   width: 100%;
@@ -150,6 +156,12 @@ export const Unstyled2 = styled.div`
     height: 28px;
   }
   flex-direction: row-reverse;
+  @media screen and (min-width: 780px) {
+    img {
+      width: 30%;
+      height: 32px;
+    }
+  }
 `;
 export const Infos = styled.div`
   margin-top: 30px;
@@ -159,12 +171,22 @@ export const Infos = styled.div`
   margin-bottom: 20px;
   p {
     width: 80%;
+    max-width: 650px;
     text-align: center;
     font-size: 11px;
     color: var(--ligthGray);
+    margin: 15px auto;
   }
   h2 {
     font-size: 20px;
+  }
+  @media screen and (min-width: 680px) {
+    h2 {
+      font-size: 24px;
+    }
+    p {
+      font-size: 14px;
+    }
   }
 `;
 export const PropertyList = styled.ul`

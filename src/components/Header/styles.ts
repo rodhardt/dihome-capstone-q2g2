@@ -11,6 +11,7 @@ export const HeaderStyled = styled.header`
   display: flex;
   align-items: center;
   padding: 5px;
+  z-index: 1;
 
   .image-container {
     width: 40px;
