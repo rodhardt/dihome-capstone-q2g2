@@ -270,7 +270,7 @@ function Dashboard() {
         {isChoosingFilters && (
           <FilterModal handleFilter={handleFilter} closeWindow={closeWindow} />
         )}
-        {/* <button onClick={() => handleFilteredProperties()}>Teste</button> */}
+
         <button className="filter" onClick={() => setIsChoosingFilters(true)}>
           <AiOutlineFilter /> Abrir Filtros
         </button>

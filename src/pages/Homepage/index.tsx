@@ -31,7 +31,7 @@ import Header from "../../components/Header";
 
 function Homepage() {
   const { properties } = useProperties();
-  const { authToken } = useAuth();
+  const { userInfo } = useAuth();
   const history = useHistory();
 
   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
@@ -52,11 +52,7 @@ function Homepage() {
         <ContainerHome>
           <ButtonHome1>
             <Button
-              onClick={() =>
-                authToken.length > 0
-                  ? history.push("/imoveis")
-                  : history.push("/login")
-              }
+              onClick={() => history.push("/imoveis")}
               startIcon={<FaHome />}
               variant="outlined"
             >
@@ -65,11 +61,7 @@ function Homepage() {
           </ButtonHome1>
           <ButtonHome2>
             <Button
-              onClick={() =>
-                authToken.length > 0
-                  ? history.push("/imoveis")
-                  : history.push("/planos")
-              }
+              onClick={() => history.push("/perfil")}
               startIcon={<MdMapsHomeWork />}
               variant="outlined"
             >
@@ -135,13 +127,7 @@ function Homepage() {
                 </li>
               )
           )}
-          <Button
-            onClick={() =>
-              authToken.length > 0
-                ? history.push("/imoveis")
-                : history.push("/login")
-            }
-          >
+          <Button onClick={() => history.push("/imoveis")}>
             Veja mais anuncios
           </Button>
         </PropertyList>

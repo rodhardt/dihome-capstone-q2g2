@@ -47,11 +47,13 @@ const LoginPage = () => {
     <>
       <LoginPageStyled>
         <BlackFilter>
-          <BackPage>
-            <BsArrowLeftCircle />
+          <Link to="/">
+            <BackPage>
+              <BsArrowLeftCircle />
+              voltar para início
+            </BackPage>
+          </Link>
 
-            <Link to="/">voltar para início</Link>
-          </BackPage>
           <FlexCenter>
             <img className="logo" src={logoName} alt="" />
             <BoxForm>
