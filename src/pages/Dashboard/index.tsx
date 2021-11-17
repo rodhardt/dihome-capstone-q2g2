@@ -220,7 +220,7 @@ function Dashboard() {
   return (
     <>
       <DashboardStyled>
-        <div className="slider">
+        {/* <div className="slider">
           <button
             className="changeSlider"
             onClick={() => {
@@ -256,11 +256,11 @@ function Dashboard() {
         </div>
         {isChoosingFilters && (
           <FilterModal handleFilter={handleFilter} closeWindow={closeWindow} />
-        )}
+        )} */}
         {/* <button onClick={() => handleFilteredProperties()}>Teste</button> */}
-        <button className="filter" onClick={() => setIsChoosingFilters(true)}>
+        {/* <button className="filter" onClick={() => setIsChoosingFilters(true)}>
           <AiOutlineFilter /> Abrir Filtros
-        </button>
+        </button> */}
 
         {renderAtt &&
           filteredProperties.map((item) => (
