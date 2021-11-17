@@ -49,6 +49,7 @@ export const InfosHouse = styled.div`
   @media (min-width: 700px) {
     flex-direction: column;
     align-items: center;
+    margin: 10px;
   }
 `;
 export const ImgHouse = styled.div`
@@ -138,9 +139,10 @@ export const SmallCardHeader = styled.div`
 export const LargeContainer = styled.div`
   background-color: var(--opacityBlue);
   width: 500px;
-
+  padding: 5px;
   display: flex;
   flex-wrap: wrap;
+  border-radius: 20px;
 `;
 export const LargeImgHouse = styled.div`
   display: flex;
@@ -187,10 +189,11 @@ export const InfoDescription = styled.div`
 `;
 export const LargePrice = styled.div`
   display: flex;
-
   gap: 5px;
   margin: 5px;
-
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  width: 30%;
   button {
     background-color: transparent;
     border: none;
@@ -202,6 +205,8 @@ export const LargePrice = styled.div`
 `;
 export const LargeInfoHouse = styled.div`
   display: flex;
-  width: 70%;
+  width: 64%;
   justify-content: flex-end;
+  margin-top: 5px;
+  margin-left: 15px;
 `;
