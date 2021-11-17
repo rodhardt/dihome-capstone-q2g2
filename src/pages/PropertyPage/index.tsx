@@ -234,7 +234,10 @@ const PropertyPage = () => {
           <ConfirmedModal modalContent={thirdModalInformation} />
         )}
         <MaxWidthAdapter>
-          <BackButton onClick={() => history.push("/imoveis")}>
+          <BackButton
+            className="back-button"
+            onClick={() => history.push("/imoveis")}
+          >
             <BsArrowLeftCircle />
             <h2>voltar para imóveis</h2>
           </BackButton>

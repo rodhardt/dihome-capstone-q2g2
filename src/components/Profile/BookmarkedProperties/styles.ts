@@ -5,6 +5,12 @@ export const BookmarkedPropertiesStyled = styled.section`
   max-width: 700px;
   margin: auto;
 
+  h3 {
+    text-align: center;
+    color: var(--darkGray);
+    margin-bottom: 20px;
+  }
+
   .null-bookmarked {
     display: flex;
     flex-direction: column;

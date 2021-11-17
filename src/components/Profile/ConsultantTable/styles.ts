@@ -22,6 +22,12 @@ export const ConsultantTableStyled = styled.section`
 
   h3 {
     margin-bottom: 20px;
+    color: var(--darkGray);
+  }
+
+  td,
+  th {
+    color: var(--darkGray);
   }
 
   .table-container {

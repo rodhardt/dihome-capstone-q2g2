@@ -9,6 +9,13 @@ export const AnnouncedPropertiesStyled = styled.section`
     text-align: center;
     font-size: 18px;
     margin: 15px auto;
+    color: var(--darkGray);
+  }
+
+  h3,
+  td,
+  th {
+    color: var(--darkGray);
   }
 
   .null-announced {

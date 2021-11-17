@@ -37,6 +37,7 @@ export const UserCardStyled = styled.section`
 
   h3 {
     font-size: 12px;
+    color: var(--darkGray);
   }
 
   .tags-container {

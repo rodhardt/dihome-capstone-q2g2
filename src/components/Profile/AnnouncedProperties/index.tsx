@@ -63,6 +63,23 @@ function AnnouncedProperties() {
               Anuncie Já!
             </button>
             <h2>Meus Anúncios</h2>
+            <ul>
+              {properties.map((property, index) => (
+                <>
+                  {userInfo.announcedProperties?.includes(property.id || 0) &&
+                  property.consultantStatus === "aprovado" ? (
+                    <li key={index}>
+                      <PropertyCard
+                        properties={property}
+                        type="DashBoard"
+                        setRenderAtt={setRenderAtt}
+                        renderAtt={renderAtt}
+                      />
+                    </li>
+                  ) : null}
+                </>
+              ))}
+            </ul>
             <div className="table-container">
               <h3>Performance</h3>
               <table>
@@ -87,45 +104,35 @@ function AnnouncedProperties() {
               </table>
             </div>
 
-            <ul>
-              {properties.map((property, index) => (
-                <>
-                  {userInfo.announcedProperties?.includes(property.id || 0) &&
-                  property.consultantStatus === "aprovado" ? (
-                    <li key={index}>
-                      <PropertyCard
-                        properties={property}
-                        type="DashBoard"
-                        setRenderAtt={setRenderAtt}
-                        renderAtt={renderAtt}
-                      />
-                    </li>
-                  ) : null}
-                </>
-              ))}
-            </ul>
-            <div className="table-container status">
-              <h3>Anúncios em Análise</h3>
-              <table>
-                <tr>
-                  <th>Nome</th>
-                  <th>Status</th>
-                  <th>Comentário</th>
-                </tr>
-                {properties.map((property, index) => (
-                  <>
-                    {userInfo.announcedProperties?.includes(property.id || 0) &&
-                    property.consultantStatus !== "aprovado" ? (
-                      <tr key={index}>
-                        <td>{property.title}</td>
-                        <td>aguardando análise</td>
-                        <td>...</td>
-                      </tr>
-                    ) : null}
-                  </>
-                ))}
-              </table>
-            </div>
+            {properties.filter(
+              (property) =>
+                userInfo.announcedProperties.includes(property.id || 0) &&
+                property.consultantStatus !== "aprovado"
+            ).length > 0 ? (
+              <div className="table-container status">
+                <h3>Anúncios em Análise</h3>
+                <table>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Status</th>
+                    <th>Comentário</th>
+                  </tr>
+                  {properties.map((property, index) => (
+                    <>
+                      {userInfo.announcedProperties?.includes(
+                        property.id || 0
+                      ) && property.consultantStatus !== "aprovado" ? (
+                        <tr key={index}>
+                          <td>{property.title}</td>
+                          <td>aguardando análise</td>
+                          <td>...</td>
+                        </tr>
+                      ) : null}
+                    </>
+                  ))}
+                </table>
+              </div>
+            ) : null}
           </>
         ) : (
           <div className="null-announced">
