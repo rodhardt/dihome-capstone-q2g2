@@ -42,24 +42,51 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [previousPage, setPreviousPage] = useState<string>("/");
 
   const authenticate = () => {
-    if (authToken !== "") {
+    if (authToken.length > 0) {
       api
         .get(`/users/${userId}`, {
           headers: { Authorization: `Bearer ${authToken}` },
         })
-        .then((response) => setUserInfo(response.data))
-        .catch((err) => console.log(err));
+        .then((response) => {
+          setUserInfo({
+            id: response.data.id,
+            name: response.data.name,
+            email: response.data.email,
+            telephone: response.data.telephone,
+            consultant: response.data.consultant,
+            announcedProperties: response.data.announcedProperties,
+            bookmarkedProperties: response.data.bookmarkedProperties,
+            subscriptionType: response.data.subscriptionType,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          if (history.location.pathname === "/perfil") {
+            setPreviousPage("/perfil");
+            history.push("/login");
+          }
+        });
+    }
+    if (history.location.pathname === "/perfil" && authToken === "") {
+      setPreviousPage("/perfil");
+      history.push("/login");
     }
   };
 
-  const signIn = (UserSignInData: UserSignInData) => {
+  const returnPreviousPage = () => {
+    history.push(previousPage);
+  };
+
+  const signIn = (userSignInData: UserSignInData) => {
     api
-      .post("/login", UserSignInData)
+      .post("/signin", userSignInData)
       .then((response) => {
         localStorage.setItem("@dihome:token", response.data.accessToken);
         localStorage.setItem("@dihome:id", response.data.user.id);
         setAuthToken(response.data.accessToken);
-        setUserInfo(response.data);
+        setUserInfo(response.data.user);
+        setUserId(response.data.user.id);
+        history.push(previousPage);
       })
       .catch((err) => console.log(err));
   };
@@ -71,7 +98,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         localStorage.setItem("@dihome:token", response.data.accessToken);
         localStorage.setItem("@dihome:id", response.data.user.id);
         setAuthToken(response.data.accessToken);
-        setUserInfo(response.data);
+        setUserInfo(response.data.user);
+        setUserId(response.data.user.id);
+        history.push(previousPage);
       })
       .catch((err) => console.log(err));
   };
@@ -85,19 +114,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const updateUser = (newUserData: UserData) => {
     setUserInfo(newUserData);
+
     api
       .patch(`/users/${userId}`, newUserData, {
         headers: { Authorization: `Bearer ${authToken}` },
       })
+      .then((response) => console.log(response))
       .catch((err) => console.log(err));
   };
 
   const registerPreviousPage = () => {
     setPreviousPage(`${history.location.pathname}`);
-  };
-
-  const returnPreviousPage = () => {
-    history.push(previousPage);
   };
 
   return (

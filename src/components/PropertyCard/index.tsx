@@ -15,37 +15,54 @@ import { MdOutlineBathroom } from "react-icons/md";
 import { BiBed } from "react-icons/bi";
 import { GiHomeGarage } from "react-icons/gi";
 import { RiRuler2Line } from "react-icons/ri";
-import { MdBookmarkAdded } from "react-icons/md";
+
 import ButtonLogo from "../../assets/Images/ButtonCard.png";
 import { useState } from "react";
 import ConfirmedModal from "../ConfirmedModal";
 import { useHistory } from "react-router";
 import { useAuth } from "../../providers/Authentication";
+import { AiTwotoneStar, AiOutlineStar } from "react-icons/ai";
 
-function PropertyCard({ properties, type }: any) {
+function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
   const history = useHistory();
+
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { registerPreviousPage, authToken, userInfo, updateUser } = useAuth();
+
   const modalInformation = {
     title: "Atenção",
     closeFunction: () => setIsOpenModal(false),
-    message: "Voce não esta logado",
+    message: "Voce não esta logado!",
     confirmButton: {
       confirmText: "Logar",
       confirmFunction: () => {
         registerPreviousPage();
         history.push("/login");
       },
-      cancelButton: {
-        cancelText: "Sair",
-        cancelFunction: () => console.log("sair"),
-      },
+    },
+    cancelButton: {
+      cancelText: "Sair",
+      cancelFunction: () => console.log("sair"),
     },
   };
   const handleUpdateUser = () => {
     let newUser = userInfo;
-    newUser.bookmarkedProperties.push(properties.id);
-    updateUser(newUser);
+
+    const filterUser = newUser.bookmarkedProperties.filter(
+      (item) => item === properties.id
+    );
+
+    if (!(filterUser.length > 0)) {
+      newUser.bookmarkedProperties.push(properties.id);
+      updateUser(newUser);
+      setRenderAtt(renderAtt + 1);
+    } else {
+      newUser.bookmarkedProperties = newUser.bookmarkedProperties.filter(
+        (item) => item !== properties.id
+      );
+      updateUser(newUser);
+      setRenderAtt(renderAtt + 1);
+    }
   };
 
   return (
@@ -61,12 +78,17 @@ function PropertyCard({ properties, type }: any) {
             <ImgHouse>
               <button
                 onClick={() =>
-                  authToken.length > 0
-                    ? handleUpdateUser()
-                    : setIsOpenModal(true)
+                  !!userInfo.id ? handleUpdateUser() : setIsOpenModal(true)
                 }
               >
-                <MdBookmarkAdded />
+                {userInfo.bookmarkedProperties &&
+                userInfo.bookmarkedProperties.find(
+                  (item) => item === properties.id
+                ) ? (
+                  <AiTwotoneStar />
+                ) : (
+                  <AiOutlineStar />
+                )}
               </button>
               <img src={properties.mainImage} alt={"House"} />
             </ImgHouse>
@@ -74,7 +96,7 @@ function PropertyCard({ properties, type }: any) {
               <p>{properties.district}</p>
               <p>
                 {" "}
-                Casa em {""}
+                {properties.type} em {""}
                 {properties.city}-{properties.state}
               </p>
               <InfosHouse>
@@ -95,10 +117,10 @@ function PropertyCard({ properties, type }: any) {
               </InfosHouse>
             </InfosCard>
             <HousePrice>
-              <button>
+              <button onClick={() => history.push(`/imovel/${properties.id}`)}>
                 <img src={ButtonLogo} alt="Botão" />
               </button>
-              <p>R${properties.price.toLocaleString()}</p>
+              <p>R$ {properties.price.toLocaleString()}</p>
             </HousePrice>
           </ContainerPropertyCard>
         )}
