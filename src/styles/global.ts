@@ -8,10 +8,11 @@ export default createGlobalStyle`
         outline: 0;
         font-size: 16px;
         font-family: 'Space Mono', monospace;
+        
     }
 
     :root {
-        --ligthGray:#606060;
+        --lightGray:#606060;
         --mainGray: #F1F1F1;
         --darkOrange: #E08043;
         --orange: #F08847;
@@ -21,6 +22,7 @@ export default createGlobalStyle`
         --opacityBlue: #0F919425;
         --opacityOrange: #F0884790;
         --mainFont: 'Space Mono', monospace;
+        --darkGray: #404040;;
     }
 
     button:hover {

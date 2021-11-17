@@ -1,11 +1,17 @@
 import {
   ContainerGlobal,
   ContainerPropertyCard,
+  Description,
   HeaderCard,
   HousePrice,
   ImgHouse,
+  InfoDescription,
   InfosCard,
   InfosHouse,
+  LargeContainer,
+  LargeImgHouse,
+  LargeInfoHouse,
+  LargePrice,
   SmallCardHeader,
   SmallCardInfo,
   SmallContainer,
@@ -17,7 +23,7 @@ import { GiHomeGarage } from "react-icons/gi";
 import { RiRuler2Line } from "react-icons/ri";
 
 import ButtonLogo from "../../assets/Images/ButtonCard.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ConfirmedModal from "../ConfirmedModal";
 import { useHistory } from "react-router";
 import { useAuth } from "../../providers/Authentication";
@@ -25,9 +31,15 @@ import { AiTwotoneStar, AiOutlineStar } from "react-icons/ai";
 
 function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
   const history = useHistory();
-
+  const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
+  const handleWidth = () => {
+    setScreenWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleWidth);
+  }, []);
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const { registerPreviousPage, authToken, userInfo, updateUser } = useAuth();
+  const { registerPreviousPage, userInfo, updateUser } = useAuth();
 
   const modalInformation = {
     title: "Atenção",
@@ -69,7 +81,68 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
     <>
       {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
       <ContainerGlobal>
-        {type === "DashBoard" && (
+        {type === "DashBoard" && screenWidth > 700 ? (
+          <LargeContainer>
+            <HeaderCard>
+              <p>{properties.goal}</p>
+              <p>{properties.type}</p>
+            </HeaderCard>
+            <LargeImgHouse>
+              <button
+                onClick={() =>
+                  !!userInfo.id ? handleUpdateUser() : setIsOpenModal(true)
+                }
+              >
+                {userInfo.bookmarkedProperties &&
+                userInfo.bookmarkedProperties.find(
+                  (item) => item === properties.id
+                ) ? (
+                  <AiTwotoneStar />
+                ) : (
+                  <AiOutlineStar />
+                )}
+              </button>
+              <img src={properties.mainImage} alt={"House"} />
+            </LargeImgHouse>
+
+            <Description>
+              <InfoDescription>
+                <p>{properties.district}</p>
+                <p>
+                  {properties.type} em {""}
+                  {properties.city}-{properties.state}
+                </p>
+              </InfoDescription>
+              <p>
+                <b>Descrição:</b>/{properties.description}
+              </p>
+            </Description>
+            <LargePrice>
+              <button onClick={() => history.push(`/imovel/${properties.id}`)}>
+                <img src={ButtonLogo} alt="Botão" />
+              </button>
+              <p>R$ {properties.price.toLocaleString()}</p>
+            </LargePrice>
+            <LargeInfoHouse>
+              <InfosHouse>
+                <MdOutlineBathroom />
+                <p>{properties.bathrooms} Banheiros</p>
+              </InfosHouse>
+              <InfosHouse>
+                <BiBed />
+                <p>{properties.dorms} Quartos</p>
+              </InfosHouse>
+              <InfosHouse>
+                <GiHomeGarage />
+                <p>{properties.parking} Vagas</p>
+              </InfosHouse>
+              <InfosHouse>
+                <RiRuler2Line />
+                <p>{properties.houseArea} Metros²</p>
+              </InfosHouse>
+            </LargeInfoHouse>
+          </LargeContainer>
+        ) : type === "DashBoard" && screenWidth <= 700 ? (
           <ContainerPropertyCard>
             <HeaderCard>
               <p>{properties.goal}</p>
@@ -93,12 +166,14 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
               <img src={properties.mainImage} alt={"House"} />
             </ImgHouse>
             <InfosCard>
-              <p>{properties.district}</p>
-              <p>
-                {" "}
-                {properties.type} em {""}
-                {properties.city}-{properties.state}
-              </p>
+              <div>
+                <p>{properties.district}</p>
+                <p>
+                  {" "}
+                  {properties.type} em {""}
+                  {properties.city}-{properties.state}
+                </p>
+              </div>
               <InfosHouse>
                 <MdOutlineBathroom />
                 <p>{properties.bathrooms} Banheiros</p>
@@ -123,7 +198,8 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
               <p>R$ {properties.price.toLocaleString()}</p>
             </HousePrice>
           </ContainerPropertyCard>
-        )}
+        ) : null}
+
         {type === "HomePage" && (
           <SmallContainer>
             <img src={properties.mainImage} alt={"House"} />

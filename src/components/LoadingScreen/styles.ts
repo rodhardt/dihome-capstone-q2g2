@@ -40,7 +40,7 @@ export const LoadingScreenStyled = styled.div`
     height: 100%;
     margin: auto;
     z-index: 6;
-    background-color: #ffffff90;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -48,7 +48,6 @@ export const LoadingScreenStyled = styled.div`
   }
 
   .partial-card {
-    background-color: #ffffff90;
     color: var(--darkBlue);
     font-weight: bold;
     width: 100%;

@@ -46,6 +46,11 @@ export const InfosHouse = styled.div`
     font-size: 10px;
     font-weight: lighter;
   }
+  @media (min-width: 700px) {
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
 `;
 export const ImgHouse = styled.div`
   display: flex;
@@ -67,7 +72,6 @@ export const ImgHouse = styled.div`
     width: 30px;
     border-radius: 70px;
     border: 1px solid black;
-
     background-color: var(--orange);
     :hover {
       background-color: var(--mainGray);
@@ -83,7 +87,6 @@ export const HousePrice = styled.div`
   button {
     background-color: transparent;
     border: none;
-
     img {
       width: 10px;
     }
@@ -132,4 +135,78 @@ export const SmallCardHeader = styled.div`
     font-size: 13px;
     font-weight: bold;
   }
+`;
+export const LargeContainer = styled.div`
+  background-color: var(--opacityBlue);
+  width: 500px;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 20px;
+`;
+export const LargeImgHouse = styled.div`
+  display: flex;
+
+  img {
+    width: 200px;
+    height: 111px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+    right: 9px;
+  }
+  button {
+    position: relative;
+    left: 40px;
+    top: 10px;
+    height: 24px;
+    width: 30px;
+    border-radius: 70px;
+    border: 1px solid black;
+    background-color: var(--orange);
+    :hover {
+      background-color: var(--mainGray);
+    }
+    z-index: 2;
+  }
+`;
+export const Description = styled.div`
+  width: 260px;
+  p {
+    font-size: 10px;
+  }
+  b {
+    font-size: 10px;
+  }
+`;
+export const InfoDescription = styled.div`
+  p {
+    font-weight: bold;
+    ::first-letter {
+      text-transform: uppercase;
+    }
+  }
+`;
+export const LargePrice = styled.div`
+  display: flex;
+  gap: 5px;
+  margin: 5px;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  width: 30%;
+  button {
+    background-color: transparent;
+    border: none;
+    img {
+      width: 10px;
+      margin-left: 15px;
+    }
+  }
+`;
+export const LargeInfoHouse = styled.div`
+  display: flex;
+  width: 64%;
+  justify-content: flex-end;
+  margin-top: 5px;
+  margin-left: 15px;
 `;

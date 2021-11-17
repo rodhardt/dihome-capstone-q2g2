@@ -9,6 +9,7 @@ import oExorcista from "../../assets/Images/oExorcista.jpeg";
 import alcatraz from "../../assets/Images/alcatraz.jpeg";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { MdOutlineNavigateBefore } from "react-icons/md";
+import { HiOutlineExclamation } from "react-icons/hi";
 import { AiOutlineFilter } from "react-icons/ai";
 import PropertyCard from "../../components/PropertyCard";
 import { useProperties } from "../../providers/Properties";
@@ -19,6 +20,8 @@ import FilterModal from "../../components/Dashboard/FilterModal";
 import { PropertyData } from "../../assets/Types/property";
 
 import Header from "../../components/Header";
+
+import LoadingScreen from "../../components/LoadingScreen";
 
 interface FilterSearchData {
   price: number;
@@ -270,11 +273,16 @@ function Dashboard() {
         {isChoosingFilters && (
           <FilterModal handleFilter={handleFilter} closeWindow={closeWindow} />
         )}
-        {/* <button onClick={() => handleFilteredProperties()}>Teste</button> */}
+
         <button className="filter" onClick={() => setIsChoosingFilters(true)}>
           <AiOutlineFilter /> Abrir Filtros
         </button>
 
+        {properties.length === 0 && (
+          <div className="loading-dashboard">
+            <LoadingScreen type="partial" message="Buscando imóveis" />
+          </div>
+        )}
         {renderAtt &&
           filteredProperties
             .filter((property) => property.consultantStatus === "aprovado")
@@ -286,6 +294,12 @@ function Dashboard() {
                 renderAtt={renderAtt}
               />
             ))}
+        {properties.length > 0 && filteredProperties.length === 0 && (
+          <div className="search-failed">
+            <p>Nenhum imóvel atende sua busca</p>
+            <HiOutlineExclamation />
+          </div>
+        )}
       </DashboardStyled>
     </>
   );

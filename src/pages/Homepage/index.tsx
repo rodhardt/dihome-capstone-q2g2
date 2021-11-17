@@ -28,10 +28,11 @@ import styleComponentLefth from "../../assets/Images/styleComponentLefth.png";
 import Footer from "../../components/Footer";
 import { useAuth } from "../../providers/Authentication";
 import Header from "../../components/Header";
+import LoadingScreen from "../../components/LoadingScreen";
 
 function Homepage() {
   const { properties } = useProperties();
-  const { authToken } = useAuth();
+  const { userInfo } = useAuth();
   const history = useHistory();
 
   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
@@ -52,11 +53,7 @@ function Homepage() {
         <ContainerHome>
           <ButtonHome1>
             <Button
-              onClick={() =>
-                authToken.length > 0
-                  ? history.push("/imoveis")
-                  : history.push("/login")
-              }
+              onClick={() => history.push("/imoveis")}
               startIcon={<FaHome />}
               variant="outlined"
             >
@@ -65,11 +62,7 @@ function Homepage() {
           </ButtonHome1>
           <ButtonHome2>
             <Button
-              onClick={() =>
-                authToken.length > 0
-                  ? history.push("/imoveis")
-                  : history.push("/planos")
-              }
+              onClick={() => history.push("/perfil")}
               startIcon={<MdMapsHomeWork />}
               variant="outlined"
             >
@@ -127,23 +120,23 @@ function Homepage() {
         )}
         <PropertyList>
           <h3>Aqui estão alguns de nossos anúncios</h3>
-          {properties.map(
-            (item, index) =>
-              index < 2 && (
-                <li>
-                  <PropertyCard properties={item} type="HomePage" />
-                </li>
-              )
+          {properties.length > 0 ? (
+            properties?.map(
+              (item, index) =>
+                index < 2 && (
+                  <li key={index}>
+                    <PropertyCard properties={item} type="HomePage" />
+                  </li>
+                )
+            )
+          ) : (
+            <LoadingScreen type="partial" message="" />
           )}
-          <Button
-            onClick={() =>
-              authToken.length > 0
-                ? history.push("/imoveis")
-                : history.push("/login")
-            }
-          >
-            Veja mais anuncios
-          </Button>
+          {properties.length > 0 && (
+            <Button onClick={() => history.push("/imoveis")}>
+              Veja mais anuncios
+            </Button>
+          )}
         </PropertyList>
         {screenWidth >= 1150 && (
           <Unstyled2>
