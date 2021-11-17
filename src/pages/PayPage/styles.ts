@@ -4,13 +4,18 @@ export const PayPageStyled = styled.main`
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+`;
 
-  @media (min-width: 768px) {
-    min-height: 450px;
-  }
+export const PayCardContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: 30px auto;
 `;
 
 export const ButtonBox = styled.div`
@@ -38,15 +43,28 @@ export const ButtonBox = styled.div`
     :hover {
       color: var(--mainGray);
       background-color: var(--darkBlue);
-      border: 4px solid var(--darkBlue);
 
       transition: 500ms;
+    }
+  }
+  @media (min-width: 880px) {
+    button {
     }
   }
 `;
 
 export const BoxTitle = styled.div`
   text-align: center;
-
-  margin-top: 5%;
+  width: 100%;
+  margin-top: 15px;
+  h2 {
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+    font-size: 18px;
+    color: var(--darkBlue);
+    font-weight: bold;
+    border-bottom: 1px solid var(--darkBlue);
+    padding: 10px;
+  }
 `;
