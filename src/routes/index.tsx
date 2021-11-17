@@ -6,7 +6,6 @@ import LoginPage from "../pages/LoginPage";
 import PayPage from "../pages/PayPage";
 import Profile from "../pages/Profile";
 import PropertyPage from "../pages/PropertyPage";
-import RegisterPage from "../pages/RegisterPage";
 
 function Routes() {
   return (
@@ -16,9 +15,6 @@ function Routes() {
       </Route>
       <Route path="/login">
         <LoginPage />
-      </Route>
-      <Route path="/registrar">
-        <RegisterPage />
       </Route>
       <Route path="/imoveis">
         <Dashboard />

@@ -1,5 +1,5 @@
 export interface PropertyData {
-  id?: number;
+  id: number;
   announcerId: number;
   consultantStatus: string;
   announcerStatus: string;
