@@ -125,11 +125,15 @@ export const BackPage = styled.div`
   > svg {
     width: 20px;
     height: 20px;
+    margin-right: 10px;
   }
   > a {
     text-decoration: none;
     font-size: 15px;
     margin-left: 10px;
+  }
+  :hover {
+    text-decoration: underline;
   }
 `;
 
