@@ -84,4 +84,20 @@ export const DashboardStyled = styled.main`
     color: white;
     background-color: var(--lightOrange);
   }
+
+  .search-failed {
+    margin: 50px auto 0;
+    text-align: center;
+    padding: 0 20px;
+  }
+  .search-failed p {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--darkGray);
+  }
+  .search-failed svg {
+    width: 40px;
+    height: 40px;
+    color: var(--darkOrange);
+  }
 `;

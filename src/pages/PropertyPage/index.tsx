@@ -5,7 +5,7 @@ import { FiSend } from "react-icons/fi";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { FaUserCircle, FaBed, FaSink } from "react-icons/fa";
 import { RiRulerLine, RiRuler2Line } from "react-icons/ri";
-import { MdBookmarkAdded } from "react-icons/md";
+
 import { MdOutlineLibraryBooks } from "react-icons/md";
 import { useHistory, useParams } from "react-router";
 import Footer from "../../components/Footer";
@@ -38,6 +38,8 @@ import {
 import { ConsultantButtons } from "../../components/Consultant/Buttons";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import { AiTwotoneStar, AiOutlineStar } from "react-icons/ai";
+
+import LoadingScreen from "../../components/LoadingScreen";
 
 import Header from "../../components/Header";
 
@@ -208,9 +210,21 @@ const PropertyPage = () => {
     }
   };
 
+  useEffect(() => {
+    if (
+      properties.length > 0 &&
+      properties.every((property) => property.id !== Number(id))
+    ) {
+      history.push("/imoveis");
+    }
+  }, [properties]);
+
   return (
     <>
       <Header />
+      {properties.length === 0 && (
+        <LoadingScreen type="full" message="Buscando" />
+      )}
       <PropertyPageStyled>
         {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
         {isOpenSecondModal && (
