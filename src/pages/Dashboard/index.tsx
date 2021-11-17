@@ -276,14 +276,16 @@ function Dashboard() {
         </button>
 
         {renderAtt &&
-          filteredProperties.map((item) => (
-            <PropertyCard
-              properties={item}
-              type="DashBoard"
-              setRenderAtt={setRenderAtt}
-              renderAtt={renderAtt}
-            />
-          ))}
+          filteredProperties
+            .filter((property) => property.consultantStatus === "aprovado")
+            .map((item) => (
+              <PropertyCard
+                properties={item}
+                type="DashBoard"
+                setRenderAtt={setRenderAtt}
+                renderAtt={renderAtt}
+              />
+            ))}
       </DashboardStyled>
     </>
   );

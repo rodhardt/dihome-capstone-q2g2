@@ -72,9 +72,10 @@ export const ImagesCarossel = styled.div`
   flex-direction: column;
   align-items: center;
   position: fixed;
-  top: 0px;
-  left: 0px;
-  transform: translate(0%, 50%);
+  width: 100%;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1;
 
   .flexRow {

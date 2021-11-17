@@ -10,7 +10,7 @@ export const LoadingScreenStyled = styled.div`
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 4;
+    z-index: 6;
     background-color: #ffffff90;
     width: 100%;
     height: 100%;
@@ -39,7 +39,7 @@ export const LoadingScreenStyled = styled.div`
     width: 100%;
     height: 100%;
     margin: auto;
-    z-index: 4;
+    z-index: 6;
     background-color: #ffffff90;
     display: flex;
     flex-direction: column;

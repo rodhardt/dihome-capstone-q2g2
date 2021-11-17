@@ -398,9 +398,9 @@ const PropertyPage = () => {
               <button onClick={() => history.push("/login")}>Login</button>
             </WithoutMapSection>
           )}
-          <Footer />
         </MaxWidthAdapter>
       </PropertyPageStyled>
+      <Footer />
     </>
   );
 };
