@@ -3,9 +3,10 @@ import styled from "styled-components";
 export const UserCardStyled = styled.section`
   display: flex;
   flex-direction: column;
-  border-bottom: 3px solid var(--mainGray);
+  border-bottom: 3px solid var(--opacityBlue);
+  border-radius: 2px;
   padding: 20px;
-  width: 100%;
+  width: 95%;
   margin: auto;
 
   .user-container {

@@ -30,6 +30,10 @@ export default createGlobalStyle`
     body {
         background-color: var(--mainGray);
         min-height: 100vh;
+        position: absolute;
+        max-width: 100vw;
+        width: 100%;
+        height: 100%;
     }
 
     main, section {

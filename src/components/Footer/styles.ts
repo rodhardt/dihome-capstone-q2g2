@@ -4,7 +4,7 @@ import cityFooter from "../../assets/Images/cityFooter.png";
 
 export const FooterStyled = styled.footer`
   background-image: url(${cityFooter});
-  width: 100vw;
+  width: 100%;
   height: calc(100vw * 520 / 1114);
   max-height: 300px;
   background-size: cover;
