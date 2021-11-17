@@ -167,6 +167,8 @@ const PropertyPage = () => {
     }
   };
 
+  console.log(userInfo)
+
   const [lastImage, setLastImage] = useState(0);
 
   useEffect(() => {
