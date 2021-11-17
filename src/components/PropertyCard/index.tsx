@@ -54,10 +54,11 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
     },
     cancelButton: {
       cancelText: "Sair",
-      cancelFunction: () => console.log("sair"),
+      cancelFunction: () => null,
     },
   };
-  const handleUpdateUser = () => {
+  const handleUpdateUser = (evt: any) => {
+    evt.stopPropagation();
     let newUser = userInfo;
 
     const filterUser = newUser.bookmarkedProperties.filter(
@@ -77,20 +78,27 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
     }
   };
 
+  const handleOpenModal = (evt: any) => {
+    evt.stopPropagation();
+    setIsOpenModal(true);
+  };
+
   return (
     <>
       {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
       <ContainerGlobal>
         {type === "DashBoard" && screenWidth > 700 ? (
-          <LargeContainer>
+          <LargeContainer
+            onClick={() => history.push(`/imovel/${properties.id}`)}
+          >
             <HeaderCard>
               <p>{properties.goal}</p>
               <p>{properties.type}</p>
             </HeaderCard>
             <LargeImgHouse>
               <button
-                onClick={() =>
-                  !!userInfo.id ? handleUpdateUser() : setIsOpenModal(true)
+                onClick={(evt) =>
+                  !!userInfo.id ? handleUpdateUser(evt) : handleOpenModal(evt)
                 }
               >
                 {userInfo.bookmarkedProperties &&
@@ -118,9 +126,6 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
               </p>
             </Description>
             <LargePrice>
-              <button onClick={() => history.push(`/imovel/${properties.id}`)}>
-                <img src={ButtonLogo} alt="Botão" />
-              </button>
               <p>R$ {properties.price.toLocaleString()}</p>
             </LargePrice>
             <LargeInfoHouse>
@@ -143,15 +148,17 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
             </LargeInfoHouse>
           </LargeContainer>
         ) : type === "DashBoard" && screenWidth <= 700 ? (
-          <ContainerPropertyCard>
+          <ContainerPropertyCard
+            onClick={() => history.push(`/imovel/${properties.id}`)}
+          >
             <HeaderCard>
               <p>{properties.goal}</p>
               <p>{properties.type}</p>
             </HeaderCard>
             <ImgHouse>
               <button
-                onClick={() =>
-                  !!userInfo.id ? handleUpdateUser() : setIsOpenModal(true)
+                onClick={(evt) =>
+                  !!userInfo.id ? handleUpdateUser(evt) : handleOpenModal(evt)
                 }
               >
                 {userInfo.bookmarkedProperties &&
@@ -192,16 +199,15 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
               </InfosHouse>
             </InfosCard>
             <HousePrice>
-              <button onClick={() => history.push(`/imovel/${properties.id}`)}>
-                <img src={ButtonLogo} alt="Botão" />
-              </button>
               <p>R$ {properties.price.toLocaleString()}</p>
             </HousePrice>
           </ContainerPropertyCard>
         ) : null}
 
         {type === "HomePage" && (
-          <SmallContainer>
+          <SmallContainer
+            onClick={() => history.push(`/imovel/${properties.id}`)}
+          >
             <img src={properties.mainImage} alt={"House"} />
             <SmallInfos>
               <SmallCardHeader>

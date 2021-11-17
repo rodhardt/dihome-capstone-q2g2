@@ -84,6 +84,12 @@ export const HousePrice = styled.div`
   display: flex;
   align-items: flex-end;
   flex-direction: column;
+
+  margin-bottom: 0;
+
+  p {
+    font-weight: bold;
+  }
   button {
     background-color: transparent;
     border: none;
@@ -92,7 +98,7 @@ export const HousePrice = styled.div`
     }
   }
   position: relative;
-  bottom: 50px;
+  bottom: 20px;
   left: 10px;
   z-index: 2;
 `;
@@ -143,6 +149,11 @@ export const LargeContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   border-radius: 20px;
+  :hover {
+    cursor: pointer;
+    padding: 4px;
+    border: 1px solid var(--darkBlue);
+  }
 `;
 export const LargeImgHouse = styled.div`
   display: flex;
@@ -192,8 +203,12 @@ export const LargePrice = styled.div`
   gap: 5px;
   margin: 5px;
   flex-direction: row-reverse;
-  align-items: flex-end;
+  align-items: center;
   width: 30%;
+  p {
+    font-size: 18px;
+    font-weight: bold;
+  }
   button {
     background-color: transparent;
     border: none;
