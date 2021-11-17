@@ -6,7 +6,8 @@ import logoWithoutName from "../../assets/Images/logoWithoutName.png";
 import { useAuth } from "../../providers/Authentication";
 import { VscAccount } from "react-icons/vsc";
 function Header() {
-  const { authToken } = useAuth();
+  const { userInfo, logout } = useAuth();
+  const history = useHistory();
 
   return (
     <>
@@ -26,13 +27,19 @@ function Header() {
         <Link className="link text" to="/perfil">
           Anuncie aqui
         </Link>
-        {authToken === "" ? (
+        {!!userInfo.id ? (
+          <div className="last menu-container">
+            <Link className="link profile last" to="/perfil">
+              <VscAccount className="linkFont" />
+            </Link>
+            <ul className="logged-options">
+              <li onClick={() => history.push("/perfil")}>Perfil</li>
+              <li onClick={() => logout()}>Logout</li>
+            </ul>
+          </div>
+        ) : (
           <Link className="link login last" to="/login">
             Login
-          </Link>
-        ) : (
-          <Link className="link last" to="/perfil">
-            <VscAccount className="linkFont" />
           </Link>
         )}
       </HeaderStyled>

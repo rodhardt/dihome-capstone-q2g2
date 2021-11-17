@@ -62,6 +62,36 @@ export const HeaderStyled = styled.header`
     padding: 3px 11px;
   }
 
+  .menu-container {
+    position: relative;
+  }
+
+  .logged-options {
+    display: none;
+    position: absolute;
+    left: 100%;
+    transform: translate(calc(-100% - 10px), 42px);
+  }
+  .logged-options li {
+    background-color: var(--mainGray);
+    width: 100px;
+    color: var(--darkBlue);
+    border: 1px solid var(--darkBlue);
+    text-align: right;
+    padding-right: 10px;
+    border-radius: 3px;
+  }
+
+  .menu-container:hover .logged-options {
+    display: block;
+  }
+
+  .logged-options li:hover {
+    cursor: pointer;
+    background-color: var(--darkBlue);
+    color: var(--mainGray);
+  }
+
   @media screen and (min-width: 430px) {
     .text {
       margin: 0px 10px;
