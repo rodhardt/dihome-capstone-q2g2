@@ -81,131 +81,124 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
     <>
       {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
       <ContainerGlobal>
-        {
-          (type =
-            "DashBoard" && screenWidth > 700 ? (
-              <LargeContainer>
-                <HeaderCard>
-                  <p>{properties.goal}</p>
-                  <p>{properties.type}</p>
-                </HeaderCard>
-                <LargeImgHouse>
-                  <button
-                    onClick={() =>
-                      !!userInfo.id ? handleUpdateUser() : setIsOpenModal(true)
-                    }
-                  >
-                    {userInfo.bookmarkedProperties &&
-                    userInfo.bookmarkedProperties.find(
-                      (item) => item === properties.id
-                    ) ? (
-                      <AiTwotoneStar />
-                    ) : (
-                      <AiOutlineStar />
-                    )}
-                  </button>
-                  <img src={properties.mainImage} alt={"House"} />
-                </LargeImgHouse>
+        {type === "DashBoard" && screenWidth > 700 ? (
+          <LargeContainer>
+            <HeaderCard>
+              <p>{properties.goal}</p>
+              <p>{properties.type}</p>
+            </HeaderCard>
+            <LargeImgHouse>
+              <button
+                onClick={() =>
+                  !!userInfo.id ? handleUpdateUser() : setIsOpenModal(true)
+                }
+              >
+                {userInfo.bookmarkedProperties &&
+                userInfo.bookmarkedProperties.find(
+                  (item) => item === properties.id
+                ) ? (
+                  <AiTwotoneStar />
+                ) : (
+                  <AiOutlineStar />
+                )}
+              </button>
+              <img src={properties.mainImage} alt={"House"} />
+            </LargeImgHouse>
 
-                <Description>
-                  <InfoDescription>
-                    <p>{properties.district}</p>
-                    <p>
-                      {properties.type} em {""}
-                      {properties.city}-{properties.state}
-                    </p>
-                  </InfoDescription>
-                  <p>
-                    <b>Descrição:</b>/{properties.description}
-                  </p>
-                </Description>
-                <LargePrice>
-                  <button
-                    onClick={() => history.push(`/imovel/${properties.id}`)}
-                  >
-                    <img src={ButtonLogo} alt="Botão" />
-                  </button>
-                  <p>R$ {properties.price.toLocaleString()}</p>
-                </LargePrice>
-                <LargeInfoHouse>
-                  <InfosHouse>
-                    <MdOutlineBathroom />
-                    <p>{properties.bathrooms} Banheiros</p>
-                  </InfosHouse>
-                  <InfosHouse>
-                    <BiBed />
-                    <p>{properties.dorms} Quartos</p>
-                  </InfosHouse>
-                  <InfosHouse>
-                    <GiHomeGarage />
-                    <p>{properties.parking} Vagas</p>
-                  </InfosHouse>
-                  <InfosHouse>
-                    <RiRuler2Line />
-                    <p>{properties.houseArea} Metros²</p>
-                  </InfosHouse>
-                </LargeInfoHouse>
-              </LargeContainer>
-            ) : (
-              <ContainerPropertyCard>
-                <HeaderCard>
-                  <p>{properties.goal}</p>
-                  <p>{properties.type}</p>
-                </HeaderCard>
-                <ImgHouse>
-                  <button
-                    onClick={() =>
-                      !!userInfo.id ? handleUpdateUser() : setIsOpenModal(true)
-                    }
-                  >
-                    {userInfo.bookmarkedProperties &&
-                    userInfo.bookmarkedProperties.find(
-                      (item) => item === properties.id
-                    ) ? (
-                      <AiTwotoneStar />
-                    ) : (
-                      <AiOutlineStar />
-                    )}
-                  </button>
-                  <img src={properties.mainImage} alt={"House"} />
-                </ImgHouse>
-                <InfosCard>
-                  <div>
-                    <p>{properties.district}</p>
-                    <p>
-                      {" "}
-                      {properties.type} em {""}
-                      {properties.city}-{properties.state}
-                    </p>
-                  </div>
-                  <InfosHouse>
-                    <MdOutlineBathroom />
-                    <p>{properties.bathrooms} Banheiros</p>
-                  </InfosHouse>
-                  <InfosHouse>
-                    <BiBed />
-                    <p>{properties.dorms} Quartos</p>
-                  </InfosHouse>
-                  <InfosHouse>
-                    <GiHomeGarage />
-                    <p>{properties.parking} Vagas</p>
-                  </InfosHouse>
-                  <InfosHouse>
-                    <RiRuler2Line />
-                    <p>{properties.houseArea} Metros²</p>
-                  </InfosHouse>
-                </InfosCard>
-                <HousePrice>
-                  <button
-                    onClick={() => history.push(`/imovel/${properties.id}`)}
-                  >
-                    <img src={ButtonLogo} alt="Botão" />
-                  </button>
-                  <p>R$ {properties.price.toLocaleString()}</p>
-                </HousePrice>
-              </ContainerPropertyCard>
-            ))
-        }
+            <Description>
+              <InfoDescription>
+                <p>{properties.district}</p>
+                <p>
+                  {properties.type} em {""}
+                  {properties.city}-{properties.state}
+                </p>
+              </InfoDescription>
+              <p>
+                <b>Descrição:</b>/{properties.description}
+              </p>
+            </Description>
+            <LargePrice>
+              <button onClick={() => history.push(`/imovel/${properties.id}`)}>
+                <img src={ButtonLogo} alt="Botão" />
+              </button>
+              <p>R$ {properties.price.toLocaleString()}</p>
+            </LargePrice>
+            <LargeInfoHouse>
+              <InfosHouse>
+                <MdOutlineBathroom />
+                <p>{properties.bathrooms} Banheiros</p>
+              </InfosHouse>
+              <InfosHouse>
+                <BiBed />
+                <p>{properties.dorms} Quartos</p>
+              </InfosHouse>
+              <InfosHouse>
+                <GiHomeGarage />
+                <p>{properties.parking} Vagas</p>
+              </InfosHouse>
+              <InfosHouse>
+                <RiRuler2Line />
+                <p>{properties.houseArea} Metros²</p>
+              </InfosHouse>
+            </LargeInfoHouse>
+          </LargeContainer>
+        ) : type === "DashBoard" && screenWidth <= 700 ? (
+          <ContainerPropertyCard>
+            <HeaderCard>
+              <p>{properties.goal}</p>
+              <p>{properties.type}</p>
+            </HeaderCard>
+            <ImgHouse>
+              <button
+                onClick={() =>
+                  !!userInfo.id ? handleUpdateUser() : setIsOpenModal(true)
+                }
+              >
+                {userInfo.bookmarkedProperties &&
+                userInfo.bookmarkedProperties.find(
+                  (item) => item === properties.id
+                ) ? (
+                  <AiTwotoneStar />
+                ) : (
+                  <AiOutlineStar />
+                )}
+              </button>
+              <img src={properties.mainImage} alt={"House"} />
+            </ImgHouse>
+            <InfosCard>
+              <div>
+                <p>{properties.district}</p>
+                <p>
+                  {" "}
+                  {properties.type} em {""}
+                  {properties.city}-{properties.state}
+                </p>
+              </div>
+              <InfosHouse>
+                <MdOutlineBathroom />
+                <p>{properties.bathrooms} Banheiros</p>
+              </InfosHouse>
+              <InfosHouse>
+                <BiBed />
+                <p>{properties.dorms} Quartos</p>
+              </InfosHouse>
+              <InfosHouse>
+                <GiHomeGarage />
+                <p>{properties.parking} Vagas</p>
+              </InfosHouse>
+              <InfosHouse>
+                <RiRuler2Line />
+                <p>{properties.houseArea} Metros²</p>
+              </InfosHouse>
+            </InfosCard>
+            <HousePrice>
+              <button onClick={() => history.push(`/imovel/${properties.id}`)}>
+                <img src={ButtonLogo} alt="Botão" />
+              </button>
+              <p>R$ {properties.price.toLocaleString()}</p>
+            </HousePrice>
+          </ContainerPropertyCard>
+        ) : null}
 
         {type === "HomePage" && (
           <SmallContainer>
