@@ -9,11 +9,11 @@ export const HomepageStyled = styled.div`
   background-color: var(--mainGray);
   img {
     width: 100%;
-    height: 150px;
-    @media screen and (min-width: 700px) {
-      img {
-        height: 300px;
-      }
+    height: 120px;
+  }
+  @media (min-width: 490px) {
+    img {
+      height: 160px;
     }
   }
   h3 {
