@@ -50,7 +50,7 @@ function AnnouncedProperties() {
         <AnnounceFormModal closeWindow={closeAnnounceWindow} />
       )}
       <AnnouncedPropertiesStyled>
-            {userInfo.markedDates.length > 0 && (
+            {userInfo.markedDates?.length > 0 && (
             <div className="table-container">
                 <h3>Visitas agendadas</h3>
                 <table>
