@@ -27,6 +27,7 @@ import { useEffect, useState } from "react";
 import ConfirmedModal from "../ConfirmedModal";
 import { useHistory } from "react-router";
 import { useAuth } from "../../providers/Authentication";
+import { useProperties } from "../../providers/Properties";
 import { AiTwotoneStar, AiOutlineStar } from "react-icons/ai";
 
 function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
@@ -40,6 +41,7 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
   }, []);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { registerPreviousPage, userInfo, updateUser } = useAuth();
+  const { updateProperty } = useProperties();
 
   const modalInformation = {
     title: "Atenção",
@@ -69,12 +71,65 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
       newUser.bookmarkedProperties.push(properties.id);
       updateUser(newUser);
       setRenderAtt(renderAtt + 1);
+      const newPropertyInfo = {
+        id: properties.id,
+        announcerId: properties.announcerId,
+        consultantStatus: properties.consultantStatus,
+        announcerStatus: properties.announcerStatus,
+        viewsCount: properties.viewsCount,
+        bookmarkCount: properties.bookmarkCount + 1,
+        title: properties.title,
+        street: properties.street,
+        state: properties.state,
+        city: properties.city,
+        district: properties.district,
+        number: properties.number,
+        type: properties.type,
+        goal: properties.goal,
+        dorms: properties.dorms,
+        parking: properties.parking,
+        bathrooms: properties.bathrooms,
+        houseArea: properties.houseArea,
+        landArea: properties.landArea,
+        description: properties.description,
+        mainImage: properties.mainImage,
+        images: properties.images,
+        price: properties.price,
+      };
+      updateProperty(newPropertyInfo);
     } else {
       newUser.bookmarkedProperties = newUser.bookmarkedProperties.filter(
         (item) => item !== properties.id
       );
       updateUser(newUser);
       setRenderAtt(renderAtt + 1);
+      const newPropertyInfo = {
+        id: properties.id,
+        announcerId: properties.announcerId,
+        consultantStatus: properties.consultantStatus,
+        announcerStatus: properties.announcerStatus,
+        viewsCount: properties.viewsCount,
+        bookmarkCount: properties.bookmarkCount - 1,
+        title: properties.title,
+        street: properties.street,
+        state: properties.state,
+        city: properties.city,
+        district: properties.district,
+        number: properties.number,
+        type: properties.type,
+        goal: properties.goal,
+        dorms: properties.dorms,
+        parking: properties.parking,
+        bathrooms: properties.bathrooms,
+        houseArea: properties.houseArea,
+        landArea: properties.landArea,
+        description: properties.description,
+        mainImage: properties.mainImage,
+        images: properties.images,
+        price: properties.price,
+      };
+
+      updateProperty(newPropertyInfo);
     }
   };
 
