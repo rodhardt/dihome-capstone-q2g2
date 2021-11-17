@@ -56,6 +56,7 @@ const RegisterPage = () => {
       announcedProperties: [],
       bookmarkedProperties: [],
       subscriptionType: "Nenhum",
+      markedDates: [],
     };
 
     registerUser(newUser);

@@ -33,6 +33,7 @@ export const PayCard = ({
     announcedProperties: userInfo.announcedProperties,
     bookmarkedProperties: userInfo.bookmarkedProperties,
     subscriptionType: planName,
+    markedDates: userInfo.markedDates,
   };
 
   const modalInformation = {
@@ -43,7 +44,6 @@ export const PayCard = ({
       confirmText: "confirmar",
       confirmFunction: () => {
         updateUser(newUserInfo);
-        console.log(newUserInfo);
         setIsOpenSecondModal(true);
       },
     },
