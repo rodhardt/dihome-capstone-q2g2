@@ -119,6 +119,14 @@ export const DashboardStyled = styled.main`
     color: var(--darkOrange);
   }
 
+  ul {
+    width: 95%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
   @media screen and (min-width: 900px) {
     .slider {
       height: 500px;

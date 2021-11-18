@@ -55,6 +55,10 @@ export const InfosHouse = styled.div`
     flex-direction: column;
     align-items: center;
     margin: 10px;
+    p {
+      font-size: 11px;
+      text-align: center;
+    }
   }
 `;
 export const ImgHouse = styled.div`
@@ -73,13 +77,17 @@ export const ImgHouse = styled.div`
     position: relative;
     left: 40px;
     top: 10px;
-    height: 24px;
-    width: 30px;
+    height: 26px;
+    width: 26px;
     border-radius: 70px;
-    border: 1px solid black;
-    background-color: var(--orange);
+    border: 1px solid var(--lightOrange);
+    background-color: var(--lightOrange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     :hover {
       background-color: var(--mainGray);
+      border: 1px solid #ffffff;
     }
     z-index: 2;
   }
@@ -183,14 +191,15 @@ export const LargeImgHouse = styled.div`
     height: 26px;
     width: 26px;
     border-radius: 70px;
-    border: 1px solid black;
-    background-color: var(--orange);
+    border: 1px solid var(--lightOrange);
+    background-color: var(--lightOrange);
     display: flex;
     align-items: center;
     justify-content: center;
 
     :hover {
       background-color: var(--mainGray);
+      border: 1px solid #ffffff;
     }
     z-index: 2;
   }
