@@ -31,6 +31,9 @@ import { useProperties } from "../../providers/Properties";
 import { AiTwotoneStar, AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { ImHeart } from "react-icons/im";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
   const history = useHistory();
   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
@@ -60,6 +63,28 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
       cancelFunction: () => null,
     },
   };
+
+  const mark = () =>
+    toast.success("Imóvel salvo!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  const unmark = () =>
+    toast.error("Imóvel retirado", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
   const handleUpdateUser = (evt: any) => {
     evt.stopPropagation();
     let newUser = userInfo;
@@ -97,6 +122,7 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
         images: properties.images,
         price: properties.price,
       };
+      mark();
       updateProperty(newPropertyInfo);
     } else {
       newUser.bookmarkedProperties = newUser.bookmarkedProperties.filter(
@@ -129,7 +155,7 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
         images: properties.images,
         price: properties.price,
       };
-
+      unmark();
       updateProperty(newPropertyInfo);
     }
   };

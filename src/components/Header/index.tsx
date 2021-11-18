@@ -5,9 +5,24 @@ import { Link, useHistory } from "react-router-dom";
 import logoWithoutName from "../../assets/Images/logoWithoutName.png";
 import { useAuth } from "../../providers/Authentication";
 import { VscAccount } from "react-icons/vsc";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function Header() {
   const { userInfo, logout } = useAuth();
   const history = useHistory();
+
+  const notify = () =>
+    toast.warn("Você saiu da conta", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   return (
     <>
@@ -34,7 +49,14 @@ function Header() {
             </div>
             <ul className="logged-options">
               <li onClick={() => history.push("/perfil")}>Perfil</li>
-              <li onClick={() => logout()}>Logout</li>
+              <li
+                onClick={() => {
+                  notify();
+                  logout();
+                }}
+              >
+                Logout
+              </li>
             </ul>
           </div>
         ) : (

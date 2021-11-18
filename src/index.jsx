@@ -6,7 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 
 import { BrowserRouter } from "react-router-dom";
 import Providers from "./providers";
+import Kommunicate from "@kommunicate/kommunicate-chatbot-plugin";
 
+Kommunicate.init("3c03b2bae239d9796ffaefcb05fb899e8");
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

@@ -22,6 +22,7 @@ import { PropertyData } from "../../assets/Types/property";
 import Header from "../../components/Header";
 
 import LoadingScreen from "../../components/LoadingScreen";
+import KommunicateChat from "../../components/Chat/chat";
 
 interface FilterSearchData {
   price: number;

@@ -3,6 +3,9 @@ import { UserEditStyled } from "./styles";
 
 import { useAuth } from "../../../providers/Authentication";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 interface UserEditProps {
   closeModal: () => void;
 }
@@ -30,6 +33,17 @@ function UserEdit({ closeModal }: UserEditProps) {
     }
   };
 
+  const notify = () =>
+    toast.success("Informações atualizadas!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
   const submitChanges = () => {
     const newUserInfo = {
       id: userInfo.id,
@@ -42,69 +56,72 @@ function UserEdit({ closeModal }: UserEditProps) {
       subscriptionType: userInfo.subscriptionType,
       markedDates: userInfo.markedDates,
     };
+    notify();
     updateUser(newUserInfo);
   };
 
   return (
-    <UserEditStyled>
-      <div className="modal-card">
-        <header>
-          <h4>Alterar Informações</h4>
+    <>
+      <UserEditStyled>
+        <div className="modal-card">
+          <header>
+            <h4>Alterar Informações</h4>
 
-          <button className="close-button" onClick={() => closeModal()}>
-            X
-          </button>
-        </header>
-        <div className="form-container">
-          <div className="input-container">
-            <label htmlFor="input-name">Nome</label>
-            <input
-              id="input-name"
-              value={inputName}
-              onClick={() => handleInputName()}
-              onChange={(evt) => setInputName(evt.target.value)}
-            />
+            <button className="close-button" onClick={() => closeModal()}>
+              X
+            </button>
+          </header>
+          <div className="form-container">
+            <div className="input-container">
+              <label htmlFor="input-name">Nome</label>
+              <input
+                id="input-name"
+                value={inputName}
+                onClick={() => handleInputName()}
+                onChange={(evt) => setInputName(evt.target.value)}
+              />
+            </div>
+            <div className="input-container">
+              <label htmlFor="input-email">E-mail</label>
+              <input
+                id="input-email"
+                value={inputEmail}
+                onClick={() => handleInputEmail()}
+                onChange={(evt) => setInputEmail(evt.target.value)}
+              />
+            </div>
+            <div className="input-container">
+              <label htmlFor="input-telephone">Telefone</label>
+              <input
+                id="input-telephone"
+                value={inputTelephone}
+                onClick={() => handleInputTelephone()}
+                onChange={(evt) => setInputTelephone(evt.target.value)}
+              />
+            </div>
           </div>
-          <div className="input-container">
-            <label htmlFor="input-email">E-mail</label>
-            <input
-              id="input-email"
-              value={inputEmail}
-              onClick={() => handleInputEmail()}
-              onChange={(evt) => setInputEmail(evt.target.value)}
-            />
-          </div>
-          <div className="input-container">
-            <label htmlFor="input-telephone">Telefone</label>
-            <input
-              id="input-telephone"
-              value={inputTelephone}
-              onClick={() => handleInputTelephone()}
-              onChange={(evt) => setInputTelephone(evt.target.value)}
-            />
+          <div className="buttons-container">
+            <button
+              className="confirm-button"
+              onClick={() => {
+                submitChanges();
+                closeModal();
+              }}
+            >
+              Alterar
+            </button>
+            <button
+              className="cancel-button"
+              onClick={() => {
+                closeModal();
+              }}
+            >
+              cancelar
+            </button>
           </div>
         </div>
-        <div className="buttons-container">
-          <button
-            className="confirm-button"
-            onClick={() => {
-              submitChanges();
-              closeModal();
-            }}
-          >
-            Alterar
-          </button>
-          <button
-            className="cancel-button"
-            onClick={() => {
-              closeModal();
-            }}
-          >
-            cancelar
-          </button>
-        </div>
-      </div>
-    </UserEditStyled>
+      </UserEditStyled>
+    </>
   );
 }
 
