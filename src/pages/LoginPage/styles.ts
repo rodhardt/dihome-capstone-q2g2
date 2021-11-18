@@ -68,9 +68,10 @@ export const FormLogin = styled.form`
     background-color: var(--darkBlue);
     :hover {
       transition: 300ms;
-      background-color: #00000010;
+      background-color: var(--mainGray);
       color: var(--darkBlue);
       border: 1px solid var(--darkBlue);
+      font-weight: bold;
     }
   }
   > .registerButton {
@@ -82,7 +83,7 @@ export const FormLogin = styled.form`
     color: #707070;
     border: 2px solid var(--darkBlue);
     color: var(--darkBlue);
-    background-color: #00000010;
+    background-color: var(--mainGray);
 
     :hover {
       transition: 300ms;
