@@ -23,7 +23,8 @@ import coin from "../../assets/Images/coin.png";
 import ImageChat from "../../assets/Images/ImageChat.png";
 import styleComponentRigth from "../../assets/Images/styleComponentRigth.png";
 import ImageCityHome from "../../assets/Images/ImageCityHome.png";
-import LogoBannerHome from "../../assets/Images/LogoBannerHome.png";
+import LogoBannerHome from "../../assets/Images/banner-cidade-top.png";
+import LogoWithName from "../../assets/Images/logoWithName.png";
 import styleComponentLefth from "../../assets/Images/styleComponentLefth.png";
 import Footer from "../../components/Footer";
 import { useAuth } from "../../providers/Authentication";
@@ -49,7 +50,11 @@ function Homepage() {
     <>
       <Header />
       <HomepageStyled>
-        <img src={LogoBannerHome} alt="banner" />
+        <div className="banner-container">
+          {/* <img className="background-top" src={LogoBannerHome} alt="banner" /> */}
+          <img className="logo-top" src={LogoWithName} alt="banner" />
+        </div>
+
         <ContainerHome>
           <ButtonHome1>
             <Button
@@ -143,8 +148,8 @@ function Homepage() {
             <img src={styleComponentLefth} alt="styledComponent" />
           </Unstyled2>
         )}
-        <Footer />
       </HomepageStyled>
+      <Footer />
     </>
   );
 }
