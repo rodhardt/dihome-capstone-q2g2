@@ -65,6 +65,7 @@ export const DashboardStyled = styled.main`
     display: flex;
     align-items: center;
     position: absolute;
+    width: 100%;
   }
 
   .slider .description {
