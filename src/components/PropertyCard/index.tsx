@@ -187,9 +187,9 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
                 userInfo.bookmarkedProperties.find(
                   (item) => item === properties.id
                 ) ? (
-                  <AiTwotoneStar />
+                  <ImHeart className="star-bookmarked" />
                 ) : (
-                  <AiOutlineStar />
+                  <ImHeart className="star-unmarked" />
                 )}
               </button>
               <img src={properties.mainImage} alt={"House"} />

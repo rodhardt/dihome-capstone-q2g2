@@ -199,7 +199,7 @@ export const LargeImgHouse = styled.div`
   display: flex;
 
   img {
-    width: 200px;
+    width: 100%;
     height: 111px;
     border-radius: 10px;
     position: relative;
@@ -208,22 +208,32 @@ export const LargeImgHouse = styled.div`
   }
   button {
     position: relative;
-    left: 40px;
-    top: 10px;
+    left: 0;
+    top: 0;
     height: 26px;
     width: 26px;
     border-radius: 70px;
-    border: 1px solid var(--lightOrange);
-    background-color: var(--lightOrange);
+    border: 1px solid #ffffff00;
+    background-color: #ffffff00;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #f3acac;
 
     :hover {
-      background-color: var(--mainGray);
-      border: 1px solid #ffffff;
+      color: #e12120;
     }
     z-index: 2;
+  }
+  .star-bookmarked {
+    color: #e12120;
+  }
+  .star-bookmarked:hover {
+    color: #f3acac;
+  }
+  button svg {
+    width: 30px;
+    height: 30px;
   }
 `;
 export const Description = styled.div`
