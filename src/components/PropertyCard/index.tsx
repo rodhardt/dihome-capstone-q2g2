@@ -173,11 +173,9 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
           <LargeContainer
             onClick={() => history.push(`/imovel/${properties.id}`)}
           >
-            <HeaderCard>
-              <p>{properties.goal}</p>
-              <p>{properties.type}</p>
-            </HeaderCard>
+            <HeaderCard></HeaderCard>
             <LargeImgHouse>
+              <img src={properties.mainImage} alt={"House"} />
               <button
                 onClick={(evt) =>
                   !!userInfo.id ? handleUpdateUser(evt) : handleOpenModal(evt)
@@ -192,13 +190,16 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
                   <ImHeart className="star-unmarked" />
                 )}
               </button>
-              <img src={properties.mainImage} alt={"House"} />
             </LargeImgHouse>
 
             <Description>
               <InfoDescription>
-                <p>{properties.district}</p>
-                <p>
+                <div className="main-info">
+                  <p>{properties.goal}</p>
+                  <p>{properties.type}</p>
+                </div>
+                <p className="title">{properties.district}</p>
+                <p className="title">
                   {properties.type} em {""}
                   {properties.city}-{properties.state}
                 </p>
@@ -225,7 +226,10 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
               </InfosHouse>
               <InfosHouse>
                 <RiRuler2Line />
-                <p>{properties.houseArea} Metros²</p>
+                <div className="area-info">
+                  <p>{properties.houseArea} m</p>
+                  <p className="square">2</p>
+                </div>
               </InfosHouse>
             </LargeInfoHouse>
           </LargeContainer>

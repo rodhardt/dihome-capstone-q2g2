@@ -72,8 +72,15 @@ export const InfosHouse = styled.div`
     align-items: center;
     margin: 10px;
     p {
-      font-size: 11px;
+      font-size: 10px;
       text-align: center;
+    }
+    .area-info {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    .area-info .square {
+      font-size: 7px;
     }
   }
 `;
@@ -183,33 +190,32 @@ export const SmallCardHeader = styled.div`
   }
 `;
 export const LargeContainer = styled.div`
-  background-color: var(--opacityBlue);
+  background-color: #0f919405;
   width: 500px;
   padding: 5px;
   display: flex;
   flex-wrap: wrap;
   border-radius: 20px;
-  border: 1px solid #ffffff00;
+  border: 2px solid var(--opacityBlue);
   :hover {
     cursor: pointer;
-    border: 1px solid var(--darkBlue);
+    border: 2px solid var(--darkBlue);
   }
 `;
 export const LargeImgHouse = styled.div`
-  display: flex;
-
+  width: 60%;
+  position: relative;
   img {
     width: 100%;
-    height: 111px;
+    height: 180px;
     border-radius: 10px;
     position: relative;
     z-index: 1;
-    right: 9px;
   }
   button {
-    position: relative;
-    left: 0;
-    top: 0;
+    position: absolute;
+    left: 11px;
+    top: 8px;
     height: 26px;
     width: 26px;
     border-radius: 70px;
@@ -237,7 +243,9 @@ export const LargeImgHouse = styled.div`
   }
 `;
 export const Description = styled.div`
-  width: 260px;
+  width: 40%;
+  padding-left: 5px;
+  padding-right: 10px;
   p {
     font-size: 10px;
   }
@@ -251,6 +259,21 @@ export const InfoDescription = styled.div`
     ::first-letter {
       text-transform: uppercase;
     }
+  }
+  .main-info {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+  .main-info p {
+    font-size: 12px;
+  }
+  .title {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  .title:last-child {
+    margin-bottom: 10px;
   }
 `;
 export const LargePrice = styled.div`
