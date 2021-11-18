@@ -66,8 +66,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       progress: undefined,
     });
 
-  const loginSucceeded = () =>
-    toast.success(`Bem-vindo ${userInfo.name}`, {
+  const loginSucceeded = (name: string) =>
+    toast.success(`Bem-vindo ${name}`, {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -148,7 +148,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setUserInfo(response.data.user);
         setUserId(response.data.user.id);
         history.push(previousPage);
-        loginSucceeded();
+        loginSucceeded(response.data.user.name);
       })
       .catch((err) => loginFailed());
   };
