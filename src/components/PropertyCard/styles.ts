@@ -6,15 +6,15 @@ export const ContainerGlobal = styled.div`
   margin-bottom: 20px;
 `;
 export const ContainerPropertyCard = styled.div`
-  background-color: var(--opacityBlue);
-  width: 250px;
-  height: 280px;
+  background-color: #0f919405;
+  width: 265px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 5px;
   border-radius: 10px;
-  border: 1px solid #ffffff00;
+  border: 1px solid var(--opacityBlue);
   :hover {
     cursor: pointer;
     border: 1px solid var(--darkBlue);
@@ -26,21 +26,36 @@ export const HeaderCard = styled.div`
   align-items: center;
   width: 100%;
   p {
-    font-size: 10px;
+    font-size: 13px;
     font-weight: bold;
+    color: var(--darkerGray);
+    margin-bottom: 5px;
   }
 `;
 export const InfosCard = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 80%;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 95%;
   align-items: flex-start;
+  margin-top: 20px;
   p {
     ::first-letter {
       text-transform: uppercase;
     }
     font-size: 12px;
     font-weight: bold;
+    color: var(--darkerGray);
+  }
+  .district,
+  .address {
+    width: 100%;
+    color: var(--darkerGray);
+    font-size: 13px;
+  }
+  .square {
+    font-size: 7px;
   }
 `;
 export const InfosHouse = styled.div`
@@ -50,6 +65,7 @@ export const InfosHouse = styled.div`
   p {
     font-size: 10px;
     font-weight: lighter;
+    color: var(--darkerGray);
   }
   @media (min-width: 700px) {
     flex-direction: column;
@@ -65,55 +81,59 @@ export const ImgHouse = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  position: relative;
   img {
-    width: 90%;
-    height: 111px;
+    width: 100%;
+    height: 150px;
     border-radius: 10px;
-    position: relative;
+
     z-index: 1;
-    right: 9px;
   }
   button {
-    position: relative;
-    left: 40px;
-    top: 10px;
-    height: 26px;
-    width: 26px;
     border-radius: 70px;
-    border: 1px solid var(--lightOrange);
-    background-color: var(--lightOrange);
+    border: 1px solid #ffffff00;
+    background-color: #ffffff00;
     display: flex;
     align-items: center;
     justify-content: center;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    color: #fffd0099;
     :hover {
-      background-color: var(--mainGray);
-      border: 1px solid #ffffff;
+      color: #fffd00;
+      border: 1px solid #ffffff00;
     }
     z-index: 2;
   }
+  .star-bookmarked {
+    color: #fffd00;
+  }
+  .star-bookmarked:hover {
+    color: #fffd0099;
+  }
+  button svg {
+    width: 30px;
+    height: 30px;
+  }
 `;
 export const HousePrice = styled.div`
-  width: 85%;
+  width: 95%;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   flex-direction: column;
 
   margin-bottom: 0;
-
+  transform: translateY(-100%);
   p {
     font-weight: bold;
+    color: var(--darkerGray);
+    font-size: 14px;
+    border-bottom: 1px solid #00000015;
+    border-top: 1px solid #00000015;
+    padding: 4px 1px;
+    width: 50%;
   }
-  button {
-    background-color: transparent;
-    border: none;
-    img {
-      width: 10px;
-    }
-  }
-  position: relative;
-  bottom: 20px;
-  left: 10px;
-  z-index: 2;
 `;
 export const SmallContainer = styled.div`
   background-color: var(--opacityBlue);

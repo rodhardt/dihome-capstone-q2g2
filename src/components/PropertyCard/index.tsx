@@ -28,7 +28,7 @@ import ConfirmedModal from "../ConfirmedModal";
 import { useHistory } from "react-router";
 import { useAuth } from "../../providers/Authentication";
 import { useProperties } from "../../providers/Properties";
-import { AiTwotoneStar, AiOutlineStar } from "react-icons/ai";
+import { AiTwotoneStar, AiOutlineStar, AiFillStar } from "react-icons/ai";
 
 function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
   const history = useHistory();
@@ -211,6 +211,7 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
               <p>{properties.type}</p>
             </HeaderCard>
             <ImgHouse>
+              <img src={properties.mainImage} alt={"House"} />
               <button
                 onClick={(evt) =>
                   !!userInfo.id ? handleUpdateUser(evt) : handleOpenModal(evt)
@@ -220,38 +221,38 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
                 userInfo.bookmarkedProperties.find(
                   (item) => item === properties.id
                 ) ? (
-                  <AiTwotoneStar />
+                  <AiFillStar className="star-bookmarked" />
                 ) : (
-                  <AiOutlineStar />
+                  <AiFillStar className="star-unmarked" />
                 )}
               </button>
-              <img src={properties.mainImage} alt={"House"} />
             </ImgHouse>
             <InfosCard>
               <div>
-                <p>{properties.district}</p>
-                <p>
-                  {" "}
-                  {properties.type} em {""}
+                <p className="district">{properties.district}</p>
+                <p className="address">
                   {properties.city}-{properties.state}
                 </p>
               </div>
-              <InfosHouse>
-                <MdOutlineBathroom />
-                <p>{properties.bathrooms} Banheiros</p>
-              </InfosHouse>
-              <InfosHouse>
-                <BiBed />
-                <p>{properties.dorms} Quartos</p>
-              </InfosHouse>
-              <InfosHouse>
-                <GiHomeGarage />
-                <p>{properties.parking} Vagas</p>
-              </InfosHouse>
-              <InfosHouse>
-                <RiRuler2Line />
-                <p>{properties.houseArea} Metros²</p>
-              </InfosHouse>
+              <div>
+                <InfosHouse>
+                  <MdOutlineBathroom />
+                  <p>{properties.bathrooms} Banheiros</p>
+                </InfosHouse>
+                <InfosHouse>
+                  <BiBed />
+                  <p>{properties.dorms} Quartos</p>
+                </InfosHouse>
+                <InfosHouse>
+                  <GiHomeGarage />
+                  <p>{properties.parking} Vagas</p>
+                </InfosHouse>
+                <InfosHouse>
+                  <RiRuler2Line />
+                  <p>{properties.houseArea} m</p>
+                  <p className="square">2</p>
+                </InfosHouse>
+              </div>
             </InfosCard>
             <HousePrice>
               <p>R$ {properties.price.toLocaleString()}</p>

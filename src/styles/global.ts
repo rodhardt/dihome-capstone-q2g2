@@ -22,7 +22,8 @@ export default createGlobalStyle`
         --opacityBlue: #0F919425;
         --opacityOrange: #F0884790;
         --mainFont: 'Space Mono', monospace;
-        --darkGray: #404040;;
+        --darkGray: #404040;
+        --darkerGray: #303030;
     }
 
     button:hover {
