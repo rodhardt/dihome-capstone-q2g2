@@ -287,17 +287,22 @@ function Dashboard() {
             <LoadingScreen type="partial" message="Buscando imóveis" />
           </div>
         )}
-        {renderAtt &&
-          filteredProperties
-            .filter((property) => property.consultantStatus === "aprovado")
-            .map((item) => (
-              <PropertyCard
-                properties={item}
-                type="DashBoard"
-                setRenderAtt={setRenderAtt}
-                renderAtt={renderAtt}
-              />
-            ))}
+        {renderAtt && (
+          <ul>
+            {filteredProperties
+              .filter((property) => property.consultantStatus === "aprovado")
+              .map((item, index) => (
+                <li key={index}>
+                  <PropertyCard
+                    properties={item}
+                    type="DashBoard"
+                    setRenderAtt={setRenderAtt}
+                    renderAtt={renderAtt}
+                  />
+                </li>
+              ))}
+          </ul>
+        )}
         {properties.length > 0 && filteredProperties.length === 0 && (
           <div className="search-failed">
             <p>Nenhum imóvel atende sua busca</p>

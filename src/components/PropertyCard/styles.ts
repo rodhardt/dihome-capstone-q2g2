@@ -14,6 +14,11 @@ export const ContainerPropertyCard = styled.div`
   align-items: center;
   padding: 5px;
   border-radius: 10px;
+  border: 1px solid #ffffff00;
+  :hover {
+    cursor: pointer;
+    border: 1px solid var(--darkBlue);
+  }
 `;
 export const HeaderCard = styled.div`
   display: flex;
@@ -50,6 +55,10 @@ export const InfosHouse = styled.div`
     flex-direction: column;
     align-items: center;
     margin: 10px;
+    p {
+      font-size: 11px;
+      text-align: center;
+    }
   }
 `;
 export const ImgHouse = styled.div`
@@ -68,13 +77,17 @@ export const ImgHouse = styled.div`
     position: relative;
     left: 40px;
     top: 10px;
-    height: 24px;
-    width: 30px;
+    height: 26px;
+    width: 26px;
     border-radius: 70px;
-    border: 1px solid black;
-    background-color: var(--orange);
+    border: 1px solid var(--lightOrange);
+    background-color: var(--lightOrange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     :hover {
       background-color: var(--mainGray);
+      border: 1px solid #ffffff;
     }
     z-index: 2;
   }
@@ -111,6 +124,11 @@ export const SmallContainer = styled.div`
   align-items: center;
   padding: 5px;
   border-radius: 10px;
+  border: 1px solid #ffffff00;
+  :hover {
+    cursor: pointer;
+    border: 1px solid var(--darkBlue);
+  }
   p {
     font-size: 8px;
   }
@@ -149,9 +167,9 @@ export const LargeContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   border-radius: 20px;
+  border: 1px solid #ffffff00;
   :hover {
     cursor: pointer;
-    padding: 4px;
     border: 1px solid var(--darkBlue);
   }
 `;
@@ -170,13 +188,18 @@ export const LargeImgHouse = styled.div`
     position: relative;
     left: 40px;
     top: 10px;
-    height: 24px;
-    width: 30px;
+    height: 26px;
+    width: 26px;
     border-radius: 70px;
-    border: 1px solid black;
-    background-color: var(--orange);
+    border: 1px solid var(--lightOrange);
+    background-color: var(--lightOrange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     :hover {
       background-color: var(--mainGray);
+      border: 1px solid #ffffff;
     }
     z-index: 2;
   }
