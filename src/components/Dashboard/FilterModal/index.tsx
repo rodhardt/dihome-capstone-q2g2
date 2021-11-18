@@ -193,7 +193,7 @@ function FilterModal({ handleFilter, closeWindow }: FilterModalProps) {
         <div className="form-container">
           <div className="input-container number price">
             <label htmlFor="price-max">Preço</label>
-            <p>{priceChosen}</p>
+            <p>R$ {priceChosen.toLocaleString()}</p>
             <input
               id="price-max"
               type="range"
@@ -205,7 +205,7 @@ function FilterModal({ handleFilter, closeWindow }: FilterModalProps) {
               onChange={(evt) => setPriceChosen(Number(evt.target.value))}
             />
           </div>
-          <div className="input-container checkbox">
+          <div className="input-container checkbox double">
             <label>Casa</label>
             <input
               type="checkbox"
@@ -219,7 +219,7 @@ function FilterModal({ handleFilter, closeWindow }: FilterModalProps) {
               onChange={(evt) => handleTypes(evt.target.value)}
             />
           </div>
-          <div className="input-container checkbox">
+          <div className="input-container checkbox double">
             <label>Alugar</label>
             <input
               type="checkbox"
@@ -287,104 +287,119 @@ function FilterModal({ handleFilter, closeWindow }: FilterModalProps) {
               onChange={(evt) => setDistrictChosen(evt.target.value)}
             />
           </div>
-          <div className="input-container checkbox">
+          <div className="input-container checkbox multiple">
             <h4>Dormitórios</h4>
-            <label>1</label>
+
             <input
               type="checkbox"
               value="1"
               onChange={(evt) => handleDorms(evt.target.value)}
             />
-            <label>2</label>
+            <label>1</label>
+
             <input
               type="checkbox"
               value="2"
               onChange={(evt) => handleDorms(evt.target.value)}
             />
-            <label>3</label>
+            <label>2</label>
+
             <input
               type="checkbox"
               value="3"
               onChange={(evt) => handleDorms(evt.target.value)}
             />
-            <label>4</label>
+            <label>3</label>
+
             <input
               type="checkbox"
               value="4"
               onChange={(evt) => handleDorms(evt.target.value)}
             />
-            <label>5 ou +</label>
+            <label>4</label>
+
             <input
               type="checkbox"
               value="5"
               onChange={(evt) => handleDorms(evt.target.value)}
             />
+            <label>5 ou +</label>
           </div>
-          <div className="input-container checkbox">
+          <div className="input-container checkbox multiple">
             <h4>Vagas Estacionamento</h4>
-            <label>1</label>
+
             <input
               type="checkbox"
               value="1"
               onChange={(evt) => handleParkings(evt.target.value)}
             />
-            <label>2</label>
+            <label>1</label>
+
             <input
               type="checkbox"
               value="2"
               onChange={(evt) => handleParkings(evt.target.value)}
             />
-            <label>3</label>
+            <label>2</label>
+
             <input
               type="checkbox"
               value="3"
               onChange={(evt) => handleParkings(evt.target.value)}
             />
-            <label>4</label>
+            <label>3</label>
+
             <input
               type="checkbox"
               value="4"
               onChange={(evt) => handleParkings(evt.target.value)}
             />
-            <label>5 ou +</label>
+            <label>4</label>
+
             <input
               type="checkbox"
               value="5"
               onChange={(evt) => handleParkings(evt.target.value)}
             />
+            <label>5 ou +</label>
           </div>
-          <div className="input-container checkbox">
+          <div className="input-container checkbox multiple">
             <h4>Banheiros</h4>
-            <label>1</label>
+
             <input
               type="checkbox"
               value="1"
               onChange={(evt) => handleBathrooms(evt.target.value)}
             />
-            <label>2</label>
+            <label>1</label>
+
             <input
               type="checkbox"
               value="2"
               onChange={(evt) => handleBathrooms(evt.target.value)}
             />
-            <label>3</label>
+            <label>2</label>
+
             <input
               type="checkbox"
               value="3"
               onChange={(evt) => handleBathrooms(evt.target.value)}
             />
-            <label>4</label>
+            <label>3</label>
+
             <input
               type="checkbox"
               value="4"
               onChange={(evt) => handleBathrooms(evt.target.value)}
             />
-            <label>5 ou +</label>
+            <label>4</label>
+
             <input
               type="checkbox"
               value="5"
               onChange={(evt) => handleBathrooms(evt.target.value)}
             />
+            <label>5 ou +</label>
           </div>
           <div className="input-container number">
             <h4>Área Construída</h4>

@@ -168,4 +168,64 @@ export const FilterModalStyled = styled.div`
     border-bottom: 1px solid var(--lightBlue);
     padding: 10px 0;
   }
+
+  .price {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .price label {
+    width: 40%;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .price p {
+    width: 60%;
+    text-align: right;
+    font-weight: bold;
+  }
+
+  .checkbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .double {
+    max-width: 270px;
+    margin-bottom: 20px;
+  }
+  .double label {
+    width: 100px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .double input {
+    width: 10px;
+  }
+
+  .multiple {
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .multiple h4 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .multiple label {
+    font-size: 12px;
+    margin-left: 0;
+  }
+
+  .multiple input {
+    width: 20px;
+    margin-right: 0;
+  }
 `;

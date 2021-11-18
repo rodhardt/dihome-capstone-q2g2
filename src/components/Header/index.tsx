@@ -29,9 +29,9 @@ function Header() {
         </Link>
         {!!userInfo.id ? (
           <div className="last menu-container">
-            <Link className="link profile last" to="/perfil">
+            <div className="link profile last">
               <VscAccount className="linkFont" />
-            </Link>
+            </div>
             <ul className="logged-options">
               <li onClick={() => history.push("/perfil")}>Perfil</li>
               <li onClick={() => logout()}>Logout</li>

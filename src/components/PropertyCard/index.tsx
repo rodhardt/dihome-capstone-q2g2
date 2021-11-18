@@ -27,6 +27,7 @@ import { useEffect, useState } from "react";
 import ConfirmedModal from "../ConfirmedModal";
 import { useHistory } from "react-router";
 import { useAuth } from "../../providers/Authentication";
+import { useProperties } from "../../providers/Properties";
 import { AiTwotoneStar, AiOutlineStar } from "react-icons/ai";
 
 function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
@@ -40,6 +41,7 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
   }, []);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { registerPreviousPage, userInfo, updateUser } = useAuth();
+  const { updateProperty } = useProperties();
 
   const modalInformation = {
     title: "Atenção",
@@ -54,10 +56,11 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
     },
     cancelButton: {
       cancelText: "Sair",
-      cancelFunction: () => console.log("sair"),
+      cancelFunction: () => null,
     },
   };
-  const handleUpdateUser = () => {
+  const handleUpdateUser = (evt: any) => {
+    evt.stopPropagation();
     let newUser = userInfo;
 
     const filterUser = newUser.bookmarkedProperties.filter(
@@ -68,13 +71,71 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
       newUser.bookmarkedProperties.push(properties.id);
       updateUser(newUser);
       setRenderAtt(renderAtt + 1);
+      const newPropertyInfo = {
+        id: properties.id,
+        announcerId: properties.announcerId,
+        consultantStatus: properties.consultantStatus,
+        announcerStatus: properties.announcerStatus,
+        viewsCount: properties.viewsCount,
+        bookmarkCount: properties.bookmarkCount + 1,
+        title: properties.title,
+        street: properties.street,
+        state: properties.state,
+        city: properties.city,
+        district: properties.district,
+        number: properties.number,
+        type: properties.type,
+        goal: properties.goal,
+        dorms: properties.dorms,
+        parking: properties.parking,
+        bathrooms: properties.bathrooms,
+        houseArea: properties.houseArea,
+        landArea: properties.landArea,
+        description: properties.description,
+        mainImage: properties.mainImage,
+        images: properties.images,
+        price: properties.price,
+      };
+      updateProperty(newPropertyInfo);
     } else {
       newUser.bookmarkedProperties = newUser.bookmarkedProperties.filter(
         (item) => item !== properties.id
       );
       updateUser(newUser);
       setRenderAtt(renderAtt + 1);
+      const newPropertyInfo = {
+        id: properties.id,
+        announcerId: properties.announcerId,
+        consultantStatus: properties.consultantStatus,
+        announcerStatus: properties.announcerStatus,
+        viewsCount: properties.viewsCount,
+        bookmarkCount: properties.bookmarkCount - 1,
+        title: properties.title,
+        street: properties.street,
+        state: properties.state,
+        city: properties.city,
+        district: properties.district,
+        number: properties.number,
+        type: properties.type,
+        goal: properties.goal,
+        dorms: properties.dorms,
+        parking: properties.parking,
+        bathrooms: properties.bathrooms,
+        houseArea: properties.houseArea,
+        landArea: properties.landArea,
+        description: properties.description,
+        mainImage: properties.mainImage,
+        images: properties.images,
+        price: properties.price,
+      };
+
+      updateProperty(newPropertyInfo);
     }
+  };
+
+  const handleOpenModal = (evt: any) => {
+    evt.stopPropagation();
+    setIsOpenModal(true);
   };
 
   return (
@@ -82,15 +143,17 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
       {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
       <ContainerGlobal>
         {type === "DashBoard" && screenWidth > 700 ? (
-          <LargeContainer>
+          <LargeContainer
+            onClick={() => history.push(`/imovel/${properties.id}`)}
+          >
             <HeaderCard>
               <p>{properties.goal}</p>
               <p>{properties.type}</p>
             </HeaderCard>
             <LargeImgHouse>
               <button
-                onClick={() =>
-                  !!userInfo.id ? handleUpdateUser() : setIsOpenModal(true)
+                onClick={(evt) =>
+                  !!userInfo.id ? handleUpdateUser(evt) : handleOpenModal(evt)
                 }
               >
                 {userInfo.bookmarkedProperties &&
@@ -118,9 +181,6 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
               </p>
             </Description>
             <LargePrice>
-              <button onClick={() => history.push(`/imovel/${properties.id}`)}>
-                <img src={ButtonLogo} alt="Botão" />
-              </button>
               <p>R$ {properties.price.toLocaleString()}</p>
             </LargePrice>
             <LargeInfoHouse>
@@ -143,15 +203,17 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
             </LargeInfoHouse>
           </LargeContainer>
         ) : type === "DashBoard" && screenWidth <= 700 ? (
-          <ContainerPropertyCard>
+          <ContainerPropertyCard
+            onClick={() => history.push(`/imovel/${properties.id}`)}
+          >
             <HeaderCard>
               <p>{properties.goal}</p>
               <p>{properties.type}</p>
             </HeaderCard>
             <ImgHouse>
               <button
-                onClick={() =>
-                  !!userInfo.id ? handleUpdateUser() : setIsOpenModal(true)
+                onClick={(evt) =>
+                  !!userInfo.id ? handleUpdateUser(evt) : handleOpenModal(evt)
                 }
               >
                 {userInfo.bookmarkedProperties &&
@@ -192,16 +254,15 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
               </InfosHouse>
             </InfosCard>
             <HousePrice>
-              <button onClick={() => history.push(`/imovel/${properties.id}`)}>
-                <img src={ButtonLogo} alt="Botão" />
-              </button>
               <p>R$ {properties.price.toLocaleString()}</p>
             </HousePrice>
           </ContainerPropertyCard>
         ) : null}
 
         {type === "HomePage" && (
-          <SmallContainer>
+          <SmallContainer
+            onClick={() => history.push(`/imovel/${properties.id}`)}
+          >
             <img src={properties.mainImage} alt={"House"} />
             <SmallInfos>
               <SmallCardHeader>

@@ -61,7 +61,7 @@ const PropertyPage = () => {
   const [longitude, setLongitude] = useState<any[]>();
 
   const { id }: IdFromUrl = useParams();
-  const { properties } = useProperties();
+  const { properties, updateProperty } = useProperties();
   const { userInfo, updateUser, authToken } = useAuth();
 
   const propertyToRender = properties.find((item) => item.id === Number(id));
@@ -234,6 +234,40 @@ const PropertyPage = () => {
     }
   }, [properties]);
 
+  useEffect(() => {
+    if (
+      !properties.every((property) => property.id !== Number(id)) &&
+      !!propertyToRender?.id
+    ) {
+      const newPropertyInfo = {
+        id: propertyToRender.id,
+        announcerId: propertyToRender.announcerId,
+        consultantStatus: propertyToRender.consultantStatus,
+        announcerStatus: propertyToRender.announcerStatus,
+        viewsCount: propertyToRender.viewsCount + 1,
+        bookmarkCount: propertyToRender.bookmarkCount,
+        title: propertyToRender.title,
+        street: propertyToRender.street,
+        state: propertyToRender.state,
+        city: propertyToRender.city,
+        district: propertyToRender.district,
+        number: propertyToRender.number,
+        type: propertyToRender.type,
+        goal: propertyToRender.goal,
+        dorms: propertyToRender.dorms,
+        parking: propertyToRender.parking,
+        bathrooms: propertyToRender.bathrooms,
+        houseArea: propertyToRender.houseArea,
+        landArea: propertyToRender.landArea,
+        description: propertyToRender.description,
+        mainImage: propertyToRender.mainImage,
+        images: propertyToRender.images,
+        price: propertyToRender.price,
+      };
+      updateProperty(newPropertyInfo);
+    }
+  }, [properties.length]);
+
   return (
     <>
       {isOpenModal ? (
@@ -268,7 +302,10 @@ const PropertyPage = () => {
           <ConfirmedModal modalContent={thirdModalInformation} />
         )}
         <MaxWidthAdapter>
-          <BackButton onClick={() => history.push("/imoveis")}>
+          <BackButton
+            className="back-button"
+            onClick={() => history.push("/imoveis")}
+          >
             <BsArrowLeftCircle />
             <h2>voltar para imóveis</h2>
           </BackButton>
@@ -446,8 +483,8 @@ const PropertyPage = () => {
               <button onClick={() => history.push("/login")}>Login</button>
             </WithoutMapSection>
           )}
-          <Footer />
         </MaxWidthAdapter>
+          <Footer />
       </PropertyPageStyled>
     </>
   );

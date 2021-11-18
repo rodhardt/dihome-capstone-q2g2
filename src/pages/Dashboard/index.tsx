@@ -159,19 +159,6 @@ function Dashboard() {
 
   const [counter, setCounter] = useState(0);
 
-  const slide = () => {
-    if (counter <= listFun.length - 2) {
-      setCounter(counter + 1);
-    } else {
-      setCounter(0);
-    }
-  };
-
-  useEffect(() => {
-    const slideCall = setInterval(slide, 5000);
-    return () => clearInterval(slideCall);
-  }, []);
-
   const listFun = [
     {
       img: CasaAsombrada,
@@ -227,6 +214,23 @@ function Dashboard() {
       lastResidentComent: "Uma vez dentro nunca mais vai querer(e poder) sair",
     },
   ];
+
+  const slide = () => {
+    if (counter === listFun.length - 1) {
+      setCounter(0);
+    } else {
+      setCounter(counter + 1);
+    }
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCounter((counter) =>
+        counter + 1 === listFun.length ? 0 : counter + 1
+      );
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const [renderAtt, setRenderAtt] = useState(1);
   return (

@@ -154,7 +154,10 @@ export const BackButton = styled.div`
   align-items: center;
   flex-direction: row;
   justify-content: flex-start;
-
+  :hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
   svg {
     width: 20px;
     height: 20px;
