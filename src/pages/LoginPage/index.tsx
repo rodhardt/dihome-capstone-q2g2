@@ -66,7 +66,11 @@ const LoginPage = () => {
                 </Title>
                 <input placeholder="E-mail" {...register("email")} />
                 <ErrorMessage>{errors && errors.email?.message}</ErrorMessage>
-                <input placeholder="Senha" {...register("password")} />
+                <input
+                  placeholder="Senha"
+                  type="password"
+                  {...register("password")}
+                />
                 <ErrorMessage>
                   {errors && errors.password?.message}
                 </ErrorMessage>

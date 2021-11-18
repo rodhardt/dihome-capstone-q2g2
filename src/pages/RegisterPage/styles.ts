@@ -41,7 +41,8 @@ export const FormRegister = styled.form`
 
     :hover {
       color: var(--darkBlue);
-      background-color: #00000010;
+      background-color: var(--mainGray);
+      font-weight: bold;
       border: 1px solid var(--darkBlue);
       transition: 300ms;
     }
@@ -55,7 +56,7 @@ export const FormRegister = styled.form`
     font-size: 18px;
     color: var(--darkBlue);
     border: 2px solid var(--darkBlue);
-    background-color: #45454500;
+    background-color: var(--mainGray);
 
     :hover {
       color: var(--mainGray);
