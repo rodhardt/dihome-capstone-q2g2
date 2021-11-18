@@ -1,4 +1,5 @@
 function KommunicateChat() {
+  //chat
   (function (d, m) {
     var kommunicateSettings = {
       appId: "3c03b2bae239d9796ffaefcb05fb899e8",
