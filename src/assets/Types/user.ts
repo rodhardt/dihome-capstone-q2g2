@@ -1,5 +1,6 @@
 export interface UserData {
   id?: number;
+  password?: string;
   name: string;
   email: string;
   telephone: string;
@@ -7,4 +8,5 @@ export interface UserData {
   announcedProperties: number[];
   bookmarkedProperties: number[];
   subscriptionType: string;
+  markedDates: string[];
 }
