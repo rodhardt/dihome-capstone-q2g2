@@ -6,6 +6,9 @@ import { useProperties } from "../../../providers/Properties";
 import ConfirmedModal from "../../ConfirmedModal";
 import { useState } from "react";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 interface ConsultantButtonsProps {
   propertyToRender: PropertyData;
 }
@@ -27,6 +30,17 @@ export const ConsultantButtons = ({
     setIsOpenDenyModalInformation(true);
   };
 
+  const reproved = () =>
+    toast.warn("Imóvel reprovado", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
   const denyModalInformation = {
     title: "Publicação não aprovada.",
     closeFunction: () => setIsOpenDenyModalInformation(false),
@@ -34,13 +48,26 @@ export const ConsultantButtons = ({
     textareaPlaceholder: "Digite aqui...",
     confirmButton: {
       confirmText: "enviar",
-      confirmFunction: () => {},
+      confirmFunction: () => {
+        reproved();
+      },
     },
     cancelButton: {
       cancelText: "voltar",
       cancelFunction: () => {},
     },
   };
+
+  const approved = () =>
+    toast.success("Imóvel aprovado", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const approveModalInformation = {
     title: "Aprovar publicação.",
@@ -75,6 +102,7 @@ export const ConsultantButtons = ({
           price: propertyToRender.price,
         };
         updateProperty(newPropertyData);
+        approved();
       },
     },
     cancelButton: {

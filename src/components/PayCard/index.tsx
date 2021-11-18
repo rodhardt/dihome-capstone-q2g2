@@ -4,6 +4,9 @@ import { useAuth } from "../../providers/Authentication";
 import ConfirmedModal from "../ConfirmedModal";
 import { RowBox, PayCardStyled } from "./styles";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 interface PayCardProps {
   img: any;
   planName: string;
@@ -53,6 +56,17 @@ export const PayCard = ({
     },
   };
 
+  const signed = () =>
+    toast.success("Agora você pode anunciar!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
   const secondModalInformation = {
     title: "Parabéns",
     closeFunction: () => setIsOpenModal(false),
@@ -62,31 +76,34 @@ export const PayCard = ({
       confirmFunction: () => {
         history.push("/perfil");
         setIsOpenSecondModal(false);
+        signed();
       },
     },
   };
 
   return (
-    <PayCardStyled>
-      {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
-      {isOpenSecondModal && (
-        <ConfirmedModal modalContent={secondModalInformation} />
-      )}
-      <RowBox onClick={() => setIsOpenModal(true)}>
-        <img src={img} alt="" />
-        <ul>
-          <li>{planName}</li>
-          <li>{anouncesQuantity}</li>
-          <li>R$ {price} / mês</li>
-        </ul>
-      </RowBox>
-      <button
-        onClick={() => {
-          setIsOpenModal(true);
-        }}
-      >
-        assinar
-      </button>
-    </PayCardStyled>
+    <>
+      <PayCardStyled>
+        {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
+        {isOpenSecondModal && (
+          <ConfirmedModal modalContent={secondModalInformation} />
+        )}
+        <RowBox onClick={() => setIsOpenModal(true)}>
+          <img src={img} alt="" />
+          <ul>
+            <li>{planName}</li>
+            <li>{anouncesQuantity}</li>
+            <li>R$ {price} / mês</li>
+          </ul>
+        </RowBox>
+        <button
+          onClick={() => {
+            setIsOpenModal(true);
+          }}
+        >
+          assinar
+        </button>
+      </PayCardStyled>
+    </>
   );
 };

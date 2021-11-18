@@ -3,6 +3,9 @@ import { useHistory } from "react-router-dom";
 import api from "../../services/api";
 import { UserData } from "../../assets/Types/user";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 interface AuthProviderProps {
   children: ReactNode;
 }
@@ -41,6 +44,61 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const [previousPage, setPreviousPage] = useState<string>("/");
 
+  const loginNeeded = () =>
+    toast.warn("Você precisa estar logado", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+  const loginFailed = () =>
+    toast.error("Login falhou", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+  const loginSucceeded = () =>
+    toast.success(`Bem-vindo ${userInfo.name}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+  const registerSucceeded = () =>
+    toast.success("Conta criada", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+  const registerFailed = () =>
+    toast.error("Cadastro falhou", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
   const authenticate = () => {
     if (authToken.length > 0) {
       api
@@ -65,12 +123,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           if (history.location.pathname === "/perfil") {
             setPreviousPage("/perfil");
             history.push("/login");
+            loginNeeded();
           }
         });
     }
     if (history.location.pathname === "/perfil" && authToken === "") {
       setPreviousPage("/perfil");
       history.push("/login");
+      loginNeeded();
     }
   };
 
@@ -88,8 +148,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setUserInfo(response.data.user);
         setUserId(response.data.user.id);
         history.push(previousPage);
+        loginSucceeded();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => loginFailed());
   };
 
   const registerUser = (userData: UserData) => {
@@ -102,8 +163,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setUserInfo(response.data.user);
         setUserId(response.data.user.id);
         history.push(previousPage);
+        registerSucceeded();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => registerFailed());
   };
 
   const logout = () => {

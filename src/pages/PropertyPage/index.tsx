@@ -43,9 +43,12 @@ import {
 import { ConsultantButtons } from "../../components/Consultant/Buttons";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import { AiTwotoneStar, AiOutlineStar } from "react-icons/ai";
-import { UserData } from '../../assets/Types/user'
+import { UserData } from "../../assets/Types/user";
 import LoadingScreen from "../../components/LoadingScreen";
 import Header from "../../components/Header";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface IdFromUrl {
   id: any;
@@ -67,6 +70,39 @@ const PropertyPage = () => {
   const propertyToRender = properties.find((item) => item.id === Number(id));
 
   const [renderAtt, setRenderAtt] = useState(1);
+
+  const mark = () =>
+    toast.success("Imóvel salvo!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  const unmark = () =>
+    toast.error("Imóvel retirado", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+  const propertyNotFound = () =>
+    toast.error("Imóvel não encontrado", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
   const handleUpdateUser = () => {
     let newUser = userInfo;
 
@@ -77,12 +113,14 @@ const PropertyPage = () => {
     if (!(filterUser.length > 0) && propertyToRender?.id) {
       newUser.bookmarkedProperties.push(propertyToRender.id);
       updateUser(newUser);
+      mark();
       setRenderAtt(renderAtt + 1);
     } else {
       newUser.bookmarkedProperties = newUser.bookmarkedProperties.filter(
         (item) => item !== propertyToRender?.id
       );
       updateUser(newUser);
+      unmark();
       setRenderAtt(renderAtt + 1);
     }
   };
@@ -162,14 +200,15 @@ const PropertyPage = () => {
       propertyToRender?.consultantStatus === "em aberto"
     ) {
       history.push("/imoveis");
+      propertyNotFound();
     } else if (
       userInfo.consultant === undefined &&
       propertyToRender?.consultantStatus === "em aberto"
     ) {
       history.push("/imoveis");
+      propertyNotFound();
     }
   };
-
 
   const [lastImage, setLastImage] = useState(0);
 
@@ -201,14 +240,13 @@ const PropertyPage = () => {
     }
   };
 
-  
-  
   useEffect(() => {
     if (
       properties.length > 0 &&
       properties.every((property) => property.id !== Number(id))
     ) {
       history.push("/imoveis");
+      propertyNotFound();
     }
   }, [properties]);
 
@@ -216,7 +254,7 @@ const PropertyPage = () => {
     if (
       !properties.every((property) => property.id !== Number(id)) &&
       !!propertyToRender?.id
-      ) {
+    ) {
       const newPropertyInfo = {
         id: propertyToRender.id,
         announcerId: propertyToRender.announcerId,
@@ -245,12 +283,11 @@ const PropertyPage = () => {
       updateProperty(newPropertyInfo);
     }
   }, [properties.length]);
-  
-  const [date, setDate] = useState('')
+
+  const [date, setDate] = useState("");
 
   const handleCalendar = () => {
-
-    const schedule = [propertyToRender?.title, date]
+    const schedule = [propertyToRender?.title, date];
 
     const userSchedule = {
       id: userInfo?.id,
@@ -262,16 +299,12 @@ const PropertyPage = () => {
       announcedProperties: userInfo?.announcedProperties,
       bookmarkedProperties: userInfo?.bookmarkedProperties,
       subscriptionType: userInfo?.subscriptionType,
-      markedDates: [...userInfo?.markedDates, date]
-      }
-    updateUser(userSchedule)
+      markedDates: [...userInfo?.markedDates, date],
+    };
+    updateUser(userSchedule);
     setIsOpenModal(false);
   };
 
-  console.log('user info', userInfo)
-  console.log('date', date)
-  console.log('title', propertyToRender?.title)
-  
   return (
     <>
       {isOpenModal ? (
@@ -281,7 +314,20 @@ const PropertyPage = () => {
             <div>
               <div className="header"></div>
               <BsFillCalendarCheckFill />
-              <input type="datetime-local" onChange={(evt) => setDate(propertyToRender?.title + ', ' + evt.target.value + ', ' + propertyToRender?.city + ' ' + propertyToRender?.district)}/>
+              <input
+                type="datetime-local"
+                onChange={(evt) =>
+                  setDate(
+                    propertyToRender?.title +
+                      ", " +
+                      evt.target.value +
+                      ", " +
+                      propertyToRender?.city +
+                      " " +
+                      propertyToRender?.district
+                  )
+                }
+              />
               <div>
                 <button onClick={handleCalendar} className="confirm">
                   agendar
@@ -488,7 +534,7 @@ const PropertyPage = () => {
             </WithoutMapSection>
           )}
         </MaxWidthAdapter>
-          <Footer />
+        <Footer />
       </PropertyPageStyled>
     </>
   );
