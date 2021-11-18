@@ -77,6 +77,7 @@ export const ImagesCarossel = styled.div`
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
+  max-height: 350px;
 
   .flexRow {
     display: flex;
@@ -207,6 +208,7 @@ export const TitleAnounce = styled.div`
 
 export const ContactOwner = styled.section`
   width: 88%;
+
   height: 170px;
   margin-top: 20px;
   background-color: var(--opacityBlue);
@@ -271,6 +273,7 @@ export const ContactOwner = styled.section`
     justify-content: space-evenly;
 
     width: 60%;
+    min-width: 460px;
     height: 110px;
 
     .contact {

@@ -204,8 +204,9 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
                   {properties.city}-{properties.state}
                 </p>
               </InfoDescription>
-              <p>
-                <b>Descrição:</b>/{properties.description}
+              <p className="description-card">
+                <b>Descrição:</b>
+                {properties.description}
               </p>
             </Description>
             <LargePrice>

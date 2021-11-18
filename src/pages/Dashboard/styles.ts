@@ -135,7 +135,7 @@ export const DashboardStyled = styled.main`
 
   @media screen and (min-width: 900px) {
     .slider {
-      height: 500px;
+      height: 400px;
     }
 
     .slider .description {

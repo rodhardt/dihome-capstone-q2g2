@@ -248,6 +248,7 @@ export const Description = styled.div`
   padding-right: 10px;
   p {
     font-size: 10px;
+    word-wrap: break-word;
   }
   b {
     font-size: 10px;
