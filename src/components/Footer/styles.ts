@@ -1,14 +1,16 @@
 import styled from "styled-components";
 
-import cityFooter from "../../assets/Images/cityFooter.png";
+import bannerCidade from "../../assets/Images/banner-cidade.png";
 
 export const FooterStyled = styled.footer`
-  background-image: url(${cityFooter});
+  background-image: url(${bannerCidade});
   width: 100%;
-  height: calc(100vw * 520 / 1114);
-  max-height: 300px;
+  height: calc(100vw * 200 / 718);
+  min-height: 200px;
+  max-height: 320px;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position-x: calc(50% + 8px);
   color: #eaeaea;
   font-weight: bold;
   display: flex;
@@ -16,12 +18,12 @@ export const FooterStyled = styled.footer`
   padding-left: 20px;
 
   .footer-card {
-    background-color: #0f919480;
+    background-color: #0f919450;
     border: 1px solid var(--darkBlue);
     border-radius: 5px;
-    width: 165px;
+    width: 160px;
     padding: 3px 10px;
-    transform: translateY(10px);
+    transform: translateY(30px);
   }
 
   h4 {
@@ -51,7 +53,7 @@ export const FooterStyled = styled.footer`
     font-size: 10px;
   }
 
-  @media screen and (min-width: 520px) {
+  @media screen and (min-width: 680px) {
     .footer-card {
       width: 250px;
     }
@@ -68,7 +70,7 @@ export const FooterStyled = styled.footer`
     }
   }
 
-  @media screen and (min-width: 800px) {
+  @media screen and (min-width: 980px) {
     padding-left: 80px;
 
     .footer-card {

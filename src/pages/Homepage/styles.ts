@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import LogoBannerHome from "../../assets/Images/banner-cidade-top.png";
 
 export const HomepageStyled = styled.main`
   display: flex;
@@ -8,13 +9,50 @@ export const HomepageStyled = styled.main`
   min-height: 100vh;
   align-items: flex-start;
   background-color: var(--mainGray);
-  img {
+  position: relative;
+  .banner-container {
     width: 100%;
     height: 150px;
-    @media screen and (min-width: 700px) {
-      img {
-        height: 300px;
-      }
+
+    position: relative;
+    background-image: url(${LogoBannerHome});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: calc(50% + 6px);
+  }
+
+  .banner-container .background-top {
+    width: 100%;
+    height: 100%;
+  }
+
+  .banner-container .logo-top {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  @media screen and (min-width: 530px) {
+    .banner-container {
+      height: 200px;
+      background-size: calc(100% + 50px) 100%;
+    }
+    .banner-container .logo-top {
+      width: 90px;
+      height: 90px;
+    }
+  }
+  @media screen and (min-width: 700px) {
+    .banner-container {
+      height: 240px;
+      background-size: calc(100% + 50px) 100%;
+      background-position-x: calc(50% + 10px);
+    }
+    .banner-container .logo-top {
+      width: 110px;
+      height: 110px;
     }
   }
   h3 {

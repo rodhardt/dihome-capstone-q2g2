@@ -121,10 +121,15 @@ export const DashboardStyled = styled.main`
 
   ul {
     width: 95%;
+    max-width: 1100px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+  }
+
+  li {
+    margin: auto 10px;
   }
 
   @media screen and (min-width: 900px) {
