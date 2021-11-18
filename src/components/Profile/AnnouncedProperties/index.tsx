@@ -55,11 +55,15 @@ function AnnouncedProperties() {
                 <h3>Visitas agendadas</h3>
                 <table>
                 <tr>
-                  <th>Horários</th>
+                  <th>Título</th>
+                  <th>Data e hora</th>
+                  <th>Local</th>
                 </tr>
                 {userSchedule?.map((data, index) => (
                   <tr key={index}>
-                    <td>{data}</td>
+                    <td>{data.split(',')[0]}</td>
+                    <td>{data.split(',')[1]}</td>
+                    <td>{data.split(',')[2]}</td>
                   </tr>
                 ))}
               </table>

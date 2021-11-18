@@ -89,6 +89,8 @@ export const ImagesCarossel = styled.div`
   img {
     width: 75%;
     border-radius: 10px;
+    height: 40%;
+    max-height: 400px;
     z-index: 1;
   }
 

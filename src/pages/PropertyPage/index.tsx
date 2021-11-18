@@ -201,30 +201,8 @@ const PropertyPage = () => {
     }
   };
 
-  const [date, setDate] = useState('')
-
-  const handleCalendar = () => {
-
-    const userSchedule = {
-      id: userInfo?.id,
-      password: userInfo?.password,
-      name: userInfo?.name,
-      email: userInfo?.email,
-      telephone: userInfo?.telephone,
-      consultant: userInfo?.consultant,
-      announcedProperties: userInfo?.announcedProperties,
-      bookmarkedProperties: userInfo?.bookmarkedProperties,
-      subscriptionType: userInfo?.subscriptionType,
-      markedDates: [...userInfo?.markedDates, date]
-      }
-    updateUser(userSchedule)
-    setIsOpenModal(false);
-  };
-
-  console.log('user info', userInfo)
-  console.log('date', date)
-
-
+  
+  
   useEffect(() => {
     if (
       properties.length > 0 &&
@@ -238,7 +216,7 @@ const PropertyPage = () => {
     if (
       !properties.every((property) => property.id !== Number(id)) &&
       !!propertyToRender?.id
-    ) {
+      ) {
       const newPropertyInfo = {
         id: propertyToRender.id,
         announcerId: propertyToRender.announcerId,
@@ -267,7 +245,33 @@ const PropertyPage = () => {
       updateProperty(newPropertyInfo);
     }
   }, [properties.length]);
+  
+  const [date, setDate] = useState('')
 
+  const handleCalendar = () => {
+
+    const schedule = [propertyToRender?.title, date]
+
+    const userSchedule = {
+      id: userInfo?.id,
+      password: userInfo?.password,
+      name: userInfo?.name,
+      email: userInfo?.email,
+      telephone: userInfo?.telephone,
+      consultant: userInfo?.consultant,
+      announcedProperties: userInfo?.announcedProperties,
+      bookmarkedProperties: userInfo?.bookmarkedProperties,
+      subscriptionType: userInfo?.subscriptionType,
+      markedDates: [...userInfo?.markedDates, date]
+      }
+    updateUser(userSchedule)
+    setIsOpenModal(false);
+  };
+
+  console.log('user info', userInfo)
+  console.log('date', date)
+  console.log('title', propertyToRender?.title)
+  
   return (
     <>
       {isOpenModal ? (
@@ -277,7 +281,7 @@ const PropertyPage = () => {
             <div>
               <div className="header"></div>
               <BsFillCalendarCheckFill />
-              <input type="datetime-local" onChange={(evt) => setDate(evt.target.value)}/>
+              <input type="datetime-local" onChange={(evt) => setDate(propertyToRender?.title + ', ' + evt.target.value + ', ' + propertyToRender?.city + ' ' + propertyToRender?.district)}/>
               <div>
                 <button onClick={handleCalendar} className="confirm">
                   agendar
