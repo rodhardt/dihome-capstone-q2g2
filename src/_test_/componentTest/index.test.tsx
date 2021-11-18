@@ -5,7 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 import RegisterPage from "../../pages/RegisterPage";
 import LoginPage from "../../pages/LoginPage";
 import Dashboard from "../../pages/Dashboard";
-import FilterModal from "../../components/Dashboard/FilterModal";
 describe("all tests pages", () => {
   test("tests login render", () => {
     render(
@@ -67,37 +66,21 @@ describe("all tests pages", () => {
   });
 
   test("dashboard filter page test", () => {
-    const element: any = {
-      price: 10000,
-      type: [1],
-      goal: [1],
-      state: "",
-      city: "",
-      district: "",
-      dorms: [1],
-      parking: [1],
-      bathrooms: [1],
-      houseArea: [11],
-      landArea: [1],
-    };
-    const closer = () => {};
     render(
       <BrowserRouter>
         <Providers>
           <Dashboard />
-          <FilterModal handleFilter={element} closeWindow={closer} />
         </Providers>
       </BrowserRouter>
     );
-
     const fillterButton = screen.getByText("Abrir Filtros");
+    fireEvent.click(fillterButton);
+
     const closeButton = screen.getByText("X");
     const filterInsideButton = screen.getByText("Filtrar");
     const clearButton = screen.getByText("Limpar");
     const cityInput = screen.getByPlaceholderText("digite uma cidade");
     const streetInput = screen.getByPlaceholderText("digite um bairro");
-
-    fireEvent.click(fillterButton);
 
     fireEvent.change(cityInput, { target: { value: "cidade" } });
 
@@ -111,4 +94,3 @@ describe("all tests pages", () => {
     fireEvent.click(clearButton);
   });
 });
-
