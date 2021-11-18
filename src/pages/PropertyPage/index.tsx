@@ -50,6 +50,8 @@ import Header from "../../components/Header";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { ImHeart } from "react-icons/im";
+
 interface IdFromUrl {
   id: any;
 }
@@ -423,9 +425,9 @@ const PropertyPage = () => {
                 userInfo.bookmarkedProperties?.find(
                   (item) => item === propertyToRender?.id
                 ) ? (
-                  <AiTwotoneStar />
+                  <ImHeart className="star-bookmarked" />
                 ) : (
-                  <AiOutlineStar />
+                  <ImHeart className="star-unmarked" />
                 )}
               </button>
             )}

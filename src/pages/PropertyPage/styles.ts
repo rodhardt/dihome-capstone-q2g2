@@ -189,11 +189,12 @@ export const TitleAnounce = styled.div`
     height: 35px;
     width: 38px;
     border-radius: 100%;
-    border: 1px solid black;
-    background-color: var(--orange);
+    border: 1px solid #ffffff00;
+    background-color: #ffffff00;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #f3acac;
 
     svg {
       width: 70%;
@@ -201,8 +202,14 @@ export const TitleAnounce = styled.div`
     }
 
     :hover {
-      background-color: var(--mainGray);
+      color: #e12120;
     }
+  }
+  .star-bookmarked {
+    color: #e12120;
+  }
+  .star-bookmarked:hover {
+    color: #f3acac;
   }
 `;
 
@@ -252,8 +259,7 @@ export const ContactOwner = styled.section`
       background-color: var(--mainGray);
       border: 2px solid var(--darkBlue);
       max-width: 200px;
-
-      :hover {
+      a :hover {
         background-color: var(--darkBlue);
         color: var(--mainGray);
         transition: 250ms;
