@@ -8,7 +8,7 @@ import Routes from "./routes";
 
 import { useAuth } from "./providers/Authentication";
 import { useProperties } from "./providers/Properties";
-
+import KommunicateChat from "./components/Chat/chat.js";
 function App() {
   const { authenticate } = useAuth();
   const { getProperties } = useProperties();
@@ -22,6 +22,7 @@ function App() {
     <div className="App">
       <GlobalStyle />
       <Routes />
+      <KommunicateChat />
     </div>
   );
 }
