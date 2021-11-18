@@ -99,18 +99,20 @@ export const ImgHouse = styled.div`
     top: 0px;
     left: 0px;
     position: absolute;
-    color: #fffd0099;
+    color: #ef8888;
+    margin-top: 3px;
+    margin-left: 5px;
     :hover {
-      color: #fffd00;
+      color: #e12120;
       border: 1px solid #ffffff00;
     }
     z-index: 2;
   }
   .star-bookmarked {
-    color: #fffd00;
+    color: #e12120;
   }
   .star-bookmarked:hover {
-    color: #fffd0099;
+    color: #f3acac;
   }
   button svg {
     width: 30px;

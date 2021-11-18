@@ -29,6 +29,7 @@ import { useHistory } from "react-router";
 import { useAuth } from "../../providers/Authentication";
 import { useProperties } from "../../providers/Properties";
 import { AiTwotoneStar, AiOutlineStar, AiFillStar } from "react-icons/ai";
+import { ImHeart } from "react-icons/im";
 
 function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
   const history = useHistory();
@@ -221,9 +222,9 @@ function PropertyCard({ properties, type, setRenderAtt, renderAtt }: any) {
                 userInfo.bookmarkedProperties.find(
                   (item) => item === properties.id
                 ) ? (
-                  <AiFillStar className="star-bookmarked" />
+                  <ImHeart className="star-bookmarked" />
                 ) : (
-                  <AiFillStar className="star-unmarked" />
+                  <ImHeart className="star-unmarked" />
                 )}
               </button>
             </ImgHouse>
