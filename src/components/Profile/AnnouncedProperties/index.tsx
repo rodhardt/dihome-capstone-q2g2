@@ -41,6 +41,7 @@ function AnnouncedProperties() {
   };
 
   const [renderAtt, setRenderAtt] = useState(0);
+  const userSchedule = userInfo.markedDates;
 
   return (
     <>
@@ -49,6 +50,26 @@ function AnnouncedProperties() {
         <AnnounceFormModal closeWindow={closeAnnounceWindow} />
       )}
       <AnnouncedPropertiesStyled>
+            {userInfo.markedDates?.length > 0 && (
+            <div className="table-container">
+                <h3>Visitas agendadas</h3>
+                <table>
+                <tr>
+                  <th>Título</th>
+                  <th>Data e hora</th>
+                  <th>Local</th>
+                </tr>
+                {userSchedule?.map((data, index) => (
+                  <tr key={index}>
+                    <td>{data.split(',')[0]}</td>
+                    <td>{data.split(',')[1]}</td>
+                    <td>{data.split(',')[2]}</td>
+                  </tr>
+                ))}
+              </table>
+            </div>
+            )
+          }
         {userInfo.announcedProperties?.length > 0 ? (
           <>
             <button
@@ -62,6 +83,7 @@ function AnnouncedProperties() {
               <GoMegaphone />
               Anuncie Já!
             </button>
+
             <h2>Meus Anúncios</h2>
             <ul>
               {properties.map((property, index) => (

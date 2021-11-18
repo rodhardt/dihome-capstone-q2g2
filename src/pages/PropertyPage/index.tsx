@@ -1,4 +1,8 @@
-import { BsArrowLeftCircle, BsCalendarWeek } from "react-icons/bs";
+import {
+  BsArrowLeftCircle,
+  BsCalendarWeek,
+  BsFillCalendarCheckFill,
+} from "react-icons/bs";
 import { MdOutlineMapsHomeWork } from "react-icons/md";
 import { AiOutlineAim, AiFillCar } from "react-icons/ai";
 import { FiSend } from "react-icons/fi";
@@ -22,6 +26,7 @@ import {
   PropertyDiscription,
   PropertyInfos,
   PropertyPageStyled,
+  TimeAndDateModal,
   TitleAnounce,
   WithoutMapSection,
 } from "./styles";
@@ -38,9 +43,8 @@ import {
 import { ConsultantButtons } from "../../components/Consultant/Buttons";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import { AiTwotoneStar, AiOutlineStar } from "react-icons/ai";
-
+import { UserData } from '../../assets/Types/user'
 import LoadingScreen from "../../components/LoadingScreen";
-
 import Header from "../../components/Header";
 
 interface IdFromUrl {
@@ -81,20 +85,6 @@ const PropertyPage = () => {
       updateUser(newUser);
       setRenderAtt(renderAtt + 1);
     }
-  };
-
-  const modalInformation = {
-    title: "Agendar visita",
-    closeFunction: () => setIsOpenModal(false),
-    message: "Escolha a data e hora da visita: CALENDÁRIO ABAIXO",
-    confirmButton: {
-      confirmText: "confirmar",
-      confirmFunction: () => {},
-    },
-    cancelButton: {
-      cancelText: "cancelar",
-      cancelFunction: () => {},
-    },
   };
 
   const secondModalInformation = {
@@ -180,6 +170,7 @@ const PropertyPage = () => {
     }
   };
 
+
   const [lastImage, setLastImage] = useState(0);
 
   useEffect(() => {
@@ -210,6 +201,8 @@ const PropertyPage = () => {
     }
   };
 
+  
+  
   useEffect(() => {
     if (
       properties.length > 0 &&
@@ -223,7 +216,7 @@ const PropertyPage = () => {
     if (
       !properties.every((property) => property.id !== Number(id)) &&
       !!propertyToRender?.id
-    ) {
+      ) {
       const newPropertyInfo = {
         id: propertyToRender.id,
         announcerId: propertyToRender.announcerId,
@@ -252,15 +245,60 @@ const PropertyPage = () => {
       updateProperty(newPropertyInfo);
     }
   }, [properties.length]);
+  
+  const [date, setDate] = useState('')
 
+  const handleCalendar = () => {
+
+    const schedule = [propertyToRender?.title, date]
+
+    const userSchedule = {
+      id: userInfo?.id,
+      password: userInfo?.password,
+      name: userInfo?.name,
+      email: userInfo?.email,
+      telephone: userInfo?.telephone,
+      consultant: userInfo?.consultant,
+      announcedProperties: userInfo?.announcedProperties,
+      bookmarkedProperties: userInfo?.bookmarkedProperties,
+      subscriptionType: userInfo?.subscriptionType,
+      markedDates: [...userInfo?.markedDates, date]
+      }
+    updateUser(userSchedule)
+    setIsOpenModal(false);
+  };
+
+  console.log('user info', userInfo)
+  console.log('date', date)
+  console.log('title', propertyToRender?.title)
+  
   return (
     <>
+      {isOpenModal ? (
+        <>
+          <Filter onClick={() => setIsOpenModal(false)}></Filter>
+          <TimeAndDateModal>
+            <div>
+              <div className="header"></div>
+              <BsFillCalendarCheckFill />
+              <input type="datetime-local" onChange={(evt) => setDate(propertyToRender?.title + ', ' + evt.target.value + ', ' + propertyToRender?.city + ' ' + propertyToRender?.district)}/>
+              <div>
+                <button onClick={handleCalendar} className="confirm">
+                  agendar
+                </button>
+                <button onClick={() => setIsOpenModal(false)} className="back">
+                  voltar
+                </button>
+              </div>
+            </div>
+          </TimeAndDateModal>
+        </>
+      ) : null}
       <Header />
       {properties.length === 0 && (
         <LoadingScreen type="full" message="Buscando" />
       )}
       <PropertyPageStyled>
-        {isOpenModal && <ConfirmedModal modalContent={modalInformation} />}
         {isOpenSecondModal && (
           <ConfirmedModal modalContent={secondModalInformation} />
         )}
@@ -450,8 +488,8 @@ const PropertyPage = () => {
             </WithoutMapSection>
           )}
         </MaxWidthAdapter>
+          <Footer />
       </PropertyPageStyled>
-      <Footer />
     </>
   );
 };
