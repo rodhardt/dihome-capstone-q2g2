@@ -74,7 +74,7 @@ const RegisterPage = () => {
           </Link>
 
           <FlexCenter>
-            <img className="logo" src={logoName} alt="" />
+            <img className="logo" src={logoName} alt="dihome-logo" />
             <BoxForm>
               <FormRegister
                 className="form_register"

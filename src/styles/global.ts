@@ -32,7 +32,7 @@ export default createGlobalStyle`
 
     body {
         background-color: var(--mainGray);
-        min-height: 100vh;
+        min-height: 100%;
         position: absolute;
         max-width: 100vw;
         width: 100%;

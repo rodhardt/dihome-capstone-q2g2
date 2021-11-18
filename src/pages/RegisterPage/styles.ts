@@ -144,9 +144,10 @@ export const FlexCenter = styled.div`
   justify-content: center;
   align-items: center;
 
-  img {
+  .logo {
     margin-bottom: 20px;
-    width: 40%;
-    max-width: 200px;
+    width: 100px;
+
+    height: 100px;
   }
 `;
