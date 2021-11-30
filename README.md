@@ -5,9 +5,9 @@ DIHOME
 
 Dihome is a project made by 4 students from Kenzie Academy Brazil with React.
 The application is on the real state market, where the goal is for the property owners to make selling / renting announcements by themselves, without an agent taking 7% off the sale as commission.
-On the other hand, to keep the announcements appealing, trustworthy and fair, there are consultants to approve the offer and give suggestions.
+On the other hand, to keep the announcements appealing, trustworthy and fair, there are consultants to approve the offers and give suggestions.
 
-The goal is to show how the website would work for the user with all the main features, however, some of them are simplified or would have to be implemented in the future. Such as: subscribe payment system, chat between property owner and buyer, and even the data flow, since it was used json-server (fake REST API).
+The goal is to show how the website would work for the user with all the main features, however, some of them are simplified or incomplete. Such as: subscribe payment system, chat between property owner and buyer, and even the data flow, since it was used json-server (fake REST API).
 
 Link with the result: https://dihome-capstone-q2g2-rodhardt.vercel.app/
 
